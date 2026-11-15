@@ -1089,7 +1089,7 @@ header.site::after{content:"";position:absolute;left:0;right:0;bottom:-1px;heigh
           <h3>Ενημέρωση πριν από κάθε προθεσμία</h3>
           <p style="color:var(--muted)">Λάβετε σύντομη υπενθύμιση και ό,τι αλλάζει στα φορολογικά, με email ή Viber. Μπορείτε να διαγραφείτε όποτε θέλετε.</p>
         </div>
-        <form id="notifyForm" novalidate style="display:grid;gap:var(--s3)">
+        <form id="notifyForm" data-clarity-mask="True" novalidate style="display:grid;gap:var(--s3)">
           <div class="seg" id="nfChan" role="group" aria-label="Κανάλι"><button type="button" data-ch="email" aria-pressed="true">Email</button><button type="button" data-ch="viber" aria-pressed="false">Viber</button></div>
           <div class="field"><label for="nf-val" id="nfLbl">Email</label><input id="nf-val" type="email" autocomplete="email" required></div>
           <label class="check-row" for="nf-ok"><input id="nf-ok" type="checkbox" required><span>Συμφωνώ να λαμβάνω ενημερώσεις από την ACBO. Τα στοιχεία μου χρησιμοποιούνται μόνο γι' αυτόν τον σκοπό. <a href="#aporrito">Πολιτική απορρήτου</a></span></label>
@@ -1104,7 +1104,7 @@ header.site::after{content:"";position:absolute;left:0;right:0;bottom:-1px;heigh
 </div>
 
 <!-- ================= ΕΡΓΑΛΕΙΑ ================= -->
-<div class="page" data-page="ergaleia" hidden>
+<div class="page" data-page="ergaleia" data-clarity-mask="True" hidden>
   <section class="band">
     <div class="wrap">
       <div class="sec-head">
@@ -1203,7 +1203,7 @@ header.site::after{content:"";position:absolute;left:0;right:0;bottom:-1px;heigh
   </section>
   <section class="band" style="padding-top:0">
     <div class="wrap">
-      <form class="form" id="contactForm" novalidate>
+      <form class="form" id="contactForm" data-clarity-mask="True" novalidate>
         <div class="field"><label for="cf-name">Ονοματεπώνυμο</label><input id="cf-name" name="name" autocomplete="name" required></div>
         <div class="field"><label for="cf-phone">Τηλέφωνο</label><input id="cf-phone" name="phone" type="tel" autocomplete="tel" required></div>
         <div class="field"><label for="cf-email">Email</label><input id="cf-email" name="email" type="email" autocomplete="email" required></div>
@@ -1851,7 +1851,7 @@ addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#ask').hidden)askOpen(fa
 
 /* --- router --- */
 /* Συγκατάθεση cookies + Microsoft Clarity. Το Clarity φορτώνεται ΜΟΝΟ μετά από «Αποδοχή». */
-const CLARITY_ID='';
+const CLARITY_ID='ze57tjdxsw';
 const CK_KEY='acbo-consent',CK_DAYS=365;let ckPrev='';
 function ckGet(){try{const c=JSON.parse(localStorage.getItem(CK_KEY)||'null');if(c&&Date.now()-c.t<CK_DAYS*864e5)return c.v}catch(e){}return null}
 function ckSet(v){try{localStorage.setItem(CK_KEY,JSON.stringify({v,t:Date.now()}))}catch(e){}}
