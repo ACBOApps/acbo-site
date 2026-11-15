@@ -197,7 +197,7 @@ section.band{padding-block:var(--s9)}
 .thumb.sm .play{width:40px;height:40px}
 .thumb:hover .play{transform:scale(1.12)}
 .play svg{width:20px;height:20px;fill:#231C3D;margin-left:3px}
-.badge{position:absolute;z-index:3;right:5%;top:8%;font:600 11px var(--f-body);letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:999px;background:var(--warm);color:#231C3D}
+.badge{position:absolute;z-index:3;right:5%;top:8%;font:600 11px var(--f-body);letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:999px;background:linear-gradient(180deg,#CFC6F0,var(--gold-lo));color:#1D1736;box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 4px 10px -4px rgba(0,0,0,.5)}
 .vid-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s6) var(--s5)}
 @media (max-width:900px){.vid-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:560px){.vid-grid{grid-template-columns:1fr}}
@@ -554,8 +554,8 @@ body{background:
 .display{font-weight:650;letter-spacing:-.02em}
 .display em{color:var(--gold);font-weight:inherit}
 /* buttons */
-.btn-primary,.hero .btn-primary{background:linear-gradient(180deg,var(--gold-hi),#A99BDA 55%,var(--gold-lo));color:#1D1736;box-shadow:inset 0 1px 0 rgba(255,255,255,.65),inset 0 -2px 0 rgba(0,0,0,.12),0 12px 26px -12px rgba(179,167,224,.75)}
-.btn-primary:hover,.hero .btn-primary:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.65),inset 0 -2px 0 rgba(0,0,0,.12),0 18px 34px -12px rgba(179,167,224,.95)}
+.btn-primary,.hero .btn-primary{border-color:transparent;background:linear-gradient(180deg,#CBC0F2,#A99BDA 50%,var(--gold-lo)) border-box;color:#1D1736;box-shadow:inset 0 1px 0 rgba(255,255,255,.45),inset 0 -2px 0 rgba(0,0,0,.12),0 12px 26px -12px rgba(179,167,224,.75)}
+.btn-primary:hover,.hero .btn-primary:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.45),inset 0 -2px 0 rgba(0,0,0,.12),0 18px 34px -12px rgba(179,167,224,.95)}
 .hero .btn-ghost:hover{border-color:var(--gold-hi);color:var(--gold-hi)}
 header.site{box-shadow:0 1px 0 rgba(255,255,255,.05),0 10px 30px -18px rgba(0,0,0,.7)}
 header.site::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent,rgba(179,167,224,.55),transparent)}
@@ -653,6 +653,7 @@ header.site::after{content:"";position:absolute;left:0;right:0;bottom:-1px;heigh
 .story-text{display:grid;gap:var(--s4);align-content:center}
 .story-pts{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 .story-pts li{position:relative;padding-left:28px;color:var(--fg);line-height:1.5}
+.story-note{margin:0;padding-left:16px;border-left:3px solid var(--accent);font-weight:600;color:var(--fg);font-size:17px;line-height:1.55}
 .story-pts li::before{content:"";position:absolute;left:0;top:.55em;width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
 @media (max-width:900px){.story{grid-template-columns:1fr}}
 
@@ -767,11 +768,7 @@ header.site::after{content:"";position:absolute;left:0;right:0;bottom:-1px;heigh
           <span class="eyebrow">Η δουλειά που δεν βλέπετε</span>
           <h2 class="display" style="font-size:clamp(30px,4vw,44px)">Ο λογιστής σας είναι συνεργάτης, <em>όχι απλός διεκπεραιωτής.</em></h2>
           <p class="lead">Το μεγαλύτερο μέρος της δουλειάς γίνεται πριν και μετά τις δηλώσεις: έλεγχοι, διορθώσεις, παρακολούθηση αλλαγών, προετοιμασία για ό,τι έρχεται. Δεν φαίνεται στο παραστατικό ή στον λογαριασμό σας, αλλά κάνει τη διαφορά.</p>
-          <ul class="story-pts">
-            <li>Ελέγχουμε πριν υποβάλουμε, όχι αφού βγει το πρόβλημα.</li>
-            <li>Παρακολουθούμε τις αλλαγές στη νομοθεσία για λογαριασμό σας.</li>
-            <li>Σας ενημερώνουμε εγκαίρως, με απλά λόγια.</li>
-          </ul>
+          <p class="story-note">Ο λογιστής σας δουλεύει για εσάς ακόμα και όταν δεν το ξέρετε. Αθόρυβα, κάθε μέρα, ώστε εσείς να ασχολείστε με την επιχείρησή σας.</p>
           <div><a class="btn btn-primary" id="storyBtn" href="#video" target="_blank" rel="noopener">▶ Δείτε το βίντεο</a></div>
         </div>
       </div>
