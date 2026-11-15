@@ -12,7 +12,7 @@
 5. **Περιορισμός πρόσβασης:** η εφαρμογή πρέπει να μπορεί να στέλνει μόνο από το `social@acbo.gr`, όχι από οποιοδήποτε γραμματοκιβώτιο. Στο Exchange Online PowerShell:
    - Δημιουργήστε μια mail-enabled security group (π.χ. `acbo-forms@acbo.gr`) με μέλος μόνο το γραμματοκιβώτιο `social@acbo.gr`.
    - `New-ApplicationAccessPolicy -AppId <Application (client) ID> -PolicyScopeGroupId acbo-forms@acbo.gr -AccessRight RestrictAccess -Description "ACBO forms"`
-   - Έλεγχος: `Test-ApplicationAccessPolicy -Identity noreply@acbo.gr -AppId <client ID>` (πρέπει Granted) και με άλλο γραμματοκιβώτιο (πρέπει Denied).
+   - Έλεγχος: `Test-ApplicationAccessPolicy -Identity social@acbo.gr -AppId <client ID>` (πρέπει Granted) και με άλλο γραμματοκιβώτιο (πρέπει Denied).
    - Η Microsoft προωθεί σταδιακά το «RBAC for Applications» ως αντικαταστάτη της ApplicationAccessPolicy. Ο διαχειριστής μπορεί να επιλέξει όποιο ισχύει στον οργανισμό σας.
 6. Κρατήστε τρία στοιχεία: **Directory (tenant) ID**, **Application (client) ID**, **Client secret**.
 
