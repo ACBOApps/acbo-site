@@ -446,6 +446,7 @@ footer.site{border-top:1px solid var(--line);padding-block:var(--s8) var(--s7);m
 @media (max-width:760px){.month{grid-template-columns:1fr;gap:var(--s3)}}
 .month h3{font-family:var(--f-display);font-weight:500;font-size:26px}
 .dl-items{display:grid;gap:10px}
+.dl-item strong a,.dl-next li a{color:inherit;text-decoration:none}.dl-item strong a:hover,.dl-next li a:hover{color:var(--accent-strong);text-decoration:underline}
 .dl-item{display:grid;grid-template-columns:64px 1fr auto;gap:var(--s4);align-items:center;padding:14px 16px;border-radius:14px;background:var(--surface);border:1px solid var(--line)}
 .dl-item .day{display:grid;justify-items:center;line-height:1}
 .dl-item .day b{font:500 30px var(--f-display);font-variant-numeric:tabular-nums}
@@ -741,8 +742,8 @@ header.site::after{content:"";position:absolute;left:0;right:0;bottom:-1px;heigh
     <div class="wrap">
       <div class="dl-label">
         <span class="eyebrow">Επόμενη προθεσμία</span>
-        <strong id="dlTitle">Περιοδική δήλωση ΦΠΑ</strong>
-        <small id="dlSub">Ενδεικτικά, τελευταία εργάσιμη του μήνα</small>
+        <strong id="dlTitle">–</strong>
+        <small id="dlSub">Φορολογικό ημερολόγιο Taxheaven</small>
       </div>
       <div class="dl-count" id="dlCount" aria-live="off">
         <div><b id="dD">–</b><span>Ημέρες</span></div>
@@ -1054,12 +1055,12 @@ header.site::after{content:"";position:absolute;left:0;right:0;bottom:-1px;heigh
         <a class="back" href="#xrisima">← Χρήσιμα</a>
         <span class="eyebrow">Ημερολόγιο υποχρεώσεων</span>
         <h2 class="display" style="font-size:clamp(36px,5.4vw,60px)">Καμία προθεσμία <em>δεν σας ξεφεύγει.</em></h2>
-        <p class="lead">Οι βασικές μηνιαίες και τριμηνιαίες υποχρεώσεις, υπολογισμένες με τις αργίες. Διαλέξτε τι σας αφορά.</p>
+        <p class="lead">Οι προσεχείς φορολογικές και ασφαλιστικές προθεσμίες, από το φορολογικό ημερολόγιο του Taxheaven. Ενημερώνονται αυτόματα.</p>
       </div>
       <div class="dl-next" id="dlNext"></div>
-      <div class="chips-row" id="dlFilter" role="group" aria-label="Τι σας αφορά" style="margin-bottom:var(--s5)"></div>
+      
       <div id="dlList"></div>
-      <p class="calc-note">Οι ημερομηνίες είναι ενδεικτικές: υπολογίζονται ως η τελευταία εργάσιμη του μήνα και δεν περιλαμβάνουν παρατάσεις που ανακοινώνονται κατά περίπτωση. Για τη δική σας περίπτωση, ρωτήστε την ομάδα μας.</p>
+      <p class="calc-note">Πηγή: <a href="https://www.taxheaven.gr/calendar" target="_blank" rel="noopener">Φορολογικό ημερολόγιο Taxheaven.gr</a>. Πατήστε μια προθεσμία για τις λεπτομέρειες. Για τη δική σας περίπτωση, ρωτήστε την ομάδα μας.</p>
     </div>
   </section>
 </div>
@@ -1562,62 +1563,39 @@ const isWork=d=>d.getDay()!==0&&d.getDay()!==6&&!holidays(d.getFullYear()).has(d
 function lastWork(y,m){const d=new Date(y,m+1,0);while(!isWork(d))d.setDate(d.getDate()-1);d.setHours(23,59,0,0);return d}
 const NOM=['Ιανουάριος','Φεβρουάριος','Μάρτιος','Απρίλιος','Μάιος','Ιούνιος','Ιούλιος','Αύγουστος','Σεπτέμβριος','Οκτώβριος','Νοέμβριος','Δεκέμβριος'];
 const DOW=['Κυρ','Δευ','Τρί','Τετ','Πέμ','Παρ','Σάβ'];
-const RULES=[
- {id:'vat_m',t:'Δήλωση ΦΠΑ (μηνιαία)',who:['diplo'],per:'m',p:'Για επιχειρήσεις με διπλογραφικά βιβλία'},
- {id:'vat_q',t:'Δήλωση ΦΠΑ (τριμηνιαία)',who:['aplo','free'],per:'q',p:'Για επιχειρήσεις με απλογραφικά βιβλία'},
- {id:'fmy',t:'Απόδοση παρακρατούμενων φόρων',who:['employer'],per:'m',p:'Φόρος μισθωτών υπηρεσιών και αμοιβών'},
- {id:'apd',t:'ΑΠΔ & εργοδοτικές εισφορές',who:['employer'],per:'m',p:'Υποβολή ΑΠΔ και πληρωμή εισφορών προσωπικού'},
- {id:'efka',t:'Εισφορές ΕΦΚΑ μη μισθωτών',who:['free'],per:'m',p:'Πληρωμή ειδοποιητηρίου ελεύθερων επαγγελματιών'}
-];
-// Ετήσιες ή έκτακτες προθεσμίες: συμπληρώνονται από το γραφείο, π.χ. {d:'2027-07-15',t:'Δήλωση Ε1',who:['free','aplo','diplo','employer'],p:'Φορολογική δήλωση φυσικών προσώπων'}
-const EXTRA=[];
-const DL_FILTERS=[['all','Όλες'],['diplo','Διπλογραφικά (Γ\')'],['aplo','Απλογραφικά (Β\')'],['free','Ελεύθεροι επαγγελματίες'],['employer','Εργοδότες']];
-function deadlines(from,months){
-  const out=[];
-  for(let i=0;i<months;i++){
-    const y=from.getFullYear(),m=from.getMonth()+i;
-    const due=lastWork(y,m);const pm=new Date(y,m-1,1);
-    RULES.forEach(r=>{
-      if(r.per==='q'&&![0,3,6,9].includes(due.getMonth()))return;
-      const per=r.per==='q'?`${Math.floor(pm.getMonth()/3)+1}ο τρίμηνο ${pm.getFullYear()}`:`${NOM[pm.getMonth()]} ${pm.getFullYear()}`;
-      out.push({d:new Date(due),t:r.t,who:r.who,p:r.p,per});
-    });
-  }
-  EXTRA.forEach(x=>out.push({d:new Date(x.d+'T23:59:00'),t:x.t,who:x.who,p:x.p,per:''}));
-  return out.filter(x=>x.d>=new Date(from.getFullYear(),from.getMonth(),from.getDate())).sort((a,b)=>a.d-b.d);
-}
+// Προθεσμίες: από το φορολογικό ημερολόγιο του Taxheaven (deadlines.json, ενημερώνεται αυτόματα από το GitHub Actions)
+let DLX=[];
+function deadlines(from){const t=new Date(from.getFullYear(),from.getMonth(),from.getDate());return DLX.filter(x=>x.d>=t)}
 let dlF='all';
-try{const f=localStorage.getItem('acbo-dlf');if(f&&DL_FILTERS.some(x=>x[0]===f))dlF=f}catch(e){}
 const daysLeft=d=>{const t=new Date();t.setHours(0,0,0,0);const x=new Date(d);x.setHours(0,0,0,0);return Math.round((x-t)/864e5)};
 function renderDeadlines(){
-  const now=new Date(),all=deadlines(new Date(now.getFullYear(),now.getMonth(),now.getDate()),7);
-  const list=all.filter(x=>dlF==='all'||x.who.includes(dlF));
-  $('#dlFilter').innerHTML=DL_FILTERS.map(f=>`<button type="button" data-f="${f[0]}" aria-pressed="${f[0]===dlF}">${f[1]}</button>`).join('');
+  const now=new Date(),list=deadlines(now);
+  if(!list.length){$('#dlNext').innerHTML='';$('#dlList').innerHTML=`<p style="color:var(--muted)">${DLX.loaded?'Δεν υπάρχουν προσεχείς προθεσμίες αυτή τη στιγμή.':'Φόρτωση προθεσμιών…'}</p>`;return}
   const first=list[0];
   if(first){
     const same=list.filter(x=>x.d.toDateString()===first.d.toDateString());
-    $('#dlNext').innerHTML=`<div><span class="eyebrow">Επόμενη προθεσμία</span><h3>${DOW[first.d.getDay()]} ${first.d.getDate()} ${MONTHS[first.d.getMonth()]}</h3><ul>${same.map(x=>`<li>${x.t} · ${x.per}</li>`).join('')}</ul></div><div class="dl-count" data-cd="${first.d.getTime()}"></div>`;
+    $('#dlNext').innerHTML=`<div><span class="eyebrow">Επόμενη προθεσμία</span><h3>${DOW[first.d.getDay()]} ${first.d.getDate()} ${MONTHS[first.d.getMonth()]}</h3><ul>${same.map(x=>`<li><a href="${x.link}" target="_blank" rel="noopener">${esc(x.t)}</a></li>`).join('')}</ul></div><div class="dl-count" data-cd="${first.d.getTime()}"></div>`;
   }
   const groups={};list.forEach(x=>{const k=x.d.getFullYear()+'-'+x.d.getMonth();(groups[k]=groups[k]||[]).push(x)});
-  $('#dlList').innerHTML=Object.values(groups).slice(0,6).map(g=>`<div class="month"><h3>${NOM[g[0].d.getMonth()]} <span style="color:var(--muted)">${g[0].d.getFullYear()}</span></h3><div class="dl-items">${g.map(x=>{const n=daysLeft(x.d);return `<div class="dl-item"><span class="day"><b>${x.d.getDate()}</b><span>${DOW[x.d.getDay()]}</span></span><div style="min-width:0"><strong>${x.t}</strong><small>${x.per?'Περίοδος: '+x.per+' · ':''}${x.p}</small></div><span class="left ${n<=7?'soon':''}">${n<=0?'σήμερα':n===1?'αύριο':'σε '+n+' ημ.'}</span></div>`}).join('')}</div></div>`).join('');
+  $('#dlList').innerHTML=Object.values(groups).slice(0,6).map(g=>`<div class="month"><h3>${NOM[g[0].d.getMonth()]} <span style="color:var(--muted)">${g[0].d.getFullYear()}</span></h3><div class="dl-items">${g.map(x=>{const n=daysLeft(x.d);return `<div class="dl-item"><span class="day"><b>${x.d.getDate()}</b><span>${DOW[x.d.getDay()]}</span></span><div style="min-width:0"><strong><a href="${x.link}" target="_blank" rel="noopener">${esc(x.t)}</a></strong><small>Φορολογικό ημερολόγιο Taxheaven</small></div><span class="left ${n<=7?'soon':''}">${n<=0?'σήμερα':n===1?'αύριο':'σε '+n+' ημ.'}</span></div>`}).join('')}</div></div>`).join('');
   tickAll();
 }
-$('#dlFilter').addEventListener('click',e=>{const b=e.target.closest('[data-f]');if(!b)return;dlF=b.dataset.f;try{localStorage.setItem('acbo-dlf',dlF)}catch(_){}renderDeadlines()});
 function cdHTML(t){const s=Math.max(0,(t-Date.now())/1000);return `<div><b>${Math.floor(s/86400)}</b><span>Ημέρες</span></div><div><b>${String(Math.floor(s%86400/3600)).padStart(2,'0')}</b><span>Ώρες</span></div><div><b>${String(Math.floor(s%3600/60)).padStart(2,'0')}</b><span>Λεπτά</span></div>`}
 function tickAll(){
   $$('[data-cd]').forEach(el=>el.innerHTML=cdHTML(+el.dataset.cd));
   // λωρίδα αρχικής & hub
-  const now=new Date(),all=deadlines(new Date(now.getFullYear(),now.getMonth(),now.getDate()),2);
+  const all=deadlines(new Date());
   if(all[0]){
     const same=all.filter(x=>x.d.toDateString()===all[0].d.toDateString());
-    $('#dlTitle').textContent=same.length>1?`${same.length} υποχρεώσεις λήγουν ${DOW[all[0].d.getDay()]} ${all[0].d.getDate()} ${MONTHS[all[0].d.getMonth()]}`:same[0].t;
-    $('#dlSub').textContent=same.map(x=>x.t).join(' · ');
+    $('#dlTitle').textContent=same.length>1?`${same.length} προθεσμίες ${DOW[all[0].d.getDay()]} ${all[0].d.getDate()} ${MONTHS[all[0].d.getMonth()]}`:same[0].t;
+    $('#dlSub').textContent=same.length>1?same.map(x=>x.t).join(' · '):`${DOW[all[0].d.getDay()]} ${all[0].d.getDate()} ${MONTHS[all[0].d.getMonth()]} · Φορολογικό ημερολόγιο Taxheaven`;
     const s=Math.max(0,(all[0].d-Date.now())/1000);
     $('#dD').textContent=Math.floor(s/86400);$('#dH').textContent=String(Math.floor(s%86400/3600)).padStart(2,'0');$('#dM').textContent=String(Math.floor(s%3600/60)).padStart(2,'0');
     $$('[data-hub-next]').forEach(el=>el.textContent=`Επόμενη: ${all[0].d.getDate()} ${MONTHS[all[0].d.getMonth()]} · σε ${daysLeft(all[0].d)} ημ.`);
   }
 }
 renderDeadlines();setInterval(tickAll,30000);
+fetch('deadlines.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(d=>{DLX=(d&&Array.isArray(d.items)?d.items:[]).filter(x=>x.title&&/^https:\/\/www\.taxheaven\.gr\//.test(x.link)&&/^\d{4}-\d{2}-\d{2}$/.test(x.date)).map(x=>({d:new Date(x.date+'T23:59:00'),t:x.title,link:x.link})).sort((a,b)=>a.d-b.d);DLX.loaded=1;renderDeadlines()}).catch(()=>{DLX.loaded=1;renderDeadlines()});
 /* ---- Εργαλεία υπολογισμού ---- */
 const eur=n=>n.toLocaleString('el-GR',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';
 const seg=(id,cb)=>{$(id).addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;$$(id+' button').forEach(x=>x.setAttribute('aria-pressed',x===b));cb()})};

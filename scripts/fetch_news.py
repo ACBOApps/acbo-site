@@ -42,6 +42,35 @@ try:
 except Exception:
     old = []
 
+DL_OUT = "deadlines.json"
+
+def write_deadlines(root):
+    """Όλες οι προσεχείς προθεσμίες του φορολογικού ημερολογίου: μόνο τίτλος, ημερομηνία, σύνδεσμος."""
+    today = datetime.utcnow().date().isoformat()
+    dl, seen = [], set()
+    for it in root.iter("item"):
+        title = clean(it.findtext("title"), 160)
+        link = (it.findtext("link") or "").strip()
+        date = to_iso(it.findtext("pubDate") or it.findtext("date"))
+        if not title or not link.startswith("https://www.taxheaven.gr/") or date < today or link in seen:
+            continue
+        seen.add(link)
+        dl.append({"title": title, "date": date, "link": link})
+    dl.sort(key=lambda i: (i["date"], i["title"]))
+    dl = dl[:80]
+    if not dl:
+        print("deadlines: κανένα προσεχές, κρατιέται το παλιό αρχείο")
+        return
+    try:
+        same = json.load(open(DL_OUT, encoding="utf-8")).get("items") == dl
+    except Exception:
+        same = False
+    if not same:
+        json.dump({"source": "Taxheaven.gr – Φορολογικό ημερολόγιο", "items": dl,
+                   "updated": datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")},
+                  open(DL_OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    print("deadlines:", len(dl))
+
 items = []
 for key, label, fn in FEEDS:
     try:
@@ -59,6 +88,8 @@ for key, label, fn in FEEDS:
                 break
         if not got:
             raise ValueError("κενό feed")
+        if key == "dat":
+            write_deadlines(root)
         items += got
         print("OK", fn, len(got))
     except Exception as e:
