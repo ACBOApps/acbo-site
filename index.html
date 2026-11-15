@@ -196,8 +196,8 @@ section.band{padding-block:var(--s9)}
 .thumb .shade{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,transparent 35%,rgba(13,10,23,.82));opacity:0;transition:opacity .4s}
 .thumb .yt.ok~.shade{opacity:1}
 .thumb .cat{position:absolute;z-index:3;left:5%;top:8%;font:500 11px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:#E6DFFF;background:rgba(207,197,242,.16);padding:4px 8px;border-radius:999px;backdrop-filter:blur(6px)}
-.thumb .t{position:absolute;z-index:3;left:5%;bottom:8%;right:22%;font-family:var(--f-display);font-size:clamp(17px,2.2vw,28px);line-height:1.18;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.thumb.sm .t{font-size:16px;-webkit-line-clamp:3}
+.thumb .t{position:absolute;z-index:3;left:5%;bottom:8%;right:22%;font-family:var(--f-display);font-size:clamp(17px,2.2vw,28px);line-height:1.18;display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden}
+.thumb.sm .t{font-size:16px;-webkit-line-clamp:6}
 .play{position:absolute;z-index:3;right:5%;bottom:8%;width:54px;height:54px;border-radius:50%;background:#F3F0FA;display:grid;place-items:center;transition:transform .25s;box-shadow:0 8px 24px -6px rgba(0,0,0,.5)}
 .thumb.sm .play{width:40px;height:40px}
 .thumb:hover .play{transform:scale(1.12)}
@@ -545,6 +545,7 @@ abbr.term{text-decoration:underline dotted var(--accent);text-underline-offset:3
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 
 /* ===== v7: depth, light and gold ===== */
+@media (max-width:420px){.persona button{padding:16px 14px}.persona b{font-size:15px;overflow-wrap:anywhere}.persona small{font-size:13px}}
 :root,:root[data-theme="dark"]{--gold:#B3A7E0;--gold-hi:#E6E0FA;--gold-lo:#7C6EBB}
 body{background:
   radial-gradient(900px 520px at 8% -6%,rgba(179,167,224,.16),transparent 62%),
@@ -1234,8 +1235,18 @@ const VCATS=[
  {id:'aade',n:'ΑΑΔΕ & Taxisnet',re:/./}
 ];
 const SVC_VIDEO={pct:'iweaidD9PDw',doc:'qkMw3o7Iw5k',people:'dxVcNUByr9w',cloud:'-4gVKmbY5F4'};
+const VTITLE={
+ 'iovOmhb-fU0':'Ο λογιστής: η δουλειά που δεν βλέπεις',
+ 'uGNCePfXzZo':'Εκτύπωση ειδοποιητηρίου ΕΦΚΑ 2026 (νέο site)',
+ 'b_xOWuE41a0':'Σύντομη επίδειξη της εφαρμογής Timologio ΑΑΔΕ για δελτία αποστολής',
+ 'wASUB9usT4Q':'ACBO: σύγχρονες λογιστικές υπηρεσίες',
+ 'dxVcNUByr9w':'Νέοι κωδικοί πληρωμής (RF) για εργοδοτικές εισφορές και ΚΕΑΟ από 7/4/2025',
+ 'hYZfUXeSqfQ':'Epsilon Smart: παραμετροποίηση για τα ψηφιακά παραστατικά διακίνησης',
+ 'iweaidD9PDw':'Λήψη κωδικών μιας χρήσης για αγορά κινητού χωρίς ΦΠΑ (άρθρο 39Α)',
+ 'GvmVHjRjcC0':'Pylon: γέφυρα λογιστικής'
+};
 function prepVideos(){
-  VIDEOS.forEach(v=>{v.t=v.t.replace(/\s*#\S+/g,'').replace(/\s+/g,' ').trim();v.n=norm(v.t);v.c=(VCATS.find(c=>c.re.test(v.n))||VCATS[4]).id});
+  VIDEOS.forEach(v=>{v.t=v.t.replace(/\s*#\S+/g,'').replace(/\s+/g,' ').trim();v.n=norm(v.t);v.c=(VCATS.find(c=>c.re.test(v.n))||VCATS[4]).id;v.t=(VTITLE[v.id]||v.t).replace(/ - /g,': ')});
   VIDEOS.sort((a,b)=>b.p.localeCompare(a.p));
 }
 prepVideos();
@@ -1253,7 +1264,7 @@ const OFFICES=[
 const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
 /* --- services --- */
-const vlink=k=>{const v=VIDEOS.find(x=>x.id===SVC_VIDEO[k]);return v?`<a class="vlink" href="#${gslug(v.id)}"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="currentColor" opacity=".14"/><path d="M10 8l6 4-6 4z" fill="currentColor"/></svg>Οδηγός: ${esc(v.t.length>48?v.t.slice(0,46)+'…':v.t)}</a>`:''};
+const vlink=k=>{const v=VIDEOS.find(x=>x.id===SVC_VIDEO[k]);return v?`<a class="vlink" href="#${gslug(v.id)}"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="currentColor" opacity=".14"/><path d="M10 8l6 4-6 4z" fill="currentColor"/></svg>Οδηγός: ${esc(v.t)}</a>`:''};
 const svcCard=s=>`<article class="svc rv" data-p="${s.p.join(' ')}"><span class="match">Για εσάς</span><span class="ic">${svg(s.k)}</span><h3>${esc(s.t)}</h3><p>${esc(s.d)}</p><ul>${s.l.map(x=>'<li>'+esc(x)+'</li>').join('')}</ul>${vlink(s.k)}</article>`;
 $('#svcAll').innerHTML=SERVICES.map(svcCard).join('');
 $('#svcHome').innerHTML=SERVICES.map(svcCard).join('');
