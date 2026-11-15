@@ -185,6 +185,12 @@ section.band{padding-block:var(--s9)}
 .banner-img img{width:100%;height:auto}
 
 /* video */
+.vid-duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s6)}
+.duo-card{display:grid;gap:var(--s3);align-content:start}
+.duo-card .thumb{margin-bottom:var(--s2)}
+#vidFeature .pop{margin-top:var(--s6)}
+@media (min-width:761px){#vidFeature .pop{grid-template-columns:repeat(3,minmax(0,1fr))}#vidFeature .pop .eyebrow{grid-column:1/-1}}
+@media (max-width:760px){.vid-duo{grid-template-columns:1fr}}
 .vid-feature{display:grid;grid-template-columns:1.4fr 1fr;gap:var(--s6);align-items:center}
 @media (max-width:900px){.vid-feature{grid-template-columns:1fr}}
 .thumb{position:relative;display:block;aspect-ratio:16/9;max-width:100%;border-radius:16px;overflow:hidden;background:radial-gradient(90% 120% at 80% 30%,var(--deep-2),var(--deep));text-decoration:none;color:var(--deep-fg);isolation:isolate}
@@ -966,7 +972,7 @@ header.site::after{content:"";position:absolute;left:0;right:0;bottom:-1px;heigh
         <h2 class="display" style="font-size:clamp(36px,5.4vw,60px)">Τι θέλετε <em>να κάνετε σήμερα;</em></h2>
         <p class="lead">Οδηγοί βήμα βήμα για τις εφαρμογές της ΑΑΔΕ, του ΕΦΚΑ και του myDATA. Ψάξτε αυτό που χρειάζεστε ή διαλέξτε θέμα.</p>
       </div>
-      <div class="vid-feature" id="vidFeature"></div>
+      <div id="vidFeature"></div>
       <div class="vstats" id="vStats"></div>
       <div class="vtools">
         <label class="vsearch" for="vq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="vq" type="search" placeholder="π.χ. Ε1, εκκαθαριστικό, 39Α, δελτίο αποστολής" autocomplete="off" aria-label="Αναζήτηση οδηγού"></label>
@@ -1372,10 +1378,12 @@ const isNew=v=>v===pool()[0];
 const topIds=()=>[...pool()].sort((a,b)=>b.v-a.v).slice(0,3).map(v=>v.id);
 const thumb=(v,sm)=>`<a class="thumb ${sm?'sm':''}" href="#${gslug(v.id)}" aria-label="${esc(v.t)}">${markImg}${ytImg(v)}<span class="shade"></span><span class="cat">${catName(v.c)}</span>${isNew(v)?'<span class="badge">Νέο</span>':topIds().includes(v.id)?'<span class="badge">Δημοφιλές</span>':''}<span class="t">${esc(v.t)}</span>${playI}</a>`;
 const feat=v=>`${thumb(v)}<div class="rv" style="display:grid;gap:var(--s3)"><span class="eyebrow">Νέο βίντεο · ${ago(v.p)}</span><h3 class="display" style="font-size:clamp(26px,3vw,34px)">${esc(v.t)}</h3><div><a class="btn btn-primary" href="${watch(v.id)}" data-vid="${v.id}" target="_blank" rel="noopener">▶ Δείτε το βίντεο</a></div><div class="pop"><span class="eyebrow" style="color:var(--muted)">Οι πιο δημοφιλείς οδηγοί</span>${[...pool()].sort((a,b)=>b.v-a.v).slice(0,3).map((x,i)=>`<a href="#${gslug(x.id)}"><span class="rk">${i+1}</span><span style="min-width:0"><b>${esc(x.t)}</b><span class="vw">${nf(x.v)} προβολές</span></span></a>`).join('')}</div></div>`;
+const popList=()=>`<div class="pop"><span class="eyebrow" style="color:var(--muted)">Οι πιο δημοφιλείς οδηγοί</span>${[...pool()].sort((a,b)=>b.v-a.v).slice(0,3).map((x,i)=>`<a href="#${gslug(x.id)}"><span class="rk">${i+1}</span><span style="min-width:0"><b>${esc(x.t)}</b><span class="vw">${nf(x.v)} προβολές</span></span></a>`).join('')}</div>`;
+const duoCard=v=>`<div class="duo-card">${thumb(v)}<span class="eyebrow">Νέο βίντεο · ${ago(v.p)}</span><h3 class="display" style="font-size:clamp(20px,2.2vw,26px)">${esc(v.t)}</h3><div><a class="btn btn-primary" href="${watch(v.id)}" data-vid="${v.id}" target="_blank" rel="noopener">▶ Δείτε το βίντεο</a></div></div>`;
 let vCat='all',vSort='new',vQ='';
 function renderVideos(){
   $('#vidHome').innerHTML=feat(pool()[0]);
-  $('#vidFeature').innerHTML=feat(pool()[0]);
+  $('#vidFeature').innerHTML=`<div class="vid-duo">${pool().slice(0,2).map(duoCard).join('')}</div>${popList()}`;
   const sv=VIDEOS.find(v=>v.id===STORY);$('#vidStory').closest('section').hidden=!sv;
   if(sv){$('#storyMedia').innerHTML=thumb(sv);const b=$('#storyBtn');b.href=watch(sv.id);b.dataset.vid=sv.id}
   const total=VIDEOS.reduce((s,v)=>s+v.v,0);
