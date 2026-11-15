@@ -1,6 +1,8 @@
 name = "acbo-forms"
 main = "form-worker.js"
 compatibility_date = "2026-01-01"
+account_id = "4e9c7d72b0e2311f815a46fa6041ed41"
+workers_dev = true
 
 [vars]
 MAIL_TO = "info@acbo.gr"

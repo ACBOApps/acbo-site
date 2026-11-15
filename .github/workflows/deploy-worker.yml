@@ -1,0 +1,27 @@
+name: Ανέβασμα φόρμας στο Cloudflare
+# Όταν αλλάζει ο κώδικας της φόρμας (φάκελος worker/), τρέχουν τα τεστ και ανεβαίνει στο Cloudflare.
+# Το κλειδί CLOUDFLARE_API_TOKEN είναι αποθηκευμένο στα Secrets του GitHub, ποτέ στον κώδικα.
+# Τα μυστικά του Worker (Microsoft, Turnstile) μένουν στο Cloudflare και δεν αγγίζονται.
+on:
+  push:
+    branches: [main]
+    paths: [worker/**]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Τεστ
+        working-directory: worker
+        run: node test.mjs
+      - name: Ανέβασμα
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          workingDirectory: worker
