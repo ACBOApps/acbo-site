@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex,nofollow">
 <title>ACBO Accounting & Bookkeeping | Λογιστικές και φοροτεχνικές υπηρεσίες σε Αθήνα και Θεσσαλονίκη</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-C/lILVkJ8A4NDSkfPZ6F9PdGpOiIbplw1jKyX9a/cbc=' 'sha256-I4fWOieusOexXKqRq+xd/nrvIEoZEfnCyJUP51zoesU=' 'sha256-YSUkur+I5fM/W+B7YasvMcG4tY7Nhge1Zg/nADzkKR4=' https://challenges.cloudflare.com https://www.clarity.ms https://scripts.clarity.ms; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i.ytimg.com https://*.clarity.ms https://c.bing.com; font-src 'self'; connect-src 'self' https://acbo-forms.cold-poetry-1424.workers.dev https://*.clarity.ms https://c.bing.com; frame-src https://challenges.cloudflare.com https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-8DwgdwjTove3WsWP1oaNN7YvqyIEGzOCs2/tacZ6eW0=' 'sha256-C/lILVkJ8A4NDSkfPZ6F9PdGpOiIbplw1jKyX9a/cbc=' 'sha256-I4fWOieusOexXKqRq+xd/nrvIEoZEfnCyJUP51zoesU=' https://challenges.cloudflare.com https://www.clarity.ms https://scripts.clarity.ms; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i.ytimg.com https://*.clarity.ms https://c.bing.com; font-src 'self'; connect-src 'self' https://acbo-forms.cold-poetry-1424.workers.dev https://*.clarity.ms https://c.bing.com; frame-src https://challenges.cloudflare.com https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="description" content="Λογιστικές και φοροτεχνικές υπηρεσίες σε Αθήνα και Θεσσαλονίκη: τήρηση βιβλίων, ΦΠΑ, μισθοδοσία, myDATA και φορολογικές δηλώσεις. ACBO Accounting & Bookkeeping και TAXExpert T.P.M.">
 <meta property="og:type" content="website">
@@ -536,6 +536,9 @@ abbr.term{text-decoration:underline dotted var(--accent);text-underline-offset:3
 /* guide page */
 .guide{display:grid;grid-template-columns:1.5fr 1fr;gap:var(--s7);align-items:start}
 @media (max-width:900px){.guide{grid-template-columns:1fr}}
+.home-vid{margin-bottom:var(--s7)}
+.home-vid>.thumb{display:block;width:calc((100% - var(--s7))*.6);margin:0 auto}
+@media (max-width:900px){.home-vid>.thumb{width:100%}}
 .guide h1{font-family:var(--f-display);font-weight:500;font-size:clamp(30px,4.4vw,48px);margin:var(--s3) 0 var(--s4)}
 .guide aside{display:grid;gap:var(--s5);position:sticky;top:96px}
 .guide .box{padding:var(--s5);border-radius:16px;border:1px solid var(--line);background:var(--surface);display:grid;gap:var(--s3)}
@@ -785,6 +788,7 @@ header.site::after{content:"";position:absolute;left:0;right:0;bottom:-1px;heigh
   </section>
 
   <section class="band trio-sec">
+    <div class="wrap home-vid rv" id="homeStory" hidden></div>
     <div class="wrap trio">
       <div class="rv" style="display:grid;gap:var(--s4)">
         <span class="eyebrow">Ο κανόνας των τριών</span>
@@ -1401,6 +1405,7 @@ function renderVideos(){
   $('#vidFeature').innerHTML=duo;
   const sv=VIDEOS.find(v=>v.id===STORY);$('#vidStory').closest('section').hidden=!sv;
   if(sv){$('#storyMedia').innerHTML=thumb(sv);const b=$('#storyBtn');b.href=watch(sv.id);b.dataset.vid=sv.id}
+  const hs=$('#homeStory');if(hs){hs.hidden=!sv;if(sv)hs.innerHTML=`<a class="thumb" href="${watch(sv.id)}" data-vid="${sv.id}" data-play target="_blank" rel="noopener" aria-label="Αναπαραγωγή: ${esc(sv.t)}">${markImg}${ytImg(sv)}<span class="shade"></span><span class="t">${esc(sv.t)}</span>${playI}</a>`}
   const total=VIDEOS.reduce((s,v)=>s+v.v,0);
   $('#vStats').innerHTML=`<div><b>${VIDEOS.length}</b><span>πρόσφατοι οδηγοί</span></div><div><b>${nf(total)}</b><span>προβολές</span></div><div><b>${nf(Math.max(...VIDEOS.map(v=>v.v)))}</b><span>προβολές ο πιο δημοφιλής</span></div>`;
   $('#vCats').innerHTML=[{id:'all',n:'Όλα'},...VCATS].map(c=>{const k=c.id==='all'?VIDEOS.length:VIDEOS.filter(v=>v.c===c.id).length;return k?`<button type="button" data-cat="${c.id}" aria-pressed="${c.id===vCat}">${c.n}<small>${k}</small></button>`:''}).join('');
