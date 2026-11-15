@@ -1826,9 +1826,9 @@ const fd=s=>{const d=new Date(s+'T12:00:00');return isNaN(d)?'':d.getDate()+' '+
 const E=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 let own=[];try{own=JSON.parse(document.getElementById('postsData').textContent).slice(0,3).map(p=>({own:1,tag:'ACBO',title:p.title,summary:p.summary,date:p.date,href:'#nea-'+p.slug}))}catch(e){}
 function card(i,dup){const ext=!i.own;const a=ext?'href="'+E(i.link)+'" target="_blank" rel="noopener noreferrer"':'href="'+E(i.href)+'"';
- return '<a class="nb-card'+(dup?' nb-dup':'')+'" '+a+(dup?' tabindex="-1" aria-hidden="true"':'')+'><span class="nb-meta"><span class="nb-tag'+(ext?'':' own')+'">'+E(ext?'Taxheaven':'ACBO')+'</span><time>'+fd(i.date)+'</time></span>'+(ext&&i.source?'<span class="nb-sub">'+E(i.source)+'</span>':'')+'<strong>'+E(i.title)+'</strong>'+(i.summary?'<p>'+E(i.summary)+'</p>':'')+'</a>'}
+ return '<a class="nb-card'+(dup?' nb-dup':'')+'" '+a+(dup?' tabindex="-1" aria-hidden="true"':'')+'><span class="nb-meta"><span class="nb-tag'+(ext?'':' own')+'">'+E(ext?'Taxheaven':'ACBO')+'</span><time>'+fd(i.date)+'</time></span>'+(ext&&i.source?'<span class="nb-sub">'+E(i.source)+'</span>':'')+'<strong>'+E(i.title)+'</strong>'+(i.summary&&!i.title.includes(i.summary.slice(0,30))?'<p>'+E(i.summary)+'</p>':'')+'</a>'}
 function render(ext){
- const all=own.concat(ext).sort((a,b)=>a.date<b.date?1:-1).slice(0,14);if(!all.length)return;
+ const g=[own,...['new','law','dat'].map(k=>ext.filter(i=>i.feed===k).slice(0,k==='new'?4:3))];const all=[];for(let n=0;n<4;n++)g.forEach(a=>{if(a[n])all.push(a[n])});if(!all.length)return;
  const tn=all.map(i=>card(i,0)).join(''),td=all.map(i=>card(i,1)).join('');
  track.innerHTML=tn+td;track.style.setProperty('--nbT',Math.max(40,all.length*7)+'s');band.hidden=false}
 render([]);
