@@ -2,14 +2,14 @@ import worker from './form-worker.js';
 import assert from 'node:assert/strict';
 const ORIGIN='https://www.acbo.gr';
 const env={TURNSTILE_SECRET:'s',MAIL_TO:'info@acbo.gr',MAIL_FROM:'social@acbo.gr',MS_TENANT_ID:'t',MS_CLIENT_ID:'c',MS_CLIENT_SECRET:'x'};
-let calls=[],ts=true,graph=202,token=true;
+let calls=[],ts=true,tsHost='www.acbo.gr',graph=202,token=true;
 globalThis.fetch=async(u,o)=>{calls.push([String(u),o]);
- if(String(u).includes('turnstile'))return new Response(JSON.stringify({success:ts}));
+ if(String(u).includes('turnstile'))return new Response(JSON.stringify({success:ts,hostname:tsHost}));
  if(String(u).includes('oauth2'))return token?new Response(JSON.stringify({access_token:'tok'})):new Response('{}',{status:400});
  if(String(u).includes('sendMail'))return new Response('',{status:graph});
  throw new Error('unexpected '+u)};
 const post=(fields,{origin=ORIGIN,e=env,method='POST'}={})=>{const fd=new FormData();for(const[k,v]of Object.entries(fields))fd.append(k,v);
- return worker.fetch(new Request('https://w.test/',{method,headers:origin?{Origin:origin}:{},body:method==='POST'?fd:undefined}),e)};
+ return worker.fetch(new Request("https://w.test/",{method,headers:origin?{Origin:origin,"CF-Connecting-IP":"1.2.3.4"}:{},body:method==='POST'?fd:undefined}),e)};
 const base={form:'contact',name:'Γιάννης',phone:'6912345678',email:'g@example.com',office:'Αθήνα',type:'Τήρηση βιβλίων',message:'Γεια',elapsed:'5000',cf_token:'ok',website:''};
 let r,j;
 r=await post(base,{method:'GET'});assert.equal(r.status,405);
@@ -21,6 +21,10 @@ r=await post({...base,elapsed:'500'});assert.equal(r.status,400);
 r=await post({...base,name:''});assert.equal(r.status,400);
 r=await post({...base,phone:'123'});assert.equal(r.status,400);
 ts=false;r=await post(base);assert.equal(r.status,400);assert.match((await r.json()).error,/ασφαλείας/);ts=true;
+tsHost='evil.com';r=await post(base);assert.equal(r.status,400);tsHost='www.acbo.gr';
+{let n=0;const RL={limit:async()=>({success:++n<=5})};for(let i=0;i<5;i++){r=await post(base,{e:{...env,RL}});assert.equal(r.status,200)}
+ r=await post(base,{e:{...env,RL}});assert.equal(r.status,429);
+ r=await post(base,{e:{...env,RL:{limit:async()=>{throw new Error('x')}}}});assert.equal(r.status,200)}
 calls=[];r=await post({...base,name:'<b>Γιάννης</b>\nBcc: x@y.z'});j=await r.json();assert.equal(r.status,200);assert.equal(j.ok,true);
 const send=calls.find(c=>c[0].includes('sendMail'));const body=JSON.parse(send[1].body);
 assert.equal(send[0],'https://graph.microsoft.com/v1.0/users/social%40acbo.gr/sendMail');assert.equal(send[1].headers.Authorization,'Bearer tok');

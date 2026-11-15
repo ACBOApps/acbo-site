@@ -22,8 +22,24 @@ _ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
     {"@type": "Question", "name": _strip(q), "acceptedAnswer": {"@type": "Answer", "text": _strip(a_)}} for q, a_ in _qa]}
 src = src.replace("<!--FAQLD-->", '<script type="application/ld+json">' + json.dumps(_ld, ensure_ascii=False) + "</script>" if _qa else "")
 vdata = json.dumps(videos, ensure_ascii=False).replace("</", "<\\/")
-open(os.path.join(here, "index.html"), "w", encoding="utf-8").write(
-    src.replace("/*POSTS*/", data).replace("/*VIDEOS*/", vdata))
+out = src.replace("/*POSTS*/", data).replace("/*VIDEOS*/", vdata)
+# Κανόνας ασφαλείας (CSP): ο browser τρέχει ΜΟΝΟ τα δικά μας scripts (με το ακριβές αποτύπωμά τους)
+# και τα Turnstile/Clarity. Οτιδήποτε άλλο μπλοκάρεται. Τα αποτυπώματα ξαναϋπολογίζονται σε κάθε build.
+import hashlib, base64
+_hashes = sorted({"'sha256-" + base64.b64encode(hashlib.sha256(m.encode("utf-8")).digest()).decode() + "'"
+                  for m in _re.findall(r"<script>(.*?)</script>", out, _re.S)})
+CSP = "; ".join([
+    "default-src 'self'",
+    "script-src 'self' " + " ".join(_hashes) + " https://challenges.cloudflare.com https://www.clarity.ms https://scripts.clarity.ms",
+    "style-src 'self' 'unsafe-inline'",
+    "img-src 'self' data: https://i.ytimg.com https://*.clarity.ms https://c.bing.com",
+    "font-src 'self'",
+    "connect-src 'self' https://acbo-forms.cold-poetry-1424.workers.dev https://*.clarity.ms https://c.bing.com",
+    "frame-src https://challenges.cloudflare.com https://www.youtube-nocookie.com",
+    "object-src 'none'", "base-uri 'self'", "form-action 'self'", "upgrade-insecure-requests"])
+assert "<!--CSP-->" in out
+out = out.replace("<!--CSP-->", '<meta http-equiv="Content-Security-Policy" content="' + CSP + '">\n<meta name="referrer" content="strict-origin-when-cross-origin">', 1)
+open(os.path.join(here, "index.html"), "w", encoding="utf-8").write(out)
 
 def rfc822(d):
     return format_datetime(datetime.strptime(d, "%Y-%m-%d").replace(hour=9, tzinfo=timezone.utc))

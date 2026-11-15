@@ -2,6 +2,7 @@
 Δεν αντιγράφεται το πλήρες περιεχόμενο, σύμφωνα με τους όρους του Taxheaven.
 Τρέχει αυτόματα από το GitHub Actions. Αν ένα feed αποτύχει, κρατιούνται τα προηγούμενα στοιχεία του."""
 import json, re, sys, html, urllib.request
+SAFE_LINK = re.compile(r"^https://[^\s\"'<>]+$")  # σύνδεσμος χωρίς κενά/εισαγωγικά/<>
 import xml.etree.ElementTree as ET
 from email.utils import parsedate_to_datetime
 from datetime import datetime
@@ -52,7 +53,7 @@ def write_deadlines(root):
         title = clean(it.findtext("title"), 160)
         link = (it.findtext("link") or "").strip()
         date = to_iso(it.findtext("pubDate") or it.findtext("date"))
-        if not title or not link.startswith("https://www.taxheaven.gr/") or date < today or link in seen:
+        if not title or not link.startswith("https://www.taxheaven.gr/") or not SAFE_LINK.match(link) or date < today or link in seen:
             continue
         seen.add(link)
         dl.append({"title": title, "date": date, "link": link})
@@ -79,7 +80,7 @@ for key, label, fn in FEEDS:
         for it in root.iter("item"):
             title = clean(it.findtext("title"), 150)
             link = (it.findtext("link") or "").strip()
-            if not title or not link.startswith("https://"):
+            if not title or not SAFE_LINK.match(link):
                 continue
             got.append({"feed": key, "source": label, "title": title,
                         "summary": clean(it.findtext("description"), 140),

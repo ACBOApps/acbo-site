@@ -20,12 +20,14 @@ const clean = (v, max = 200) => String(v ?? '').replace(/<[^>]*>/g, '').replace(
 const digits = (v) => String(v ?? '').replace(/\D/g, '');
 const validEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) && v.length <= 120;
 
-async function turnstileOk(env, token, ip) {
+/* Turnstile: δεκτό μόνο αν λύθηκε σε δικό μας site (hostname από τα επιτρεπόμενα origins). */
+async function turnstileOk(env, token, ip, hosts) {
   const body = new URLSearchParams({ secret: env.TURNSTILE_SECRET, response: token || '' });
   if (ip) body.set('remoteip', ip);
   try {
     const r = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', { method: 'POST', body });
-    return !!(await r.json()).success;
+    const d = await r.json();
+    return !!d.success && hosts.includes(String(d.hostname || ''));
   } catch { return false; }
 }
 
@@ -113,7 +115,15 @@ export default {
     if ((parseInt(get('elapsed'), 10) || 0) < 3000) return json({ ok: false, error: 'Η φόρμα στάλθηκε πολύ γρήγορα. Δοκιμάστε ξανά.' }, 400, okOrigin);
 
     const ip = req.headers.get('CF-Connecting-IP') || '';
-    if (!(await turnstileOk(env, String(get('cf_token')), ip))) {
+    // Όριο αποστολών ανά επισκέπτη (binding RL στο wrangler.toml). Αν δεν υπάρχει, η φόρμα συνεχίζει κανονικά.
+    if (env.RL && ip) {
+      try {
+        const { success } = await env.RL.limit({ key: ip });
+        if (!success) return json({ ok: false, error: `Πολλές αποστολές σε λίγο χρόνο. Δοκιμάστε ξανά σε λίγα λεπτά ή ${PHONES}` }, 429, okOrigin);
+      } catch { /* σε σφάλμα του ορίου δεν μπλοκάρουμε */ }
+    }
+    const hosts = allowed.map((o) => o.replace(/^https?:\/\//, ''));
+    if (!(await turnstileOk(env, String(get('cf_token')), ip, hosts))) {
       return json({ ok: false, error: 'Ο έλεγχος ασφαλείας απέτυχε. Ανανεώστε τη σελίδα και δοκιμάστε ξανά.' }, 400, okOrigin);
     }
 

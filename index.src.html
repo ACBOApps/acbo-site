@@ -1,5 +1,6 @@
 <title>ACBO Accounting & Bookkeeping | Λογιστικές και φοροτεχνικές υπηρεσίες σε Αθήνα και Θεσσαλονίκη</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+<!--CSP-->
 <meta name="description" content="Λογιστικές και φοροτεχνικές υπηρεσίες σε Αθήνα και Θεσσαλονίκη: τήρηση βιβλίων, ΦΠΑ, μισθοδοσία, myDATA και φορολογικές δηλώσεις. ACBO Accounting & Bookkeeping και TAXExpert T.P.M.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ACBO Accounting & Bookkeeping">
@@ -702,7 +703,7 @@ header.site::after{content:"";position:absolute;left:0;right:0;bottom:-1px;heigh
 .fmap{display:inline-block;margin-top:6px;font-size:13px;color:var(--accent);text-decoration:none}.fmap:hover{text-decoration:underline}
 </style>
 
-<a class="skip" href="#app" onclick="event.preventDefault();var m=document.getElementById('app');m.setAttribute('tabindex','-1');m.focus()">Μετάβαση στο περιεχόμενο</a>
+<a class="skip" href="#app">Μετάβαση στο περιεχόμενο</a>
 <div id="progress" aria-hidden="true"></div>
 
 <header class="site">
@@ -1310,6 +1311,7 @@ const VTITLE={
  'GvmVHjRjcC0':'Pylon: γέφυρα λογιστικής'
 };
 function prepVideos(){
+  VIDEOS=VIDEOS.filter(v=>v&&/^[\w-]{11}$/.test(v.id)&&typeof v.t==='string'&&typeof v.p==='string');
   VIDEOS.forEach(v=>{v.t=v.t.replace(/\s*#\S+/g,'').replace(/\s+/g,' ').trim();v.n=norm(v.t);v.c=(VCATS.find(c=>c.re.test(v.n))||VCATS[4]).id;v.t=(VTITLE[v.id]||v.t).replace(/ - /g,': ')});
   VIDEOS.sort((a,b)=>b.p.localeCompare(a.p));
 }
@@ -1375,7 +1377,10 @@ const catName=id=>VCATS.find(c=>c.id===id).n;
 const watch=id=>'https://www.youtube.com/watch?v='+id;
 const markImg='<img class="mk" src="assets/mark-white.png" alt="" width="400" height="400">';
 const playI='<span class="play"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></span>';
-const ytImg=v=>`<img class="yt" src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg" alt="" loading="lazy" onload="this.naturalWidth>200&&this.classList.add('ok')" onerror="this.remove()">`;
+const ytImg=v=>`<img class="yt" src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg" alt="" loading="lazy">`;
+document.addEventListener('load',e=>{const t=e.target;if(t.classList&&t.classList.contains('yt')&&t.naturalWidth>200)t.classList.add('ok')},true);
+document.addEventListener('error',e=>{const t=e.target;if(t.classList&&t.classList.contains('yt'))t.remove()},true);
+{const sk=document.querySelector('a.skip');sk&&sk.addEventListener('click',e=>{e.preventDefault();const m=document.getElementById('app');m.setAttribute('tabindex','-1');m.focus()})}
 const STORY='iovOmhb-fU0';const pool=()=>VIDEOS.filter(v=>v.id!==STORY);
 const isNew=v=>v===pool()[0];
 const topIds=()=>[...pool()].sort((a,b)=>b.v-a.v).slice(0,3).map(v=>v.id);
@@ -1553,10 +1558,10 @@ function renderDeadlines(){
   const first=list[0];
   if(first){
     const same=list.filter(x=>x.d.toDateString()===first.d.toDateString());
-    $('#dlNext').innerHTML=`<div><span class="eyebrow">Επόμενη προθεσμία</span><h3>${DOW[first.d.getDay()]} ${first.d.getDate()} ${MONTHS[first.d.getMonth()]}</h3><ul>${same.map(x=>`<li><a href="${x.link}" target="_blank" rel="noopener">${esc(x.t)}</a></li>`).join('')}</ul></div><div class="dl-count" data-cd="${first.d.getTime()}"></div>`;
+    $('#dlNext').innerHTML=`<div><span class="eyebrow">Επόμενη προθεσμία</span><h3>${DOW[first.d.getDay()]} ${first.d.getDate()} ${MONTHS[first.d.getMonth()]}</h3><ul>${same.map(x=>`<li><a href="${esc(x.link)}" target="_blank" rel="noopener">${esc(x.t)}</a></li>`).join('')}</ul></div><div class="dl-count" data-cd="${first.d.getTime()}"></div>`;
   }
   const groups={};list.forEach(x=>{const k=x.d.getFullYear()+'-'+x.d.getMonth();(groups[k]=groups[k]||[]).push(x)});
-  $('#dlList').innerHTML=Object.values(groups).slice(0,6).map(g=>`<div class="month"><h3>${NOM[g[0].d.getMonth()]} <span style="color:var(--muted)">${g[0].d.getFullYear()}</span></h3><div class="dl-items">${g.map(x=>{const n=daysLeft(x.d);return `<div class="dl-item"><span class="day"><b>${x.d.getDate()}</b><span>${DOW[x.d.getDay()]}</span></span><div style="min-width:0"><strong><a href="${x.link}" target="_blank" rel="noopener">${esc(x.t)}</a></strong><small>Φορολογικό ημερολόγιο Taxheaven</small></div><span class="left ${n<=7?'soon':''}">${n<=0?'σήμερα':n===1?'αύριο':'σε '+n+' ημ.'}</span></div>`}).join('')}</div></div>`).join('');
+  $('#dlList').innerHTML=Object.values(groups).slice(0,6).map(g=>`<div class="month"><h3>${NOM[g[0].d.getMonth()]} <span style="color:var(--muted)">${g[0].d.getFullYear()}</span></h3><div class="dl-items">${g.map(x=>{const n=daysLeft(x.d);return `<div class="dl-item"><span class="day"><b>${x.d.getDate()}</b><span>${DOW[x.d.getDay()]}</span></span><div style="min-width:0"><strong><a href="${esc(x.link)}" target="_blank" rel="noopener">${esc(x.t)}</a></strong><small>Φορολογικό ημερολόγιο Taxheaven</small></div><span class="left ${n<=7?'soon':''}">${n<=0?'σήμερα':n===1?'αύριο':'σε '+n+' ημ.'}</span></div>`}).join('')}</div></div>`).join('');
   tickAll();
 }
 function cdHTML(t){const s=Math.max(0,(t-Date.now())/1000);return `<div><b>${Math.floor(s/86400)}</b><span>Ημέρες</span></div><div><b>${String(Math.floor(s%86400/3600)).padStart(2,'0')}</b><span>Ώρες</span></div><div><b>${String(Math.floor(s%3600/60)).padStart(2,'0')}</b><span>Λεπτά</span></div>`}
@@ -1583,7 +1588,7 @@ function officeStatus(o){const n=athNow(),op=o.o[0]*60+o.o[1],cl=o.cl[0]*60+o.cl
   return[0,'Κλειστά']}
 function updOpen(){$$('[data-open]').forEach(el=>{const[on,t]=officeStatus(OFFICES[+el.dataset.open]);el.textContent=t;el.classList.toggle('on',!!on)})}
 updOpen();setInterval(updOpen,60000);
-fetch('deadlines.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(d=>{DLX=(d&&Array.isArray(d.items)?d.items:[]).filter(x=>x.title&&/^https:\/\/www\.taxheaven\.gr\//.test(x.link)&&/^\d{4}-\d{2}-\d{2}$/.test(x.date)).map(x=>({d:new Date(x.date+'T23:59:00'),t:x.title,link:x.link})).sort((a,b)=>a.d-b.d);DLX.loaded=1;renderDeadlines()}).catch(()=>{DLX.loaded=1;renderDeadlines()});
+fetch('deadlines.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(d=>{DLX=(d&&Array.isArray(d.items)?d.items:[]).filter(x=>x.title&&/^https:\/\/www\.taxheaven\.gr\/[^\s"'<>]*$/.test(x.link)&&/^\d{4}-\d{2}-\d{2}$/.test(x.date)).map(x=>({d:new Date(x.date+'T23:59:00'),t:x.title,link:x.link})).sort((a,b)=>a.d-b.d);DLX.loaded=1;renderDeadlines()}).catch(()=>{DLX.loaded=1;renderDeadlines()});
 /* ---- Εργαλεία υπολογισμού ---- */
 const eur=n=>n.toLocaleString('el-GR',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';
 const seg=(id,cb)=>{$(id).addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;$$(id+' button').forEach(x=>x.setAttribute('aria-pressed',x===b));cb()})};
@@ -1885,6 +1890,6 @@ function render(ext){
  track.innerHTML=all.map(i=>card(i,0)).join('');band.hidden=false}
 document.getElementById('nbPrev').onclick=()=>document.querySelector('.nb-view').scrollBy({left:-340,behavior:'smooth'});document.getElementById('nbNext').onclick=()=>document.querySelector('.nb-view').scrollBy({left:340,behavior:'smooth'});
 render([]);
-fetch('news.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(d=>{if(d&&Array.isArray(d.items))render(d.items.filter(i=>i.title&&/^https:\/\//.test(i.link)))}).catch(()=>{});
+fetch('news.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(d=>{if(d&&Array.isArray(d.items))render(d.items.filter(i=>i.title&&/^https:\/\/[^\s"'<>]+$/.test(i.link)))}).catch(()=>{});
 })();
 </script>

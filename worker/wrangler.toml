@@ -4,6 +4,15 @@ compatibility_date = "2026-01-01"
 account_id = "4e9c7d72b0e2311f815a46fa6041ed41"
 workers_dev = true
 
+# Όριο: έως 5 αποστολές ανά λεπτό από την ίδια διεύθυνση
+[[ratelimits]]
+name = "RL"
+namespace_id = "1001"
+
+  [ratelimits.simple]
+  limit = 5
+  period = 60
+
 [vars]
 MAIL_TO = "info@acbo.gr"
 MAIL_FROM = "social@acbo.gr"
