@@ -1197,7 +1197,7 @@ header.site::after{content:"";position:absolute;left:0;right:0;bottom:-1px;heigh
         <div class="full ts" data-ts></div>
         <div class="full" style="display:flex;flex-wrap:wrap;gap:var(--s4);align-items:center;justify-content:space-between">
           <p class="form-note">Ή γράψτε μας απευθείας στο <b style="user-select:all">info@acbo.gr</b></p>
-          <button class="btn btn-primary" type="submit">Καλέστε με</button>
+          <button class="btn btn-primary" type="submit">Υποβολή</button>
         </div>
         <div class="full form-msg" id="formMsg" hidden></div>
       </form>
@@ -1472,7 +1472,7 @@ $('#contactForm').addEventListener('submit',e=>{
   if(!f['cf-name'].value.trim()||f['cf-phone'].value.replace(/\D/g,'').length<10){m.hidden=false;m.className='full form-msg err';m.textContent='Συμπληρώστε ονοματεπώνυμο και ένα τηλέφωνο με 10 ψηφία, για να σας καλέσουμε.';return}
   if(!$('#cf-ok').checked){m.hidden=false;m.className='full form-msg err';m.textContent='Τσεκάρετε τη συγκατάθεση για να σταλεί το μήνυμα.';return}
   const d=new FormData();d.append('form','contact');['name','phone','email','office','type','message'].forEach(k=>d.append(k,f['cf-'+(k==='message'?'msg':k)].value));
-  sendForm(f,d,m,'Ευχαριστούμε! Λάβαμε το μήνυμά σας και θα σας καλέσουμε σύντομα.');
+  sendForm(f,d,m,'Ευχαριστούμε. Θα επικοινωνήσουμε το συντομότερο μαζί σας!');
 });
 
 
