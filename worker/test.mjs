@@ -1,7 +1,7 @@
 import worker from './form-worker.js';
 import assert from 'node:assert/strict';
 const ORIGIN='https://www.acbo.gr';
-const env={TURNSTILE_SECRET:'s',MAIL_TO:'info@acbo.gr',MAIL_FROM:'noreply@acbo.gr',MS_TENANT_ID:'t',MS_CLIENT_ID:'c',MS_CLIENT_SECRET:'x'};
+const env={TURNSTILE_SECRET:'s',MAIL_TO:'info@acbo.gr',MAIL_FROM:'social@acbo.gr',MS_TENANT_ID:'t',MS_CLIENT_ID:'c',MS_CLIENT_SECRET:'x'};
 let calls=[],ts=true,graph=202,token=true;
 globalThis.fetch=async(u,o)=>{calls.push([String(u),o]);
  if(String(u).includes('turnstile'))return new Response(JSON.stringify({success:ts}));
@@ -23,7 +23,7 @@ r=await post({...base,phone:'123'});assert.equal(r.status,400);
 ts=false;r=await post(base);assert.equal(r.status,400);assert.match((await r.json()).error,/ασφαλείας/);ts=true;
 calls=[];r=await post({...base,name:'<b>Γιάννης</b>\nBcc: x@y.z'});j=await r.json();assert.equal(r.status,200);assert.equal(j.ok,true);
 const send=calls.find(c=>c[0].includes('sendMail'));const body=JSON.parse(send[1].body);
-assert.equal(send[0],'https://graph.microsoft.com/v1.0/users/noreply%40acbo.gr/sendMail');assert.equal(send[1].headers.Authorization,'Bearer tok');
+assert.equal(send[0],'https://graph.microsoft.com/v1.0/users/social%40acbo.gr/sendMail');assert.equal(send[1].headers.Authorization,'Bearer tok');
 assert.equal(body.message.toRecipients[0].emailAddress.address,'info@acbo.gr');assert.equal(body.message.replyTo[0].emailAddress.address,'g@example.com');
 assert.match(body.message.body.content,/Ονοματεπώνυμο: Γιάννης Bcc: x@y.z/);assert.ok(!body.message.body.content.includes('<b>'));assert.ok(!body.message.subject.includes('\n'));
 r=await post({...base,email:'not-an-email'});assert.equal(r.status,200);
