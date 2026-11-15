@@ -5,12 +5,12 @@
 **Κανόνας ασφαλείας:** κανένα μυστικό (secret, κωδικός) δεν γράφεται στο GitHub, σε αρχεία ή σε συνομιλίες. Μπαίνουν μόνο στο Cloudflare.
 
 ## Α. Microsoft 365 (από τον διαχειριστή του M365)
-1. **Κοινόχρηστο γραμματοκιβώτιο** `noreply@acbo.gr` (Exchange admin center → Recipients → Mailboxes → Add a shared mailbox). Δεν χρειάζεται άδεια χρήσης.
+1. **Γραμματοκιβώτιο αποστολής:** χρησιμοποιείται το υπάρχον `noreply@acbo.gr` (με άδεια χρήσης, δεν χρειάζεται να γίνει κοινόχρηστο). Η εφαρμογή θα στέλνει email από εκεί προς το info@acbo.gr.
 2. **Εφαρμογή** στο Microsoft Entra: Entra admin center → App registrations → New registration (όνομα «ACBO forms», μόνο αυτός ο οργανισμός).
 3. Στην εφαρμογή: API permissions → Add a permission → Microsoft Graph → **Application permissions** → `Mail.Send` → Grant admin consent.
 4. Certificates & secrets → New client secret. **Σημειώστε πότε λήγει** (θα χρειαστεί ανανέωση).
 5. **Περιορισμός πρόσβασης:** η εφαρμογή πρέπει να μπορεί να στέλνει μόνο από το `noreply@acbo.gr`, όχι από οποιοδήποτε γραμματοκιβώτιο. Στο Exchange Online PowerShell:
-   - Δημιουργήστε μια mail-enabled security group (π.χ. `acbo-forms@acbo.gr`) με μέλος μόνο το `noreply@acbo.gr`.
+   - Δημιουργήστε μια mail-enabled security group (π.χ. `acbo-forms@acbo.gr`) με μέλος μόνο το γραμματοκιβώτιο `noreply@acbo.gr`.
    - `New-ApplicationAccessPolicy -AppId <Application (client) ID> -PolicyScopeGroupId acbo-forms@acbo.gr -AccessRight RestrictAccess -Description "ACBO forms"`
    - Έλεγχος: `Test-ApplicationAccessPolicy -Identity noreply@acbo.gr -AppId <client ID>` (πρέπει Granted) και με άλλο γραμματοκιβώτιο (πρέπει Denied).
    - Η Microsoft προωθεί σταδιακά το «RBAC for Applications» ως αντικαταστάτη της ApplicationAccessPolicy. Ο διαχειριστής μπορεί να επιλέξει όποιο ισχύει στον οργανισμό σας.
