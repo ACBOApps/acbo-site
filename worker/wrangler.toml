@@ -1,0 +1,8 @@
+name = "acbo-forms"
+main = "form-worker.js"
+compatibility_date = "2026-01-01"
+
+[vars]
+MAIL_TO = "info@acbo.gr"
+MAIL_FROM = "noreply@acbo.gr"
+# Μυστικά (ορίζονται στο Cloudflare, ΟΧΙ εδώ): TURNSTILE_SECRET, MS_TENANT_ID, MS_CLIENT_ID, MS_CLIENT_SECRET
