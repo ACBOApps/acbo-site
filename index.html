@@ -196,6 +196,7 @@ section.band{padding-block:var(--s9)}
 .thumb .shade{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,transparent 35%,rgba(13,10,23,.82));opacity:0;transition:opacity .4s}
 .thumb .yt.ok~.shade{opacity:1}
 .thumb .cat{position:absolute;z-index:3;left:5%;top:8%;font:500 11px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:#E6DFFF;background:rgba(207,197,242,.16);padding:4px 8px;border-radius:999px;backdrop-filter:blur(6px)}
+.thumb .yt.ok~.cat{display:none}
 .thumb .t{position:absolute;z-index:3;left:5%;bottom:8%;right:22%;font-family:var(--f-display);font-size:clamp(17px,2.2vw,28px);line-height:1.18;display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden}
 .thumb.sm .t{font-size:16px;-webkit-line-clamp:6}
 .play{position:absolute;z-index:3;right:5%;bottom:8%;width:54px;height:54px;border-radius:50%;background:#F3F0FA;display:grid;place-items:center;transition:transform .25s;box-shadow:0 8px 24px -6px rgba(0,0,0,.5)}
@@ -1386,7 +1387,7 @@ function drawGrid(){
   const words=norm(vQ).split(/\s+/).filter(Boolean);
   let list=VIDEOS.filter(v=>(vCat==='all'||v.c===vCat)&&words.every(w=>v.n.includes(w)));
   if(vSort==='pop')list=[...list].sort((a,b)=>b.v-a.v);
-  $('#vidGrid').innerHTML=list.map(v=>`<div class="vid">${thumb(v,true)}<h3><a href="#${gslug(v.id)}">${esc(v.t)}</a></h3><div class="vmeta"><span>${nf(v.v)} προβολές</span><span>·</span><span>${ago(v.p)}</span></div></div>`).join('');
+  $('#vidGrid').innerHTML=list.map(v=>`<div class="vid">${thumb(v,true)}<h3><a href="#${gslug(v.id)}">${esc(v.t)}</a></h3><div class="vmeta"><span>${catName(v.c)}</span><span>·</span><span>${nf(v.v)} προβολές</span><span>·</span><span>${ago(v.p)}</span></div></div>`).join('');
   $('#vEmpty').hidden=list.length>0;
 }
 $('#vq').addEventListener('input',e=>{vQ=e.target.value;drawGrid()});
@@ -1472,7 +1473,7 @@ $('#yr').textContent=new Date().getFullYear();
 function relVideos(post){
   const cat={'myDATA':'mydata','ΦΠΑ':'aade','Η εταιρεία':'acbo'}[post.tag];
   const list=VIDEOS.filter(v=>v.c===cat).slice(0,2);
-  return list.length?`<div style="margin-top:var(--s7);display:grid;gap:var(--s4)"><span class="eyebrow">Σχετικοί οδηγοί σε βίντεο</span><div class="vid-grid" style="grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr))">${list.map(v=>`<div class="vid">${thumb(v,true)}<div class="vmeta"><span>${nf(v.v)} προβολές</span></div></div>`).join('')}</div></div>`:'';
+  return list.length?`<div style="margin-top:var(--s7);display:grid;gap:var(--s4)"><span class="eyebrow">Σχετικοί οδηγοί σε βίντεο</span><div class="vid-grid" style="grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr))">${list.map(v=>`<div class="vid">${thumb(v,true)}<div class="vmeta"><span>${catName(v.c)}</span><span>·</span><span>${nf(v.v)} προβολές</span></div></div>`).join('')}</div></div>`:'';
 }
 function countUp(el){
   $$('[data-count]',el).forEach(b=>{const to=+b.dataset.count,t0=performance.now();const f=t=>{const k=Math.min(1,(t-t0)/1200),e=1-Math.pow(1-k,3);b.textContent=Math.round(to*e)+'+';if(k<1)requestAnimationFrame(f)};requestAnimationFrame(f)});
