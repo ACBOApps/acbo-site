@@ -1,0 +1,1676 @@
+<!doctype html>
+<html lang="el">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>ACBO Accounting & Bookkeeping</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="ACBO & TAXExpert: λογιστική, φοροτεχνικά, μισθοδοσία και myDATA για επιχειρήσεις σε Αθήνα και Θεσσαλονίκη.">
+<link rel="alternate" type="application/rss+xml" title="ACBO – Νέα" href="feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: sticky header + hash-routed pages; deep-violet hero band with live concentric rings (from the logo mark), airy lavender-tinted pages below. */
+:root{
+  --bg:#F7F6FB; --surface:#FFFFFF; --fg:#1C1830; --muted:#5E5873; --line:#E3E0EC;
+  --accent:#70639B; --accent-strong:#4F4378; --accent-soft:#ECE8F6; --on-accent:#FFFFFF;
+  --deep:#17122A; --deep-2:#231C3D; --deep-fg:#F3F0FA; --deep-muted:#B7AFD3; --ring:#8C7FBF;
+  --warm:#C9A86A; --ok:#2E7D5B; --shadow:0 1px 2px rgba(28,24,48,.06),0 8px 24px rgba(28,24,48,.07);
+  --logo-light:block; --logo-dark:none;
+  --f-display:"Manrope","Commissioner",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-body:"Commissioner",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:32px;--s7:48px;--s8:72px;--s9:104px;
+  --r:14px; --wrap:1160px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121019; --surface:#1A1724; --fg:#ECE9F5; --muted:#A7A1BC; --line:#2C2839;
+  --accent:#A99BDA; --accent-strong:#C7BCF0; --accent-soft:#251F38; --on-accent:#140F22;
+  --deep:#0D0A17; --deep-2:#1A1430; --deep-fg:#F3F0FA; --deep-muted:#B7AFD3; --ring:#8C7FBF;
+  --warm:#D8BC85; --ok:#5FBF92; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
+  --logo-light:none; --logo-dark:block; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121019; --surface:#1A1724; --fg:#ECE9F5; --muted:#A7A1BC; --line:#2C2839;
+  --accent:#A99BDA; --accent-strong:#C7BCF0; --accent-soft:#251F38; --on-accent:#140F22;
+  --deep:#0D0A17; --deep-2:#1A1430; --deep-fg:#F3F0FA; --deep-muted:#B7AFD3; --ring:#8C7FBF;
+  --warm:#D8BC85; --ok:#5FBF92; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
+  --logo-light:none; --logo-dark:block; color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--surface)}
+a{color:inherit}
+img{max-width:100%;display:block}
+h1,h2,h3{text-wrap:balance;margin:0;line-height:1.15}
+p{margin:0}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.display{font-family:var(--f-display);font-weight:500;letter-spacing:-.01em}
+.display em{font-style:italic;font-weight:400;color:var(--accent)}
+.lead{font-size:19px;color:var(--muted);max-width:60ch}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:999px;font:600 15px/1 var(--f-body);text-decoration:none;border:1px solid transparent;cursor:pointer;transition:transform .2s,background .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--accent);color:var(--on-accent)}
+.btn-primary:hover{box-shadow:0 8px 22px -8px var(--accent)}
+.btn-ghost{border-color:var(--line);color:var(--fg);background:transparent}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn svg{width:18px;height:18px}
+
+/* progress + header */
+#progress{position:fixed;left:0;top:env(safe-area-inset-top,0px);height:3px;width:0;background:linear-gradient(90deg,var(--accent),var(--warm));z-index:70;transition:width .1s linear}
+header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--surface) 88%,transparent);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--line)}
+.hdr{display:flex;align-items:center;gap:var(--s5);height:70px}
+.brand{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
+.brand img{height:34px;width:auto}
+.brand .l{display:var(--logo-light)} .brand .d{display:var(--logo-dark)}
+nav.main{display:flex;gap:2px;margin-left:auto}
+nav.main a{text-decoration:none;font-weight:500;font-size:15px;padding:9px 14px;border-radius:999px;color:var(--muted);transition:color .2s,background .2s}
+nav.main a:hover{color:var(--fg);background:var(--accent-soft)}
+nav.main a[aria-current="page"]{color:var(--accent-strong);background:var(--accent-soft)}
+.hdr .cta{margin-left:var(--s3)}
+.menu-btn{display:none;margin-left:auto;background:none;border:1px solid var(--line);border-radius:12px;width:44px;height:44px;color:var(--fg);cursor:pointer}
+.menu-btn svg{width:22px;height:22px}
+@media (max-width:1120px){
+  nav.main{display:none;position:absolute;left:0;right:0;top:70px;flex-direction:column;background:var(--surface);border-bottom:1px solid var(--line);padding:12px max(16px,env(safe-area-inset-right,0px)) 18px max(16px,env(safe-area-inset-left,0px));box-shadow:var(--shadow)}
+  nav.main.open{display:flex}
+  nav.main a{font-size:17px;padding:13px 14px}
+  .menu-btn{display:grid;place-items:center}
+  .hdr .cta{display:none}
+}
+
+/* pages */
+.page{animation:pageIn .45s ease both}
+@keyframes pageIn{from{opacity:.0;transform:translateY(8px)}to{opacity:1;transform:none}}
+section.band{padding-block:var(--s9)}
+.band-tight{padding-block:var(--s8)}
+.sec-head{display:grid;gap:var(--s3);margin-bottom:var(--s7);max-width:720px}
+.sec-head h2{font-size:clamp(30px,4.2vw,46px)}
+
+/* HERO */
+.hero{position:relative;background:radial-gradient(120% 90% at 85% 40%,var(--deep-2),var(--deep) 60%);color:var(--deep-fg);overflow:hidden}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%}
+.hero .wrap{position:relative;padding-block:clamp(72px,11vw,140px)}
+.hero-inner{max-width:680px;display:grid;gap:var(--s5)}
+.hero .eyebrow{color:var(--deep-muted)}
+.hero h1{font-family:var(--f-display);font-weight:500;font-size:clamp(40px,6.4vw,76px);letter-spacing:-.02em;line-height:1.04}
+.hero h1 em{font-style:italic;font-weight:400;color:#CFC5F2}
+.hero .lead{color:var(--deep-muted);font-size:clamp(17px,1.7vw,20px)}
+.hero .btn-ghost{color:var(--deep-fg);border-color:rgba(255,255,255,.22)}
+.hero .btn-ghost:hover{border-color:#CFC5F2;color:#CFC5F2}
+.hero .btn-primary{background:#F3F0FA;color:#231C3D}
+.hero .btn-primary:hover{box-shadow:0 10px 30px -10px rgba(207,197,242,.7)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:var(--s3);margin-top:var(--s2)}
+.hero-meta{display:flex;flex-wrap:wrap;gap:var(--s5);margin-top:var(--s5);font-size:14px;color:var(--deep-muted)}
+.hero-meta span{display:flex;align-items:center;gap:8px}
+.hero-meta i{width:6px;height:6px;border-radius:50%;background:#CFC5F2;display:inline-block}
+
+/* deadline strip */
+.deadline{background:var(--surface);border-bottom:1px solid var(--line)}
+.deadline .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s4) var(--s6);padding-block:var(--s5)}
+.dl-label{display:grid;gap:2px;min-width:0}
+.dl-label strong{font-size:16px}
+.dl-label small{color:var(--muted);font-size:13px}
+.dl-count{display:flex;gap:var(--s3);font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.dl-count div{display:grid;justify-items:center;min-width:58px;padding:8px 10px;border-radius:10px;background:var(--accent-soft)}
+.dl-count b{font-size:24px;color:var(--accent-strong);line-height:1.1}
+.dl-count span{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-family:var(--f-body)}
+.deadline .btn{margin-left:auto}
+@media (max-width:700px){.deadline .btn{margin-left:0}}
+
+/* persona picker */
+.persona{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s3)}
+@media (max-width:860px){.persona{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.persona button{all:unset;cursor:pointer;display:grid;gap:6px;padding:20px;border-radius:var(--r);border:1px solid var(--line);background:var(--surface);transition:border-color .2s,transform .2s,background .2s}
+.persona button:hover{border-color:var(--accent);transform:translateY(-2px)}
+.persona button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.persona button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.persona b{font-size:16px}
+.persona small{color:var(--muted);font-size:14px;line-height:1.4}
+.persona-out{margin-top:var(--s5);padding:var(--s5) var(--s6);border-radius:var(--r);background:var(--deep);color:var(--deep-fg);display:flex;flex-wrap:wrap;gap:var(--s4);align-items:center;justify-content:space-between}
+.persona-out p{max-width:62ch;color:var(--deep-muted)}
+.persona-out p strong{color:var(--deep-fg);font-weight:600}
+.persona-out .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chip{font-size:13px;padding:5px 11px;border-radius:999px;background:rgba(207,197,242,.14);color:#E6DFFF}
+
+/* services */
+.svc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s4)}
+@media (max-width:980px){.svc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.svc-grid{grid-template-columns:1fr}}
+.svc{position:relative;display:grid;align-content:start;gap:var(--s3);padding:var(--s6) var(--s5) var(--s5);background:var(--surface);border:1px solid var(--line);border-radius:var(--r);transition:transform .25s,box-shadow .25s,border-color .25s,opacity .3s;overflow:hidden}
+.svc:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:color-mix(in srgb,var(--accent) 40%,var(--line))}
+.svc .ic{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent-strong)}
+.svc .ic svg{width:24px;height:24px}
+.svc h3{font-size:20px;font-weight:600;font-family:var(--f-body)}
+.svc p{color:var(--muted);font-size:15.5px}
+.svc ul{margin:var(--s2) 0 0;padding:0;list-style:none;display:grid;gap:6px;font-size:14.5px}
+.svc li{display:flex;gap:8px}
+.svc li::before{content:"";flex:none;width:6px;height:6px;margin-top:9px;border-radius:50%;background:var(--accent)}
+.svc .match{position:absolute;top:16px;right:16px;font-size:11px;font-family:var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent-strong);background:var(--accent-soft);padding:4px 8px;border-radius:999px;opacity:0;transition:opacity .3s}
+.svc-grid.filtered .svc{opacity:.45}
+.svc-grid.filtered .svc.on{opacity:1;border-color:var(--accent)}
+.svc-grid.filtered .svc.on .match{opacity:1}
+
+/* values strip */
+.values{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+@media (max-width:860px){.values{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.values div{padding:var(--s6) var(--s5);display:grid;gap:var(--s2);border-right:1px solid var(--line)}
+.values div:last-child{border-right:none}
+@media (max-width:860px){.values div:nth-child(2){border-right:none}.values div:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+.values b{font-family:var(--f-display);font-size:24px;font-weight:500}
+.values p{color:var(--muted);font-size:15px}
+
+/* quiz */
+.quiz{display:grid;grid-template-columns:1fr 1.15fr;gap:var(--s7);align-items:center}
+@media (max-width:900px){.quiz{grid-template-columns:1fr}}
+.quiz-card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:var(--s6);box-shadow:var(--shadow);display:grid;gap:var(--s5);min-height:330px}
+.qdots{display:flex;gap:6px}
+.qdots i{height:5px;flex:1;border-radius:9px;background:var(--line);transition:background .3s}
+.qdots i.done{background:var(--accent)}
+.qnum{font-family:var(--f-mono);font-size:12px;color:var(--muted);letter-spacing:.1em}
+.qtext{font-family:var(--f-display);font-size:clamp(22px,2.4vw,28px);font-weight:500;line-height:1.25}
+.qbtns{display:flex;flex-wrap:wrap;gap:var(--s3)}
+.qbtns .btn{flex:1;justify-content:center;min-width:120px}
+.qres{display:grid;gap:var(--s3)}
+.qscore{font-family:var(--f-display);font-size:56px;line-height:1;color:var(--accent)}
+
+/* merger */
+.merger{display:grid;grid-template-columns:1.1fr 1fr;gap:var(--s7);align-items:center}
+@media (max-width:900px){.merger{grid-template-columns:1fr}}
+.duo{display:flex;align-items:center;gap:var(--s5);flex-wrap:wrap}
+.duo .tile{background:#FFFFFF;border-radius:14px;padding:12px 18px;border:1px solid var(--line);display:grid;place-items:center;height:84px}
+.duo .tile img{max-height:58px;width:auto}
+.duo .plus{font-family:var(--f-display);font-size:34px;color:var(--accent)}
+.banner-img{border-radius:20px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line)}
+.banner-img img{width:100%;height:auto}
+
+/* video */
+.vid-feature{display:grid;grid-template-columns:1.4fr 1fr;gap:var(--s6);align-items:center}
+@media (max-width:900px){.vid-feature{grid-template-columns:1fr}}
+.thumb{position:relative;display:block;aspect-ratio:16/9;max-width:100%;border-radius:16px;overflow:hidden;background:radial-gradient(90% 120% at 80% 30%,var(--deep-2),var(--deep));text-decoration:none;color:var(--deep-fg);isolation:isolate}
+.thumb .mk{position:absolute;right:-8%;top:50%;width:62%;transform:translateY(-50%);opacity:.18;transition:transform .6s}
+.thumb:hover .mk{transform:translateY(-50%) rotate(-12deg) scale(1.04)}
+.thumb .yt{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s,transform .6s;z-index:1}
+.thumb .yt.ok{opacity:1}
+.thumb:hover .yt.ok{transform:scale(1.04)}
+.thumb .shade{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,transparent 35%,rgba(13,10,23,.82));opacity:0;transition:opacity .4s}
+.thumb .yt.ok~.shade{opacity:1}
+.thumb .cat{position:absolute;z-index:3;left:5%;top:8%;font:500 11px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:#E6DFFF;background:rgba(207,197,242,.16);padding:4px 8px;border-radius:999px;backdrop-filter:blur(6px)}
+.thumb .t{position:absolute;z-index:3;left:5%;bottom:8%;right:22%;font-family:var(--f-display);font-size:clamp(17px,2.2vw,28px);line-height:1.18;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.thumb.sm .t{font-size:16px;-webkit-line-clamp:3}
+.play{position:absolute;z-index:3;right:5%;bottom:8%;width:54px;height:54px;border-radius:50%;background:#F3F0FA;display:grid;place-items:center;transition:transform .25s;box-shadow:0 8px 24px -6px rgba(0,0,0,.5)}
+.thumb.sm .play{width:40px;height:40px}
+.thumb:hover .play{transform:scale(1.12)}
+.play svg{width:20px;height:20px;fill:#231C3D;margin-left:3px}
+.badge{position:absolute;z-index:3;right:5%;top:8%;font:600 11px var(--f-body);letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:999px;background:var(--warm);color:#231C3D}
+.vid-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s6) var(--s5)}
+@media (max-width:900px){.vid-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.vid-grid{grid-template-columns:1fr}}
+.vid{display:grid;gap:var(--s3);align-content:start}
+.vid h3{font-size:16px;font-weight:600;font-family:var(--f-body);line-height:1.35}
+.vid h3 a{text-decoration:none}
+.vid h3 a:hover{color:var(--accent)}
+.vmeta{display:flex;gap:var(--s3);font:500 12.5px var(--f-mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.vstats{display:flex;flex-wrap:wrap;gap:var(--s6);margin:var(--s5) 0 var(--s7);padding-block:var(--s5);border-block:1px solid var(--line)}
+.vstats div{display:grid}
+.vstats b{font-family:var(--f-display);font-size:clamp(30px,3.6vw,42px);font-weight:500;line-height:1.1;font-variant-numeric:tabular-nums}
+.vstats span{color:var(--muted);font-size:14px}
+.vtools{display:grid;gap:var(--s4);margin-bottom:var(--s6)}
+.vsearch{position:relative;max-width:560px}
+.vsearch svg{position:absolute;left:16px;top:50%;width:20px;height:20px;transform:translateY(-50%);color:var(--muted)}
+.vsearch input{width:100%;font:inherit;font-size:17px;padding:15px 18px 15px 48px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
+.vsearch input:focus{outline:2px solid var(--accent);border-color:transparent}
+.chips-row{display:flex;flex-wrap:wrap;gap:8px}
+.chips-row button{all:unset;cursor:pointer;font-size:14px;font-weight:500;padding:8px 14px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:var(--surface);transition:all .2s}
+.chips-row button:hover{border-color:var(--accent);color:var(--fg)}
+.chips-row button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.chips-row button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.chips-row small{opacity:.7;margin-left:4px;font-family:var(--f-mono);font-size:11px}
+.vempty{padding:var(--s7) 0;color:var(--muted)}
+.pop{display:grid;gap:var(--s4)}
+.pop a{display:grid;grid-template-columns:auto 1fr;gap:var(--s4);align-items:center;text-decoration:none;padding:var(--s3);margin:calc(var(--s3)*-1);border-radius:12px;transition:background .2s}
+.pop a:hover{background:var(--accent-soft)}
+.pop .rk{font-family:var(--f-display);font-size:34px;color:var(--accent);width:34px;text-align:center}
+.pop b{display:block;font-size:15.5px;line-height:1.35;font-weight:600}
+.pop .vw{display:block;font:500 12.5px var(--f-mono);color:var(--muted);margin-top:2px}
+.svc .vlink{display:inline-flex;align-items:center;gap:8px;margin-top:var(--s2);font-size:14px;font-weight:600;color:var(--accent);text-decoration:none}
+.svc .vlink svg{width:22px;height:22px;flex:none}
+.svc .vlink:hover{text-decoration:underline}
+.yt-cta{display:flex;flex-wrap:wrap;gap:var(--s4);align-items:center;justify-content:space-between;padding:var(--s5) var(--s6);border:1px solid var(--line);border-radius:var(--r);background:var(--surface);margin-top:var(--s7)}
+/* player (ενεργό μόνο στο acbo.gr) */
+.player{position:fixed;inset:0;z-index:90;background:rgba(10,8,18,.86);backdrop-filter:blur(8px);display:grid;place-items:center;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.player .box{width:min(1100px,100%);display:grid;gap:var(--s3)}
+.player .frame{aspect-ratio:16/9;max-width:100%;border-radius:14px;overflow:hidden;background:#000}
+.player iframe{width:100%;height:100%;border:0}
+.player .bar{display:flex;justify-content:space-between;align-items:center;gap:var(--s4);color:#F3F0FA}
+.player .bar b{font-weight:600;min-width:0}
+.player button{background:rgba(255,255,255,.12);border:none;color:#fff;font:600 14px var(--f-body);padding:9px 14px;border-radius:999px;cursor:pointer}
+/* social */
+.social{display:flex;flex-wrap:wrap;gap:10px}
+.social a{height:44px;min-width:44px;padding:0 12px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;gap:10px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none;font-weight:600;font-size:15px;transition:background .2s,border-color .2s,color .2s,transform .2s}
+.social:not(.labeled) a{padding:0}
+.social a svg{width:22px;height:22px;flex:none;transition:fill .2s}
+.social a.fb svg{fill:#0866FF}
+.social a.ig svg{fill:url(#igGrad)}
+.social a.yt svg{fill:#FF0000}
+.social a:hover{transform:translateY(-2px);color:#fff;border-color:transparent}
+.social a.fb:hover{background:#0866FF}
+.social a.ig:hover{background:linear-gradient(45deg,#FEDA75 0%,#FA7E1E 25%,#D62976 55%,#962FBF 80%,#4F5BD5 100%)}
+.social a.yt:hover{background:#FF0000}
+.social a:hover svg{fill:#fff}
+.social a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.foot .social a{display:inline-flex;padding:0;color:var(--fg)}
+.foot .social a:hover{color:#fff}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s5)}
+@media (max-width:760px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stats div{display:grid;gap:4px}
+.stats b{font-family:var(--f-display);font-weight:500;font-size:clamp(40px,5.4vw,64px);line-height:1;color:var(--accent-strong);font-variant-numeric:tabular-nums}
+.stats span{color:var(--muted);font-size:15px}
+
+/* news */
+.news-list{display:grid;gap:0;border-top:1px solid var(--line)}
+.news-item{display:grid;grid-template-columns:150px 1fr auto;gap:var(--s5);align-items:start;padding:var(--s6) 0;border-bottom:1px solid var(--line);text-decoration:none;transition:background .2s}
+.news-item:hover h3{color:var(--accent)}
+.news-item time{font-family:var(--f-mono);font-size:13px;color:var(--muted);padding-top:6px}
+.news-item h3{font-family:var(--f-display);font-size:clamp(22px,2.4vw,28px);font-weight:500;transition:color .2s}
+.news-item p{color:var(--muted);margin-top:8px;max-width:64ch}
+.news-item .tag{font-size:12px;padding:5px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent-strong);white-space:nowrap;margin-top:6px}
+@media (max-width:720px){.news-item{grid-template-columns:1fr;gap:var(--s2)}.news-item .tag{justify-self:start;order:-1}}
+.rss-box{display:flex;flex-wrap:wrap;gap:var(--s4);align-items:center;padding:var(--s5);border-radius:var(--r);background:var(--accent-soft);margin-bottom:var(--s7)}
+.rss-box .ri{width:44px;height:44px;border-radius:12px;background:#E8873A;display:grid;place-items:center;flex:none}
+.rss-box .ri svg{width:22px;height:22px;fill:#fff}
+.rss-box div{min-width:0;flex:1}
+.rss-box code{font-family:var(--f-mono);font-size:13px;color:var(--accent-strong);word-break:break-all}
+.article{max-width:720px;margin:0 auto}
+.article h1{font-family:var(--f-display);font-weight:500;font-size:clamp(34px,5vw,54px);margin:var(--s4) 0 var(--s5)}
+.article .meta{display:flex;gap:var(--s3);align-items:center;color:var(--muted);font-size:14px}
+.article .body{display:grid;gap:var(--s4);font-size:18px;line-height:1.75}
+.article .body h3{font-size:22px;margin-top:var(--s4);font-family:var(--f-body);font-weight:600}
+.article .body em{color:var(--muted)}
+.back{display:inline-flex;gap:8px;align-items:center;text-decoration:none;color:var(--accent);font-weight:500;font-size:15px}
+
+/* process */
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s5);counter-reset:s}
+@media (max-width:900px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+.step{display:grid;gap:var(--s2);padding-top:var(--s4);border-top:2px solid var(--accent)}
+.step::before{counter-increment:s;content:counter(s,decimal-leading-zero);font-family:var(--f-mono);font-size:13px;color:var(--accent)}
+.step b{font-size:18px}
+.step p{color:var(--muted);font-size:15px}
+
+/* faq */
+.faq{display:grid;gap:0;border-top:1px solid var(--line);max-width:860px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;padding:var(--s5) 0;font-size:18px;font-weight:600;display:flex;justify-content:space-between;gap:var(--s4)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--f-mono);color:var(--accent);font-size:22px;line-height:1;transition:transform .25s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding-bottom:var(--s5);color:var(--muted);max-width:68ch}
+
+/* contact */
+.offices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s5)}
+@media (max-width:760px){.offices{grid-template-columns:1fr}}
+.office{position:relative;overflow:hidden;padding:var(--s6);border-radius:20px;background:var(--deep);color:var(--deep-fg);display:grid;gap:var(--s4)}
+.office .mk{position:absolute;right:-60px;bottom:-60px;width:240px;opacity:.12}
+.office .city{font-family:var(--f-display);font-size:38px;font-weight:500}
+.office .addr{color:var(--deep-muted);font-size:16px}
+.office .rows{display:grid;gap:10px;position:relative}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.row a{color:var(--deep-fg);text-decoration:none;font:500 18px var(--f-mono);font-variant-numeric:tabular-nums;user-select:all}
+.copy{background:rgba(255,255,255,.1);border:none;color:var(--deep-muted);font:500 12px var(--f-body);padding:5px 10px;border-radius:999px;cursor:pointer}
+.copy:hover{color:var(--deep-fg);background:rgba(255,255,255,.18)}
+.office .btn-ghost{color:var(--deep-fg);border-color:rgba(255,255,255,.22);justify-self:start}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4);background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:var(--s6)}
+@media (max-width:700px){.form{grid-template-columns:1fr}}
+.form .full{grid-column:1/-1}
+.field{display:grid;gap:6px;min-width:0}
+.field label{font-size:14px;font-weight:600}
+.field input,.field select,.field textarea{font:inherit;font-size:16px;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);width:100%}
+.field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--accent);outline-offset:0;border-color:transparent}
+.form-note{font-size:14px;color:var(--muted)}
+.form-msg{padding:14px 16px;border-radius:10px;background:var(--accent-soft);color:var(--accent-strong);font-size:15px}
+
+/* CTA band */
+.cta-band{background:var(--deep);color:var(--deep-fg);border-radius:24px;padding:clamp(32px,6vw,64px);display:grid;grid-template-columns:1.4fr auto;gap:var(--s5);align-items:center;position:relative;overflow:hidden}
+@media (max-width:800px){.cta-band{grid-template-columns:1fr}}
+.cta-band h2{font-family:var(--f-display);font-weight:500;font-size:clamp(28px,3.8vw,42px)}
+.cta-band p{color:var(--deep-muted);margin-top:10px}
+.cta-band .mk{position:absolute;right:-80px;top:-80px;width:320px;opacity:.08}
+.cta-band .btn-primary{background:#F3F0FA;color:#231C3D;position:relative}
+
+/* footer */
+footer.site{border-top:1px solid var(--line);padding-block:var(--s8) var(--s7);margin-top:var(--s8);background:var(--surface)}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:var(--s6)}
+@media (max-width:860px){.foot{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.foot{grid-template-columns:1fr}}
+.foot img{height:36px;width:auto}
+.foot .l{display:var(--logo-light)} .foot .d{display:var(--logo-dark)}
+.foot h4{margin:0 0 var(--s3);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.foot a{display:block;text-decoration:none;color:var(--fg);padding:4px 0;font-size:15px}
+.foot a:hover{color:var(--accent)}
+.foot p{color:var(--muted);font-size:14.5px}
+.copyright{margin-top:var(--s7);padding-top:var(--s5);border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:var(--s3);justify-content:space-between;color:var(--muted);font-size:13px}
+
+/* mobile action bar */
+.mbar{display:none}
+@media (max-width:700px){
+  .mbar{display:grid;grid-template-columns:repeat(3,1fr);position:fixed;left:0;right:0;bottom:0;z-index:55;background:var(--surface);border-top:1px solid var(--line);padding:8px max(10px,env(safe-area-inset-right,0px)) calc(8px + env(safe-area-inset-bottom,0px)) max(10px,env(safe-area-inset-left,0px));gap:8px}
+  .mbar a{display:grid;justify-items:center;gap:2px;text-decoration:none;font-size:12px;color:var(--muted);padding:6px}
+  .mbar svg{width:20px;height:20px;color:var(--accent)}
+  footer.site{padding-bottom:110px}
+}
+
+
+/* ===== v3 additions ===== */
+:root{--c-q:#0E9F86;--c-s:#E0901F;--c-c:#E2574C;--c-q-soft:#DDF4EF;--c-s-soft:#FCEFD9;--c-c-soft:#FBE3E1;--fb:#1877F2;--yt:#FF0000}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--c-q:#3CCBB0;--c-s:#F2B04A;--c-c:#F07F75;--c-q-soft:#12302B;--c-s-soft:#33280F;--c-c-soft:#3A1F1C}}
+:root[data-theme="dark"]{--c-q:#3CCBB0;--c-s:#F2B04A;--c-c:#F07F75;--c-q-soft:#12302B;--c-s-soft:#33280F;--c-c-soft:#3A1F1C}
+/* trio */
+.trio{display:grid;grid-template-columns:1fr 1fr;gap:var(--s7);align-items:center}
+@media (max-width:900px){.trio{grid-template-columns:1fr}}
+.trio svg.venn{width:100%;max-width:460px;height:auto;justify-self:center;overflow:visible}
+.venn circle{transition:fill-opacity .35s,stroke-width .35s,transform .35s;cursor:pointer;transform-origin:center;transform-box:fill-box}
+.venn circle:hover{stroke-width:4}
+.venn text{font:600 17px var(--f-body);fill:var(--fg);pointer-events:none}
+.venn .lbl-q{fill:var(--c-q)}.venn .lbl-s{fill:var(--c-s)}.venn .lbl-c{fill:var(--c-c)}
+.tog{display:grid;gap:10px}
+.tog button{all:unset;cursor:pointer;display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:14px;border:1.5px solid var(--line);background:var(--surface);font-weight:600;transition:all .25s}
+.tog button:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+.tog .sw{width:44px;height:26px;border-radius:99px;background:var(--line);position:relative;flex:none;transition:background .25s}
+.tog .sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .25s}
+.tog button[aria-pressed="true"] .sw::after{transform:translateX(18px)}
+.tog button[data-k="q"][aria-pressed="true"]{border-color:var(--c-q);background:var(--c-q-soft)}.tog button[data-k="q"][aria-pressed="true"] .sw{background:var(--c-q)}
+.tog button[data-k="s"][aria-pressed="true"]{border-color:var(--c-s);background:var(--c-s-soft)}.tog button[data-k="s"][aria-pressed="true"] .sw{background:var(--c-s)}
+.tog button[data-k="c"][aria-pressed="true"]{border-color:var(--c-c);background:var(--c-c-soft)}.tog button[data-k="c"][aria-pressed="true"] .sw{background:var(--c-c)}
+.tog small{display:block;font-weight:400;color:var(--muted);font-size:14px}
+.trio-out{margin-top:var(--s4);padding:var(--s5);border-radius:16px;background:var(--surface);border:1px solid var(--line);display:grid;gap:8px;min-height:120px}
+.trio-out b{font-size:19px}
+.trio-out p{color:var(--muted)}
+.trio-out.shake{animation:shake .4s}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+/* testimonials */
+.quotes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s5)}
+@media (max-width:900px){.quotes{grid-template-columns:1fr}}
+.quote{display:grid;gap:var(--s4);align-content:space-between;padding:var(--s6);border-radius:20px;background:var(--surface);border:1px solid var(--line)}
+.quote p{font-family:var(--f-display);font-size:21px;line-height:1.4}
+.quote p::before{content:"«";color:var(--accent)}.quote p::after{content:"»";color:var(--accent)}
+.quote span{font-size:14px;color:var(--muted)}
+.stars{color:var(--warm);letter-spacing:3px;font-size:15px}
+/* hub */
+.hub{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s5)}
+@media (max-width:760px){.hub{grid-template-columns:1fr}}
+.hub a{display:grid;gap:var(--s3);padding:var(--s6);border-radius:20px;background:var(--surface);border:1px solid var(--line);text-decoration:none;transition:transform .25s,box-shadow .25s,border-color .25s;position:relative;overflow:hidden}
+.hub a:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--accent)}
+.hub .ic{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent-strong)}
+.hub .ic svg{width:26px;height:26px}
+.hub h3{font-family:var(--f-display);font-weight:500;font-size:28px}
+.hub p{color:var(--muted)}
+.hub .live{font:500 13px var(--f-mono);color:var(--accent-strong)}
+.links-row{display:flex;flex-wrap:wrap;gap:10px}
+.links-row a{padding:10px 16px;border-radius:999px;border:1px solid var(--line);text-decoration:none;font-weight:500;font-size:15px;background:var(--surface)}
+.links-row a:hover{border-color:var(--accent);color:var(--accent)}
+/* deadlines */
+.dl-next{display:grid;grid-template-columns:1fr auto;gap:var(--s5);align-items:center;padding:var(--s6);border-radius:20px;background:var(--deep);color:var(--deep-fg);margin-bottom:var(--s6)}
+@media (max-width:760px){.dl-next{grid-template-columns:1fr}}
+.dl-next .eyebrow{color:var(--deep-muted)}
+.dl-next h3{font-family:var(--f-display);font-weight:500;font-size:clamp(26px,3.4vw,38px);margin-top:6px}
+.dl-next ul{margin:10px 0 0;padding-left:18px;color:var(--deep-muted)}
+.dl-next .dl-count div{background:rgba(207,197,242,.12)}
+.dl-next .dl-count b{color:#F3F0FA}
+.dl-next .dl-count span{color:var(--deep-muted)}
+.month{display:grid;grid-template-columns:200px 1fr;gap:var(--s5);padding-block:var(--s5);border-top:1px solid var(--line)}
+@media (max-width:760px){.month{grid-template-columns:1fr;gap:var(--s3)}}
+.month h3{font-family:var(--f-display);font-weight:500;font-size:26px}
+.dl-items{display:grid;gap:10px}
+.dl-item{display:grid;grid-template-columns:64px 1fr auto;gap:var(--s4);align-items:center;padding:14px 16px;border-radius:14px;background:var(--surface);border:1px solid var(--line)}
+.dl-item .day{display:grid;justify-items:center;line-height:1}
+.dl-item .day b{font:500 30px var(--f-display);font-variant-numeric:tabular-nums}
+.dl-item .day span{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-top:4px}
+.dl-item strong{display:block;font-size:16px}
+.dl-item small{color:var(--muted);font-size:13.5px}
+.dl-item .left{font:500 12px var(--f-mono);padding:5px 9px;border-radius:999px;background:var(--accent-soft);color:var(--accent-strong);white-space:nowrap}
+.dl-item .left.soon{background:var(--c-c-soft);color:var(--c-c)}
+@media (max-width:520px){.dl-item{grid-template-columns:52px 1fr}.dl-item .left{grid-column:2;justify-self:start}}
+.sub-box{display:grid;grid-template-columns:1.2fr 1fr;gap:var(--s6);padding:var(--s6);border-radius:20px;background:var(--accent-soft);margin-top:var(--s7)}
+@media (max-width:860px){.sub-box{grid-template-columns:1fr}}
+.sub-box h3{font-family:var(--f-display);font-weight:500;font-size:28px}
+.sub-box code{display:block;margin-top:8px;font:500 13px var(--f-mono);color:var(--accent-strong);word-break:break-all;user-select:all}
+.sub-box details{border-top:1px solid color-mix(in srgb,var(--accent) 25%,transparent);padding:10px 0}
+.sub-box summary{cursor:pointer;font-weight:600}
+.sub-box details p{color:var(--muted);font-size:15px;margin-top:6px}
+.check-row{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--muted)}
+.check-row input{margin-top:3px;width:18px;height:18px;accent-color:var(--accent)}
+/* tabs */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:var(--s5)}
+.tabs button{all:unset;cursor:pointer;padding:11px 18px;border-radius:999px;font-weight:600;font-size:15px;border:1px solid var(--line);background:var(--surface);color:var(--muted)}
+.tabs button[aria-selected="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+/* calculators */
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:var(--s6);padding:var(--s6);border-radius:20px;background:var(--surface);border:1px solid var(--line)}
+@media (max-width:860px){.calc{grid-template-columns:1fr}}
+.calc .inputs{display:grid;gap:var(--s4);align-content:start}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{all:unset;cursor:pointer;padding:9px 14px;border-radius:10px;border:1px solid var(--line);font-weight:600;font-size:14px;font-variant-numeric:tabular-nums}
+.seg button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.seg button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.money{position:relative}
+.money input{padding-right:40px!important;font-size:22px!important;font-variant-numeric:tabular-nums}
+.money::after{content:"€";position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:18px}
+.result{display:grid;gap:var(--s3);align-content:start;padding:var(--s5);border-radius:16px;background:var(--deep);color:var(--deep-fg)}
+.result .big{font:500 clamp(40px,5vw,56px)/1 var(--f-display);font-variant-numeric:tabular-nums}
+.result .lbl{color:var(--deep-muted);font-size:14px}
+.result dl{display:grid;grid-template-columns:1fr auto;gap:8px 16px;margin:var(--s3) 0 0;font-variant-numeric:tabular-nums}
+.result dt{color:var(--deep-muted)}.result dd{margin:0;text-align:right;font-weight:600}
+.result .bar{display:flex;height:10px;border-radius:9px;overflow:hidden;background:rgba(255,255,255,.1)}
+.result .bar i{display:block;height:100%}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--deep-muted)}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;background:var(--c)}
+.calc-note{font-size:13.5px;color:var(--muted);margin-top:var(--s4);max-width:80ch}
+/* checklists */
+.cl{display:grid;grid-template-columns:1.3fr 1fr;gap:var(--s6);align-items:start}
+@media (max-width:860px){.cl{grid-template-columns:1fr}}
+.cl ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.cl label{display:flex;gap:14px;align-items:flex-start;padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:var(--surface);cursor:pointer;transition:all .2s}
+.cl label:hover{border-color:var(--accent)}
+.cl input{width:20px;height:20px;margin-top:2px;accent-color:var(--c-q);flex:none}
+.cl input:checked+span{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--c-q)}
+.cl small{display:block;color:var(--muted);font-size:13.5px;text-decoration:none}
+.cl-side{position:sticky;top:96px;display:grid;gap:var(--s4);padding:var(--s6);border-radius:20px;background:var(--deep);color:var(--deep-fg)}
+.cl-side .big{font:500 56px/1 var(--f-display);font-variant-numeric:tabular-nums}
+.cl-side p{color:var(--deep-muted)}
+.prog{height:10px;border-radius:9px;background:rgba(255,255,255,.12);overflow:hidden}
+.prog i{display:block;height:100%;background:var(--c-q);transition:width .4s}
+/* glossary */
+.gl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 var(--s7)}
+@media (max-width:760px){.gl{grid-template-columns:1fr}}
+.gl div{padding:var(--s4) 0;border-top:1px solid var(--line)}
+.gl dt{font-weight:700;font-size:17px}.gl dd{margin:4px 0 0;color:var(--muted)}
+.gl :target,.gl .hl{background:var(--accent-soft)}
+abbr.term{text-decoration:underline dotted var(--accent);text-underline-offset:3px;cursor:help;border-bottom:none}
+#tip{position:fixed;z-index:95;max-width:min(320px,calc(100vw - 32px));padding:12px 14px;border-radius:12px;background:var(--fg);color:var(--bg);font-size:14px;line-height:1.45;box-shadow:var(--shadow);pointer-events:none}
+#tip b{display:block;margin-bottom:2px}
+/* guide page */
+.guide{display:grid;grid-template-columns:1.5fr 1fr;gap:var(--s7);align-items:start}
+@media (max-width:900px){.guide{grid-template-columns:1fr}}
+.guide h1{font-family:var(--f-display);font-weight:500;font-size:clamp(30px,4.4vw,48px);margin:var(--s3) 0 var(--s4)}
+.guide aside{display:grid;gap:var(--s5);position:sticky;top:96px}
+.guide .box{padding:var(--s5);border-radius:16px;border:1px solid var(--line);background:var(--surface);display:grid;gap:var(--s3)}
+.guide .box a{color:var(--accent);font-weight:500}
+/* assistant */
+#askBtn{position:fixed;z-index:80;right:max(18px,calc(env(safe-area-inset-right,0px) + 18px));bottom:max(18px,calc(env(safe-area-inset-bottom,0px) + 18px));display:flex;align-items:center;gap:10px;padding:14px 20px;border:none;border-radius:999px;background:var(--fg);color:var(--bg);font:600 15px var(--f-body);cursor:pointer;box-shadow:0 10px 30px -8px rgba(0,0,0,.4);transition:transform .2s}
+#askBtn:hover{transform:translateY(-2px)}
+#askBtn svg{width:20px;height:20px}
+@media (max-width:700px){#askBtn{bottom:calc(84px + env(safe-area-inset-bottom,0px));padding:13px}#askBtn span{display:none}}
+#ask{position:fixed;z-index:85;right:max(18px,calc(env(safe-area-inset-right,0px) + 18px));bottom:max(18px,calc(env(safe-area-inset-bottom,0px) + 18px));width:min(420px,calc(100vw - 32px));max-height:min(640px,calc(100dvh - 120px));display:grid;grid-template-rows:auto auto 1fr auto;border-radius:20px;background:var(--surface);border:1px solid var(--line);box-shadow:0 24px 60px -12px rgba(0,0,0,.35);overflow:hidden}
+@media (max-width:700px){#ask{left:16px;right:16px;width:auto;bottom:calc(80px + env(safe-area-inset-bottom,0px))}}
+#ask header{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;background:var(--deep);color:var(--deep-fg)}
+#ask header b{font-size:16px}
+#ask header button{background:rgba(255,255,255,.12);border:none;color:#fff;border-radius:999px;width:32px;height:32px;cursor:pointer;font-size:16px}
+#ask .q{padding:14px 18px 8px}
+#ask .q input{width:100%;font:inherit;font-size:16px;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--fg)}
+#ask .q input:focus{outline:2px solid var(--accent);border-color:transparent}
+#ask .res{overflow:auto;padding:4px 10px 10px;display:grid;align-content:start;gap:4px}
+#ask .res a{display:grid;gap:2px;padding:10px;border-radius:10px;text-decoration:none}
+#ask .res a:hover,#ask .res a:focus-visible{background:var(--accent-soft)}
+#ask .res small{font:500 11px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+#ask .res b{font-size:15px;font-weight:600}
+#ask .res span{font-size:13.5px;color:var(--muted)}
+#ask .sugg{display:flex;flex-wrap:wrap;gap:6px;padding:4px 8px 8px}
+#ask .sugg button{all:unset;cursor:pointer;font-size:13px;padding:6px 11px;border-radius:999px;background:var(--accent-soft);color:var(--accent-strong)}
+#ask footer{padding:12px 18px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted)}
+#ask footer b{color:var(--fg);user-select:all}
+
+
+/* σύγχρονη τυπογραφία: Manrope στους τίτλους, χωρίς πλάγια */
+.display,.hero h1,.values b,.stats b,.news-item h3,.article h1,.cta-band h2,.office .city,.hub h3,.dl-next h3,.month h3,.sub-box h3,.guide h1,.qtext,.qscore,.result .big,.cl-side .big,.pop .rk,.vstats b,.thumb .t,.dl-item .day b,.duo .plus,.vid-feature h3{font-weight:700;letter-spacing:-.025em}
+.hero h1{font-weight:800;letter-spacing:-.035em;line-height:1.05}
+.display em,.hero h1 em{font-style:normal;font-weight:inherit}
+.quote p{font-weight:600;font-size:19px;letter-spacing:-.01em;line-height:1.45}
+.qtext{font-size:clamp(20px,2.2vw,25px);line-height:1.3}
+.thumb .t{font-weight:700;letter-spacing:-.015em}
+.month h3,.office .city{font-weight:700}
+.result .big,.cl-side .big,.qscore,.stats b,.vstats b{font-weight:800}
+.values b{font-size:21px}
+
+/* anti-spam */
+.hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
+.ts{min-height:0}
+.ts-note{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:10px;border:1px dashed var(--line);color:var(--muted);font-size:14px}
+.ts-note svg{width:18px;height:18px;flex:none;color:var(--c-q)}
+.form-msg.ok{background:var(--c-q-soft);color:var(--c-q)}
+.form-msg.err{background:var(--c-c-soft);color:var(--c-c)}
+/* reveal: visible at rest, animates on enter */
+.rv.in{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+
+<div id="progress" aria-hidden="true"></div>
+
+<header class="site">
+  <div class="wrap hdr">
+    <a class="brand" href="#home" aria-label="ACBO – Αρχική">
+      <img class="l" src="assets/logo-color.png" alt="ACBO Accounting & Bookkeeping" width="560" height="167">
+      <img class="d" src="assets/logo-ondark.png" alt="ACBO Accounting & Bookkeeping" width="560" height="167">
+    </a>
+    <nav class="main" id="nav" aria-label="Κύριο μενού">
+      <a href="#home">Αρχική</a>
+      <a href="#ypiresies">Υπηρεσίες</a>
+      <a href="#video">Οδηγοί</a>
+      <a href="#xrisima">Χρήσιμα</a>
+      <a href="#emeis">Ποιοι είμαστε</a>
+      <a href="#nea">Νέα</a>
+      <a href="#epikoinonia">Επικοινωνία</a>
+    </nav>
+    <a class="btn btn-primary cta" href="#epikoinonia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg> Καλέστε μας</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Μενού" aria-expanded="false" aria-controls="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<main id="app">
+
+<!-- ================= HOME ================= -->
+<div class="page" data-page="home">
+  <section class="hero">
+    <canvas id="rings" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div class="hero-inner">
+        <span class="eyebrow">ACBO &amp; TAXExpert · Αθήνα | Θεσσαλονίκη</span>
+        <h1>Εσείς τρέχετε την επιχείρηση.<br><em>Εμείς τα νούμερά της.</em></h1>
+        <p class="lead">Λογιστική, φοροτεχνικά, μισθοδοσία και myDATA, με συνέπεια στις προθεσμίες και έναν άνθρωπο που ξέρει την επιχείρησή σας με το όνομα.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#epikoinonia">Καλέστε για ραντεβού <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn-ghost" href="#ypiresies">Δείτε τις υπηρεσίες</a>
+        </div>
+        <div class="hero-meta"><span><i></i>Τήρηση βιβλίων Β' &amp; Γ'</span><span><i></i>ΦΠΑ &amp; myDATA</span><span><i></i>Μισθοδοσία</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="deadline">
+    <div class="wrap">
+      <div class="dl-label">
+        <span class="eyebrow">Επόμενη προθεσμία</span>
+        <strong id="dlTitle">Περιοδική δήλωση ΦΠΑ</strong>
+        <small id="dlSub">Ενδεικτικά, τελευταία εργάσιμη του μήνα</small>
+      </div>
+      <div class="dl-count" id="dlCount" aria-live="off">
+        <div><b id="dD">–</b><span>Ημέρες</span></div>
+        <div><b id="dH">–</b><span>Ώρες</span></div>
+        <div><b id="dM">–</b><span>Λεπτά</span></div>
+      </div>
+      <a class="btn btn-ghost" href="#prothesmies">Όλες οι προθεσμίες →</a>
+    </div>
+  </div>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="eyebrow">Ξεκινήστε από εσάς</span>
+        <h2 class="display">Τι είδους επιχείρηση <em>έχετε;</em></h2>
+        <p class="lead">Διαλέξτε και δείτε τι χρειάζεστε από εμάς.</p>
+      </div>
+      <div class="persona rv" role="group" aria-label="Τύπος επιχείρησης" data-persona-group="home"></div>
+      <div class="persona-out rv" id="personaOutHome"></div>
+    </div>
+  </section>
+
+  <section class="band" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="eyebrow">Υπηρεσίες</span>
+        <h2 class="display">Όλα τα λογιστικά σας, <em>σε ένα σημείο.</em></h2>
+      </div>
+      <div class="svc-grid" id="svcHome"></div>
+      <div style="margin-top:var(--s6)"><a class="btn btn-ghost" href="#ypiresies">Όλες οι υπηρεσίες →</a></div>
+    </div>
+  </section>
+
+  <section class="band-tight">
+    <div class="wrap" style="display:grid;gap:var(--s8)">
+      <div class="stats rv">
+        <div><b data-count="30">30+</b><span>χρόνια εμπειρίας</span></div>
+        <div><b data-count="700">700+</b><span>επιχειρήσεις μας εμπιστεύονται</span></div>
+        <div><b>1.000+</b><span>ιδιώτες εξυπηρετούμε</span></div>
+        <div><b>2</b><span>γραφεία, Αθήνα &amp; Θεσσαλονίκη</span></div>
+      </div>
+      <div class="values rv">
+        <div><b>Συνέπεια</b><p>Τήρηση προθεσμιών με απόλυτη συνέπεια.</p></div>
+        <div><b>Αξιοπιστία</b><p>Ακριβής ενημέρωση και ασφαλείς διαδικασίες.</p></div>
+        <div><b>Υποστήριξη</b><p>Εξειδικευμένη ομάδα δίπλα σας.</p></div>
+        <div><b>Ανάπτυξη</b><p>Λύσεις που στηρίζουν την ανάπτυξή σας.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap quiz">
+      <div class="sec-head rv" style="margin:0">
+        <span class="eyebrow">Τεστ 60 δευτερολέπτων</span>
+        <h2 class="display">Πόσο ήσυχος είστε με <em>τα λογιστικά σας;</em></h2>
+        <p class="lead">Πέντε ερωτήσεις, ναι ή όχι. Στο τέλος βλέπετε πού στέκεστε και τι θα κάναμε εμείς.</p>
+      </div>
+      <div class="quiz-card rv" id="quiz" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="band" style="padding-top:0">
+    <div class="wrap trio">
+      <div class="rv" style="display:grid;gap:var(--s4)">
+        <span class="eyebrow">Ο κανόνας των τριών</span>
+        <h2 class="display" style="font-size:clamp(30px,4.2vw,46px)">Ποιότητα, ταχύτητα, κόστος. <em>Διαλέξτε δύο.</em></h2>
+        <p class="lead">Και τα τρία μαζί δεν γίνονται ποτέ. Ανάψτε όποια θέλετε και δείτε τι χάνετε.</p>
+        <div class="tog" id="trioTog" role="group" aria-label="Ποιότητα, ταχύτητα, κόστος">
+          <button type="button" data-k="q" aria-pressed="false"><span class="sw"></span><span>Ποιότητα<small>Σωστή δουλειά, χωρίς λάθη και πρόστιμα</small></span></button>
+          <button type="button" data-k="s" aria-pressed="false"><span class="sw"></span><span>Ταχύτητα<small>Όλα έτοιμα, άμεσα</small></span></button>
+          <button type="button" data-k="c" aria-pressed="false"><span class="sw"></span><span>Χαμηλό κόστος<small>Η φθηνότερη τιμή της αγοράς</small></span></button>
+        </div>
+        <div class="trio-out" id="trioOut" aria-live="polite"></div>
+      </div>
+      <svg class="venn rv" id="venn" viewBox="0 0 400 380" role="img" aria-label="Τρεις κύκλοι: ποιότητα, ταχύτητα, κόστος">
+        <circle data-k="q" cx="200" cy="130" r="105" fill="var(--c-q)" fill-opacity=".12" stroke="var(--c-q)" stroke-width="2"/>
+        <circle data-k="s" cx="137" cy="240" r="105" fill="var(--c-s)" fill-opacity=".12" stroke="var(--c-s)" stroke-width="2"/>
+        <circle data-k="c" cx="263" cy="240" r="105" fill="var(--c-c)" fill-opacity=".12" stroke="var(--c-c)" stroke-width="2"/>
+        <text class="lbl-q" x="200" y="82" text-anchor="middle">Ποιότητα</text>
+        <text class="lbl-s" x="92" y="292" text-anchor="middle">Ταχύτητα</text>
+        <text class="lbl-c" x="308" y="292" text-anchor="middle">Κόστος</text>
+        <text id="vennMid" x="200" y="212" text-anchor="middle" style="font-size:30px">?</text>
+      </svg>
+    </div>
+  </section>
+
+  <section class="band" style="padding-top:0">
+    <div class="wrap merger">
+      <div class="rv" style="display:grid;gap:var(--s5)">
+        <span class="eyebrow">Μια εταιρεία · κοινή πορεία</span>
+        <h2 class="display" style="font-size:clamp(30px,4.2vw,46px)">Μαζί, δημιουργούμε <em>ένα ισχυρότερο αύριο.</em></h2>
+        <p class="lead">Η ACBO και η TAXExpert T.P.M. ενώνουν γνώση και ανθρώπους. Ίδια εμπιστοσύνη, περισσότερη δύναμη, σε Αθήνα και Θεσσαλονίκη.</p>
+        <div class="duo">
+          <div class="tile"><img src="assets/taxexpert.jpg" alt="TAXExpert T.P.M." width="680" height="332"></div>
+          <span class="plus">+</span>
+          <div class="tile"><img src="assets/logo-color.png" alt="ACBO" width="560" height="167"></div>
+        </div>
+        <div><a class="btn btn-ghost" href="#emeis">Η ιστορία μας →</a></div>
+      </div>
+      <div class="banner-img rv"><img src="assets/merger-circle.jpg" alt="ACBO και TAXExpert, Αθήνα και Θεσσαλονίκη" width="800" height="800" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section class="band" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head rv"><span class="eyebrow">Είπαν για εμάς</span><h2 class="display">Συνεργάτες, <em>όχι απλώς λογιστήριο.</em></h2></div>
+      <div class="quotes rv">
+        <figure class="quote" style="margin:0"><p>Δεν είναι απλά λογιστήριο, είναι συνεργάτες! Με κορυφαία γνώση πάνω στο αντικείμενο και συνεχή εξέλιξη.</p><span class="stars" aria-label="5 αστέρια">★★★★★</span></figure>
+        <figure class="quote" style="margin:0"><p>Επαγγελματισμός, άψογη εξυπηρέτηση, άμεση ηλεκτρονική ενημέρωση.</p><span class="stars" aria-label="5 αστέρια">★★★★★</span></figure>
+        <figure class="quote" style="margin:0"><p>Ένα μεγάλο ευχαριστώ που τόσα χρόνια είσαστε δίπλα μου, με τις γνώσεις μα πάνω απ' όλα την κατανόησή σας.</p><span class="stars" aria-label="5 αστέρια">★★★★★</span></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head rv" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;max-width:none;gap:var(--s4)">
+        <div style="display:grid;gap:var(--s3)"><span class="eyebrow">Οδηγοί σε βίντεο</span><h2 class="display">Βήμα βήμα, <em>σε λίγα λεπτά.</em></h2></div>
+        <a class="btn btn-ghost" href="#video">Όλοι οι οδηγοί →</a>
+      </div>
+      <div class="vid-feature" id="vidHome"></div>
+    </div>
+  </section>
+
+  <section class="band" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head rv" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;max-width:none;gap:var(--s4)">
+        <div style="display:grid;gap:var(--s3)"><span class="eyebrow">Νέα &amp; ενημερώσεις</span><h2 class="display">Τελευταία <em>άρθρα</em></h2></div>
+        <a class="btn btn-ghost" href="#nea">Όλα τα νέα →</a>
+      </div>
+      <div class="news-list" id="newsHome"></div>
+    </div>
+  </section>
+
+  <section class="band" style="padding-top:0"><div class="wrap"><div class="cta-band rv" data-cta></div></div></section>
+</div>
+
+<!-- ================= SERVICES ================= -->
+<div class="page" data-page="ypiresies" hidden>
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Υπηρεσίες</span>
+        <h2 class="display" style="font-size:clamp(36px,5.4vw,60px)">Ό,τι χρειάζεται η επιχείρησή σας, <em>από μία ομάδα.</em></h2>
+        <p class="lead">Διαλέξτε τον τύπο της επιχείρησής σας και θα φωτιστούν οι υπηρεσίες που σας αφορούν.</p>
+      </div>
+      <div class="persona" role="group" aria-label="Τύπος επιχείρησης" data-persona-group="svc"></div>
+      <div style="height:var(--s6)"></div>
+      <div class="svc-grid" id="svcAll"></div>
+    </div>
+  </section>
+  <section class="band" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head rv"><span class="eyebrow">Πώς ξεκινάμε</span><h2 class="display">Τέσσερα βήματα <em>και είστε έτοιμοι.</em></h2></div>
+      <div class="steps rv">
+        <div class="step"><b>Γνωριμία</b><p>Μια σύντομη συζήτηση, στο γραφείο ή τηλεφωνικά, για την επιχείρηση και τις ανάγκες σας.</p></div>
+        <div class="step"><b>Πρόταση</b><p>Σας λέμε ξεκάθαρα τι αναλαμβάνουμε, πώς και με ποιο κόστος.</p></div>
+        <div class="step"><b>Παράδοση – παραλαβή</b><p>Σε συνεννόηση με τον προηγούμενο συνάδελφο, με πρωτόκολλο παράδοσης – παραλαβής, ώστε να μη χαθεί κανένα στοιχείο και καμία προθεσμία.</p></div>
+        <div class="step"><b>Συνεργασία</b><p>Ένας σταθερός άνθρωπος για εσάς και τακτική ενημέρωση για ό,τι σας αφορά.</p></div>
+      </div>
+    </div>
+  </section>
+  <section class="band" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head rv"><span class="eyebrow">Συχνές ερωτήσεις</span><h2 class="display">Ό,τι ρωτούν <em>όλοι πρώτα.</em></h2></div>
+      <div class="faq rv">
+        <details><summary>Πώς γίνεται η ανάληψη της λογιστικής υποστήριξης μιας επιχείρησης;</summary><p>Με σεβασμό στη δουλειά του προηγούμενου συναδέλφου και με σαφή βήματα: συντάσσεται πρωτόκολλο παράδοσης – παραλαβής με τα βιβλία, τα παραστατικά, τις δηλώσεις και τις εκκρεμότητες, ορίζεται η ημερομηνία από την οποία αναλαμβάνουμε, και η επιχείρηση μάς δηλώνει ως λογιστή και μας εξουσιοδοτεί στις υπηρεσίες που χρειάζονται (ΑΑΔΕ, myDATA, e-ΕΦΚΑ, ΕΡΓΑΝΗ). Γίνεται οποιαδήποτε στιγμή του χρόνου.</p></details>
+        <details><summary>Εξυπηρετείτε πελάτες εκτός Αθήνας και Θεσσαλονίκης;</summary><p>Ναι. Η επικοινωνία και η ανταλλαγή εγγράφων γίνονται και ηλεκτρονικά, οπότε μπορούμε να συνεργαστούμε από οπουδήποτε στην Ελλάδα.</p></details>
+        <details><summary>Τι χρειάζεται να σας στέλνω κάθε μήνα;</summary><p>Κυρίως τα παραστατικά εσόδων και εξόδων και ό,τι αφορά το προσωπικό σας. Στη γνωριμία σας δίνουμε μια απλή λίστα για τη δική σας περίπτωση.</p></details>
+        <details><summary>Βοηθάτε στην ίδρυση νέας επιχείρησης;</summary><p>Ναι. Σας βοηθάμε να επιλέξετε νομική μορφή, κάνουμε την έναρξη και στήνουμε από την αρχή σωστά τιμολόγηση, myDATA και βιβλία.</p></details>
+      </div>
+    </div>
+  </section>
+  <section class="band" style="padding-top:0"><div class="wrap"><div class="cta-band rv" data-cta></div></div></section>
+</div>
+
+<!-- ================= ABOUT ================= -->
+<div class="page" data-page="emeis" hidden>
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Ποιοι είμαστε</span>
+        <h2 class="display" style="font-size:clamp(36px,5.4vw,60px)">Μια εταιρεία. <em>Κοινή πορεία, κοινό όραμα.</em></h2>
+        <p class="lead">Η ACBO Accounting &amp; Bookkeeping και η TAXExpert T.P.M. προχωρούν πλέον μαζί. Δύο ομάδες με εμπειρία στη λογιστική και τη φοροτεχνική υποστήριξη, με κοινό στόχο: σύγχρονες λογιστικές λύσεις με συνέπεια και αξιοπιστία.</p>
+      </div>
+      <div class="banner-img rv"><img src="assets/merger-banner.jpg" alt="ACBO και TAXExpert: Μαζί, δημιουργούμε ένα ισχυρότερο αύριο" width="1600" height="595"></div>
+    </div>
+  </section>
+  <section class="band" style="padding-top:0">
+    <div class="wrap merger">
+      <div class="rv" style="display:grid;gap:var(--s4)">
+        <span class="eyebrow">Οι ειδικοί δίπλα σας</span>
+        <h2 class="display" style="font-size:clamp(28px,3.6vw,40px)">Η επιτυχία σας είναι <em>η δική μας αποστολή.</em></h2>
+        <p class="lead">Δεν θέλουμε να είμαστε απλώς «ο λογιστής». Θέλουμε να ξέρετε πάντα πού βρίσκεστε: τι πληρώνετε, πότε, και γιατί. Με έναν άνθρωπο που σηκώνει το τηλέφωνο και ξέρει την επιχείρησή σας.</p>
+      </div>
+      <div class="values rv" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+        <div><b>People</b><p>Ένας σταθερός άνθρωπος για κάθε πελάτη.</p></div>
+        <div style="border-right:none"><b>Knowledge</b><p>Λογιστική και φοροτεχνικά κάτω από την ίδια στέγη.</p></div>
+        <div style="border-bottom:none"><b>Trust</b><p>Διαφάνεια σε ό,τι κάνουμε και χρεώνουμε.</p></div>
+        <div style="border:none"><b>Progress</b><p>Σύγχρονα εργαλεία, ψηφιακή ανταλλαγή εγγράφων.</p></div>
+      </div>
+    </div>
+  </section>
+  <section class="band" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head rv"><span class="eyebrow">Δύο γραφεία</span><h2 class="display">Αθήνα <em>και</em> Θεσσαλονίκη.</h2></div>
+      <div class="offices rv" data-offices></div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= VIDEO ================= -->
+<div class="page" data-page="video" hidden>
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Το κανάλι μας στο YouTube</span>
+        <h2 class="display" style="font-size:clamp(36px,5.4vw,60px)">Τι θέλετε <em>να κάνετε σήμερα;</em></h2>
+        <p class="lead">Οδηγοί βήμα βήμα για τις εφαρμογές της ΑΑΔΕ, του ΕΦΚΑ και του myDATA. Ψάξτε αυτό που χρειάζεστε ή διαλέξτε θέμα.</p>
+      </div>
+      <div class="vid-feature" id="vidFeature"></div>
+      <div class="vstats" id="vStats"></div>
+      <div class="vtools">
+        <label class="vsearch" for="vq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="vq" type="search" placeholder="π.χ. Ε1, εκκαθαριστικό, 39Α, δελτίο αποστολής" autocomplete="off" aria-label="Αναζήτηση οδηγού"></label>
+        <div class="chips-row" id="vCats" role="group" aria-label="Θέματα"></div>
+        <div class="chips-row" id="vSort" role="group" aria-label="Ταξινόμηση"><button type="button" data-sort="new" aria-pressed="true">Νεότερα</button><button type="button" data-sort="pop" aria-pressed="false">Πιο δημοφιλή</button></div>
+      </div>
+      <div class="vid-grid" id="vidGrid"></div>
+      <p class="vempty" id="vEmpty" hidden>Δεν βρήκαμε οδηγό γι' αυτό. Γράψτε μας στο info@acbo.gr και ίσως γίνει το επόμενο βίντεο.</p>
+      <div class="yt-cta rv">
+        <div><b style="font-size:18px">Μη χάνετε κανένα νέο βίντεο</b><p style="color:var(--muted)">Γίνετε συνδρομητής στο κανάλι μας στο YouTube.</p></div>
+        <a class="btn btn-primary" data-yt href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1c.4-1.6.5-4.8.5-4.8s0-3.2-.5-4.8zM9.7 15.1V8.9L15.5 12l-5.8 3.1z"/></svg> Εγγραφή στο κανάλι</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= NEWS ================= -->
+<div class="page" data-page="nea" hidden>
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Νέα &amp; ενημερώσεις</span>
+        <h2 class="display" style="font-size:clamp(36px,5.4vw,60px)">Ό,τι αλλάζει, <em>το μαθαίνετε πρώτοι.</em></h2>
+      </div>
+      <div class="rss-box">
+        <span class="ri" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="5" cy="19" r="2.2"/><path d="M3 10.5v3a7.5 7.5 0 0 1 7.5 7.5h3A10.5 10.5 0 0 0 3 10.5zm0-6v3A13.5 13.5 0 0 1 16.5 21h3A16.5 16.5 0 0 0 3 4.5z"/></svg></span>
+        <div><b>Ακολουθήστε μας μέσω RSS</b><br><code id="rssUrl">https://www.acbo.gr/feed.xml</code></div>
+        <button class="btn btn-ghost" id="copyRss" type="button">Αντιγραφή συνδέσμου</button>
+        <a class="btn btn-primary" href="feed.xml" target="_blank" rel="noopener">Άνοιγμα feed</a>
+      </div>
+      <div class="news-list" id="newsAll"></div>
+      <div style="margin-top:var(--s7);display:grid;gap:var(--s4)"><span class="eyebrow">Επίσημες ανακοινώσεις</span><div class="links-row" data-official></div></div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= ARTICLE ================= -->
+<div class="page" data-page="article" hidden>
+  <section class="band"><div class="wrap"><article class="article" id="articleView"></article></div></section>
+  <section class="band" style="padding-top:0"><div class="wrap"><div class="cta-band" data-cta></div></div></section>
+</div>
+
+<!-- ================= ΧΡΗΣΙΜΑ ================= -->
+<div class="page" data-page="xrisima" hidden>
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Χρήσιμα</span>
+        <h2 class="display" style="font-size:clamp(36px,5.4vw,60px)">Εργαλεία για <em>κάθε μέρα.</em></h2>
+        <p class="lead">Προθεσμίες, υπολογισμοί και λίστες, για να ξέρετε πάντα πού βρίσκεστε.</p>
+      </div>
+      <div class="hub">
+        <a href="#prothesmies"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="17" rx="2"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/><path d="m9 15 2 2 4-4"/></svg></span><h3>Προθεσμίες</h3><p>Όλες οι μηνιαίες υποχρεώσεις, με αντίστροφη μέτρηση και συνδρομή στο ημερολόγιο του κινητού σας.</p><span class="live" data-hub-next></span></a>
+        <a href="#ergaleia"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2.5" width="16" height="19" rx="2"/><path d="M8 6.5h8M8 11h.01M12 11h.01M16 11h.01M8 14.5h.01M12 14.5h.01M16 14.5v3.5M8 18h4"/></svg></span><h3>Εργαλεία υπολογισμού</h3><p>ΦΠΑ, καθαρός μισθός από μικτό και εισφορές ελεύθερου επαγγελματία.</p><span class="live">Στοιχεία 2026</span></a>
+        <a href="#xreiazomai"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11"/><path d="m3.5 6 1.5 1.5L7.5 5M3.5 12l1.5 1.5L7.5 11M3.5 18l1.5 1.5 2.5-2.5"/></svg></span><h3>Τι χρειάζομαι για…</h3><p>Λίστες για έναρξη επιχείρησης, φορολογική δήλωση και πρόσληψη. Τσεκάρετε τι έχετε.</p></a>
+        <a href="#lexiko"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V5a2 2 0 0 1 2-2h14v15H6.5A2.5 2.5 0 0 0 4 20.5 2.5 2.5 0 0 0 6.5 23H20"/><path d="M9 7h7M9 11h5"/></svg></span><h3>Λεξικό όρων</h3><p>ΚΑΔ, ΑΠΔ, ΚΕΑΟ, ΜΥΦ… Τι σημαίνουν, σε απλά λόγια.</p></a>
+      </div>
+      <div style="margin-top:var(--s7);display:grid;gap:var(--s4)"><span class="eyebrow">Επίσημες υπηρεσίες</span><div class="links-row" data-official></div></div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= ΠΡΟΘΕΣΜΙΕΣ ================= -->
+<div class="page" data-page="prothesmies" hidden>
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head">
+        <a class="back" href="#xrisima">← Χρήσιμα</a>
+        <span class="eyebrow">Ημερολόγιο υποχρεώσεων</span>
+        <h2 class="display" style="font-size:clamp(36px,5.4vw,60px)">Καμία προθεσμία <em>δεν σας ξεφεύγει.</em></h2>
+        <p class="lead">Οι βασικές μηνιαίες και τριμηνιαίες υποχρεώσεις, υπολογισμένες με τις αργίες. Διαλέξτε τι σας αφορά.</p>
+      </div>
+      <div class="dl-next" id="dlNext"></div>
+      <div class="chips-row" id="dlFilter" role="group" aria-label="Τι σας αφορά" style="margin-bottom:var(--s5)"></div>
+      <div id="dlList"></div>
+      <p class="calc-note">Οι ημερομηνίες είναι ενδεικτικές: υπολογίζονται ως η τελευταία εργάσιμη του μήνα και δεν περιλαμβάνουν παρατάσεις που ανακοινώνονται κατά περίπτωση. Για τη δική σας περίπτωση, ρωτήστε την ομάδα μας.</p>
+
+      <div class="sub-box">
+        <div style="display:grid;gap:var(--s3);align-content:start">
+          <span class="eyebrow">Στο κινητό σας</span>
+          <h3>Βάλτε τις προθεσμίες στο ημερολόγιό σας</h3>
+          <p style="color:var(--muted)">Κάντε συνδρομή μία φορά και οι προθεσμίες εμφανίζονται στο Google Calendar, στο Outlook ή στο iPhone σας, με υπενθύμιση 3 ημέρες πριν. Όταν αλλάζει κάτι, ενημερώνεται μόνο του.</p>
+          <div><code id="icsUrl">https://www.acbo.gr/calendar.ics</code></div>
+          <div style="display:flex;flex-wrap:wrap;gap:10px"><button class="btn btn-primary" type="button" id="copyIcs">Αντιγραφή συνδέσμου</button><a class="btn btn-ghost" href="calendar.ics" target="_blank" rel="noopener">Άνοιγμα αρχείου</a></div>
+        </div>
+        <div>
+          <details open><summary>Google Calendar</summary><p>Στον υπολογιστή: Ρυθμίσεις → Προσθήκη ημερολογίου → Από URL, και επικολλήστε τον σύνδεσμο.</p></details>
+          <details><summary>iPhone</summary><p>Ρυθμίσεις → Ημερολόγιο → Λογαριασμοί → Προσθήκη λογαριασμού → Άλλο → Προσθήκη ημερολογίου συνδρομής, και επικολλήστε τον σύνδεσμο.</p></details>
+          <details><summary>Outlook</summary><p>Ημερολόγιο → Προσθήκη ημερολογίου → Από το Internet / Εγγραφή από το web, και επικολλήστε τον σύνδεσμο.</p></details>
+        </div>
+      </div>
+
+      <div class="sub-box" style="background:var(--surface);border:1px solid var(--line)">
+        <div style="display:grid;gap:var(--s3);align-content:start">
+          <span class="eyebrow">Ειδοποιήσεις</span>
+          <h3>Ενημέρωση πριν από κάθε προθεσμία</h3>
+          <p style="color:var(--muted)">Λάβετε σύντομη υπενθύμιση και ό,τι αλλάζει στα φορολογικά, με email ή Viber. Μπορείτε να διαγραφείτε όποτε θέλετε.</p>
+        </div>
+        <form id="notifyForm" novalidate style="display:grid;gap:var(--s3)">
+          <div class="seg" id="nfChan" role="group" aria-label="Κανάλι"><button type="button" data-ch="email" aria-pressed="true">Email</button><button type="button" data-ch="viber" aria-pressed="false">Viber</button></div>
+          <div class="field"><label for="nf-val" id="nfLbl">Email</label><input id="nf-val" type="email" autocomplete="email" required></div>
+          <label class="check-row" for="nf-ok"><input id="nf-ok" type="checkbox" required><span>Συμφωνώ να λαμβάνω ενημερώσεις από την ACBO. Τα στοιχεία μου χρησιμοποιούνται μόνο γι' αυτόν τον σκοπό.</span></label>
+          <div class="hp" aria-hidden="true"><label for="nf-website">Ιστοσελίδα</label><input id="nf-website" name="website" tabindex="-1" autocomplete="off"></div>
+          <div class="ts" data-ts></div>
+          <button class="btn btn-primary" type="submit" style="justify-self:start">Εγγραφή</button>
+          <div class="form-msg" id="nfMsg" hidden></div>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= ΕΡΓΑΛΕΙΑ ================= -->
+<div class="page" data-page="ergaleia" hidden>
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head">
+        <a class="back" href="#xrisima">← Χρήσιμα</a>
+        <span class="eyebrow">Εργαλεία υπολογισμού</span>
+        <h2 class="display" style="font-size:clamp(36px,5.4vw,60px)">Κάντε τον λογαριασμό <em>σε δευτερόλεπτα.</em></h2>
+      </div>
+      <div class="tabs" role="tablist" id="calcTabs">
+        <button role="tab" type="button" data-t="vat" aria-selected="true">ΦΠΑ</button>
+        <button role="tab" type="button" data-t="sal" aria-selected="false">Καθαρός μισθός</button>
+        <button role="tab" type="button" data-t="free" aria-selected="false">Εισφορές ελεύθερου επαγγελματία</button>
+      </div>
+
+      <div class="calc" data-panel="vat">
+        <div class="inputs">
+          <div class="field"><label for="vat-amt">Ποσό</label><div class="money"><input id="vat-amt" type="number" inputmode="decimal" min="0" step="0.01" value="100"></div></div>
+          <div class="field"><label>Το ποσό είναι</label><div class="seg" id="vatMode"><button type="button" data-m="net" aria-pressed="true">Χωρίς ΦΠΑ</button><button type="button" data-m="gross" aria-pressed="false">Με ΦΠΑ</button></div></div>
+          <div class="field"><label>Συντελεστής</label><div class="seg" id="vatRate"><button type="button" data-r="24" aria-pressed="true">24%</button><button type="button" data-r="13" aria-pressed="false">13%</button><button type="button" data-r="6" aria-pressed="false">6%</button><button type="button" data-r="17" aria-pressed="false">17%</button><button type="button" data-r="9" aria-pressed="false">9%</button><button type="button" data-r="4" aria-pressed="false">4%</button></div><small style="color:var(--muted)">17%, 9%, 4%: μειωμένοι συντελεστές ορισμένων νησιών</small></div>
+        </div>
+        <div class="result" id="vatOut" aria-live="polite"></div>
+      </div>
+
+      <div class="calc" data-panel="sal" hidden>
+        <div class="inputs">
+          <div class="field"><label for="sal-gross">Μικτός μηνιαίος μισθός</label><div class="money"><input id="sal-gross" type="number" inputmode="decimal" min="0" step="10" value="1200"></div></div>
+          <div class="field"><label>Παιδιά που βαρύνουν</label><div class="seg" id="salKids"><button type="button" data-v="0" aria-pressed="true">0</button><button type="button" data-v="1" aria-pressed="false">1</button><button type="button" data-v="2" aria-pressed="false">2</button><button type="button" data-v="3" aria-pressed="false">3</button><button type="button" data-v="4" aria-pressed="false">4</button><button type="button" data-v="5" aria-pressed="false">5+</button></div></div>
+          <div class="field"><label>Ηλικία</label><div class="seg" id="salAge"><button type="button" data-v="25" aria-pressed="false">έως 25</button><button type="button" data-v="30" aria-pressed="false">26–30</button><button type="button" data-v="99" aria-pressed="true">31+</button></div></div>
+        </div>
+        <div class="result" id="salOut" aria-live="polite"></div>
+      </div>
+
+      <div class="calc" data-panel="free" hidden>
+        <div class="inputs">
+          <div class="field"><label>Ασφαλιστική κατηγορία</label><div class="seg" id="frCat"><button type="button" data-v="0" aria-pressed="false">Ειδική</button><button type="button" data-v="1" aria-pressed="true">1η</button><button type="button" data-v="2" aria-pressed="false">2η</button><button type="button" data-v="3" aria-pressed="false">3η</button><button type="button" data-v="4" aria-pressed="false">4η</button><button type="button" data-v="5" aria-pressed="false">5η</button><button type="button" data-v="6" aria-pressed="false">6η</button></div></div>
+          <div class="field"><label>Επικουρική</label><div class="seg" id="frAux"><button type="button" data-v="0" aria-pressed="true">Όχι</button><button type="button" data-v="1" aria-pressed="false">1η</button><button type="button" data-v="2" aria-pressed="false">2η</button><button type="button" data-v="3" aria-pressed="false">3η</button></div></div>
+          <div class="field"><label>Εφάπαξ</label><div class="seg" id="frLump"><button type="button" data-v="0" aria-pressed="true">Όχι</button><button type="button" data-v="1" aria-pressed="false">1η</button><button type="button" data-v="2" aria-pressed="false">2η</button><button type="button" data-v="3" aria-pressed="false">3η</button></div></div>
+          <label class="check-row" for="fr-un"><input id="fr-un" type="checkbox" checked><span>Εισφορά ανεργίας 10 €</span></label>
+        </div>
+        <div class="result" id="frOut" aria-live="polite"></div>
+      </div>
+      <p class="calc-note" id="calcNote"></p>
+    </div>
+  </section>
+</div>
+
+<!-- ================= ΤΙ ΧΡΕΙΑΖΟΜΑΙ ================= -->
+<div class="page" data-page="xreiazomai" hidden>
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head">
+        <a class="back" href="#xrisima">← Χρήσιμα</a>
+        <span class="eyebrow">Λίστες ελέγχου</span>
+        <h2 class="display" style="font-size:clamp(36px,5.4vw,60px)">Τι χρειάζομαι <em>για…</em></h2>
+        <p class="lead">Τσεκάρετε ό,τι έχετε ήδη. Για ό,τι λείπει, είμαστε ένα τηλεφώνημα μακριά.</p>
+      </div>
+      <div class="tabs" role="tablist" id="clTabs"></div>
+      <div class="cl"><ul id="clList"></ul><aside class="cl-side" id="clSide" aria-live="polite"></aside></div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= ΛΕΞΙΚΟ ================= -->
+<div class="page" data-page="lexiko" hidden>
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head">
+        <a class="back" href="#xrisima">← Χρήσιμα</a>
+        <span class="eyebrow">Λεξικό όρων</span>
+        <h2 class="display" style="font-size:clamp(36px,5.4vw,60px)">Λογιστικά, <em>σε απλά ελληνικά.</em></h2>
+        <p class="lead">Σε όλο το site, όπου δείτε υπογραμμισμένο όρο, περάστε από πάνω του για να δείτε τι σημαίνει.</p>
+      </div>
+      <label class="vsearch" for="glq" style="margin-bottom:var(--s6)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="glq" type="search" placeholder="Αναζήτηση όρου" autocomplete="off" aria-label="Αναζήτηση όρου"></label>
+      <dl class="gl" id="glList"></dl>
+    </div>
+  </section>
+</div>
+
+<!-- ================= ΟΔΗΓΟΣ (σελίδα βίντεο) ================= -->
+<div class="page" data-page="odigos" hidden>
+  <section class="band"><div class="wrap" id="guideView"></div></section>
+  <section class="band" style="padding-top:0"><div class="wrap"><div class="cta-band" data-cta></div></div></section>
+</div>
+
+<!-- ================= CONTACT ================= -->
+<div class="page" data-page="epikoinonia" hidden>
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Επικοινωνία</span>
+        <h2 class="display" style="font-size:clamp(36px,5.4vw,60px)">Ας γνωριστούμε. <em>Χωρίς δέσμευση.</em></h2>
+        <p class="lead">Τα ραντεβού κανονίζονται τηλεφωνικά. Καλέστε μας ή αφήστε το τηλέφωνό σας και θα σας καλέσουμε εμείς.</p>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:var(--s4);margin-top:var(--s2)"><span class="eyebrow">Ακολουθήστε μας</span><div class="social" data-social="labels"></div></div>
+      </div>
+      <div class="offices" data-offices></div>
+    </div>
+  </section>
+  <section class="band" style="padding-top:0">
+    <div class="wrap">
+      <form class="form" id="contactForm" novalidate>
+        <div class="field"><label for="cf-name">Ονοματεπώνυμο</label><input id="cf-name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="cf-phone">Τηλέφωνο</label><input id="cf-phone" name="phone" type="tel" autocomplete="tel" required></div>
+        <div class="field"><label for="cf-email">Email</label><input id="cf-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="cf-office">Γραφείο</label><select id="cf-office" name="office"><option>Αθήνα</option><option>Θεσσαλονίκη</option><option>Όποιο είναι διαθέσιμο</option></select></div>
+        <div class="field full"><label for="cf-type">Θέμα</label><select id="cf-type" name="type"><option>Νέα συνεργασία</option><option>Ίδρυση επιχείρησης</option><option>Μισθοδοσία</option><option>myDATA / ΦΠΑ</option><option>Άλλο</option></select></div>
+        <div class="field full"><label for="cf-msg">Μήνυμα</label><textarea id="cf-msg" name="message" rows="5" placeholder="Πείτε μας λίγα λόγια για την επιχείρησή σας"></textarea></div>
+        <div class="hp" aria-hidden="true"><label for="cf-website">Ιστοσελίδα</label><input id="cf-website" name="website" tabindex="-1" autocomplete="off"></div>
+        <label class="full check-row" for="cf-ok"><input id="cf-ok" name="consent" type="checkbox" required><span>Συμφωνώ να χρησιμοποιηθούν τα στοιχεία μου μόνο για να επικοινωνήσει μαζί μου η ACBO.</span></label>
+        <div class="full ts" data-ts></div>
+        <div class="full" style="display:flex;flex-wrap:wrap;gap:var(--s4);align-items:center;justify-content:space-between">
+          <p class="form-note">Ή γράψτε μας απευθείας στο <b style="user-select:all">info@acbo.gr</b></p>
+          <button class="btn btn-primary" type="submit">Καλέστε με</button>
+        </div>
+        <div class="full form-msg" id="formMsg" hidden></div>
+      </form>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<button id="askBtn" type="button" aria-expanded="false" aria-controls="ask"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.2M12 16.5h.01"/></svg><span>Ρωτήστε μας</span></button>
+<div id="ask" role="dialog" aria-label="Ρωτήστε μας" hidden>
+  <header><b>Τι ψάχνετε;</b><button type="button" id="askClose" aria-label="Κλείσιμο">✕</button></header>
+  <div class="q"><input id="askQ" type="search" placeholder="π.χ. εκκαθαριστικό, ΦΠΑ, πρόσληψη" autocomplete="off" aria-label="Ερώτηση"></div>
+  <div class="res" id="askRes"></div>
+  <footer>Δεν το βρήκατε; Καλέστε μας: <b>210 49 49 109</b> (Αθήνα) · <b>2310 664 960</b> (Θεσσαλονίκη)</footer>
+</div>
+<div id="tip" role="tooltip" hidden></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><linearGradient id="igGrad" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FEDA75"/><stop offset=".25" stop-color="#FA7E1E"/><stop offset=".55" stop-color="#D62976"/><stop offset=".8" stop-color="#962FBF"/><stop offset="1" stop-color="#4F5BD5"/></linearGradient></defs></svg>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot">
+      <div style="display:grid;gap:var(--s4);align-content:start">
+        <img class="l" src="assets/logo-color.png" alt="ACBO" width="560" height="167">
+        <img class="d" src="assets/logo-ondark.png" alt="ACBO" width="560" height="167">
+        <p>Σύγχρονες λογιστικές λύσεις με συνέπεια &amp; αξιοπιστία. Σε συνεργασία με την TAXExpert T.P.M.</p>
+        <div class="social" data-social></div>
+      </div>
+      <div><h4>Σελίδες</h4><a href="#ypiresies">Υπηρεσίες</a><a href="#video">Οδηγοί σε βίντεο</a><a href="#prothesmies">Προθεσμίες</a><a href="#ergaleia">Εργαλεία υπολογισμού</a><a href="#xreiazomai">Τι χρειάζομαι για…</a><a href="#lexiko">Λεξικό όρων</a><a href="#emeis">Ποιοι είμαστε</a><a href="#nea">Νέα</a><a href="feed.xml" target="_blank" rel="noopener">RSS feed</a></div>
+      <div><h4>Αθήνα</h4><p>Ηπείρου 143<br>18121 Κορυδαλλός</p><p style="margin-top:8px">210 49 49 109<br>210 49 49 491</p></div>
+      <div><h4>Θεσσαλονίκη</h4><p>Υδραγωγείου 4Β<br>56533 Πολίχνη</p><p style="margin-top:8px">2310 664 960</p><p style="margin-top:8px">info@acbo.gr</p></div>
+    </div>
+    <div class="copyright"><span>© <span id="yr">2026</span> ACBO Accounting &amp; Bookkeeping</span><span>People · Knowledge · Trust · Progress · Together</span></div>
+  </div>
+</footer>
+
+<nav class="mbar" aria-label="Γρήγορη επικοινωνία">
+  <a href="tel:+302104949109"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Αθήνα</a>
+  <a href="tel:+302310664960"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Θεσσαλονίκη</a>
+  <a href="#epikoinonia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Μήνυμα</a>
+</nav>
+
+<script type="application/json" id="postsData">[{"slug": "acbo-taxexpert", "date": "2026-10-26", "tag": "Η εταιρεία", "title": "ACBO & TAXExpert: μία εταιρεία, κοινή πορεία", "summary": "Η ACBO και η TAXExpert T.P.M. ενώνουν τις δυνάμεις τους. Ίδιοι άνθρωποι, περισσότερη γνώση, δύο γραφεία σε Αθήνα και Θεσσαλονίκη.", "body": "<p>Η ACBO Accounting &amp; Bookkeeping και η TAXExpert T.P.M. συνεχίζουν πλέον μαζί, ως μία εταιρεία. Δύο ομάδες με εμπειρία στη λογιστική και τη φοροτεχνική υποστήριξη επιχειρήσεων μοιράζονται τώρα γνώση, εργαλεία και τρόπο δουλειάς.<\/p><h3>Τι σημαίνει αυτό για εσάς<\/h3><p>Η επικοινωνία με την ομάδα που σας εξυπηρετεί συνεχίζεται κανονικά. Αυτό που αλλάζει είναι ότι πίσω της υπάρχουν περισσότεροι άνθρωποι και περισσότερες ειδικότητες: λογιστική, φοροτεχνικά, μισθοδοσία και συμβουλευτική κάτω από την ίδια στέγη.<\/p><h3>Δύο πόλεις, μία ομάδα<\/h3><p>Μας βρίσκετε στην Αθήνα (Ηπείρου 143, Κορυδαλλός) και στη Θεσσαλονίκη (Υδραγωγείου 4Β, Πολίχνη). Όποιο γραφείο κι αν σας είναι πιο κοντά, έχετε πρόσβαση σε όλη την ομάδα.<\/p><p><strong>Ίδια εμπιστοσύνη. Περισσότερη δύναμη.<\/strong><\/p>"}, {"slug": "ti-einai-to-mydata", "date": "2026-10-19", "tag": "myDATA", "title": "myDATA: τι πρέπει να ξέρει κάθε επιχείρηση", "summary": "Τα ηλεκτρονικά βιβλία της ΑΑΔΕ σε απλά λόγια: τι διαβιβάζεται, ποιος το κάνει και γιατί οι αποκλίσεις μετράνε.", "body": "<p>Το myDATA είναι η ψηφιακή πλατφόρμα της ΑΑΔΕ για τα ηλεκτρονικά βιβλία. Σε αυτήν καταγράφονται τα παραστατικά που εκδίδετε και λαμβάνετε, καθώς και ο λογιστικός χαρακτηρισμός τους.<\/p><h3>Τι διαβιβάζεται<\/h3><p>Τα έσοδά σας διαβιβάζονται συνήθως από το πρόγραμμα τιμολόγησης ή τον πάροχο ηλεκτρονικής τιμολόγησης που χρησιμοποιείτε. Τα έξοδα εμφανίζονται όταν τα διαβιβάσουν οι προμηθευτές σας, και στη συνέχεια χαρακτηρίζονται από εσάς ή από τον λογιστή σας.<\/p><h3>Γιατί μετράνε οι αποκλίσεις<\/h3><p>Η ΑΑΔΕ συγκρίνει όσα δηλώνει η επιχείρησή σας με όσα δηλώνουν οι αντισυμβαλλόμενοί σας. Ένα παραστατικό που λείπει ή έχει λάθος χαρακτηρισμό μπορεί να εμφανιστεί ως διαφορά. Ο τακτικός έλεγχος κάθε μήνα είναι ο ευκολότερος τρόπος να μη μαζεύονται.<\/p><h3>Πώς βοηθάμε<\/h3><p>Ελέγχουμε τα παραστατικά σας στο myDATA, κάνουμε τους χαρακτηρισμούς και σας ενημερώνουμε για ό,τι χρειάζεται διόρθωση, πριν γίνει πρόβλημα.<\/p>"}, {"slug": "prothesmies-fpa", "date": "2026-10-05", "tag": "ΦΠΑ", "title": "Πότε υποβάλλεται η δήλωση ΦΠΑ", "summary": "Μηνιαία ή τριμηνιαία; Ο κανόνας για την περιοδική δήλωση ΦΠΑ και πώς να μη σας βρει απροετοίμαστους το τέλος του μήνα.", "body": "<p>Η περιοδική δήλωση ΦΠΑ υποβάλλεται είτε κάθε μήνα είτε κάθε τρίμηνο, ανάλογα με τα βιβλία που τηρεί η επιχείρηση.<\/p><h3>Ο γενικός κανόνας<\/h3><p>Οι επιχειρήσεις με διπλογραφικά βιβλία (Γ' κατηγορίας) υποβάλλουν συνήθως μηνιαία δήλωση. Οι επιχειρήσεις με απλογραφικά βιβλία (Β' κατηγορίας) υποβάλλουν συνήθως τριμηνιαία. Η προθεσμία είναι η τελευταία εργάσιμη ημέρα του μήνα που ακολουθεί τη φορολογική περίοδο.<\/p><h3>Τι σημαίνει στην πράξη<\/h3><p>Για τον Σεπτέμβριο, η μηνιαία δήλωση υποβάλλεται έως την τελευταία εργάσιμη του Οκτωβρίου. Για το τρίμηνο Ιουλίου – Σεπτεμβρίου, η τριμηνιαία επίσης έως την τελευταία εργάσιμη του Οκτωβρίου.<\/p><h3>Η συμβουλή μας<\/h3><p>Στείλτε μας τα παραστατικά του μήνα όσο νωρίτερα γίνεται. Έτσι έχουμε χρόνο να ελέγξουμε το myDATA και να σας πούμε το ποσό που θα πληρώσετε με άνεση, όχι την τελευταία μέρα.<\/p><p><em>Το άρθρο είναι γενική ενημέρωση. Για τη δική σας περίπτωση, μιλήστε με την ομάδα μας.<\/em><\/p>"}]</script>
+<script type="application/json" id="videosData">[{"id": "iovOmhb-fU0", "t": "Ο Λογιστής - Η δουλειά που δεν βλέπεις", "p": "2026-10-08", "v": 142}, {"id": "-4gVKmbY5F4", "t": "Σύντομη επίδειξη του myDATA app Scanner - Ψηφιακά Παραστατικά Διακίνησης", "p": "2026-09-15", "v": 1169}, {"id": "JIjC6APeEn0", "t": "Έκδοση Φιλικών Κωδικών & Εξουσιοδοτήσεις σε υπαλλήλους myDATA app - Ψηφιακά Παραστατικά Διακίνησης", "p": "2026-09-15", "v": 682}, {"id": "uGNCePfXzZo", "t": "ΕΚΤΥΠΩΣΗ ΕΙΔΟΠΟΙΗΤΗΡΙΟΥ ΕΦΚΑ 2026 (Νέο Site)", "p": "2026-07-21", "v": 572}, {"id": "b_xOWuE41a0", "t": "ΣΥΝΤΟΜΗ ΕΠΊΔΕΙΞΗ ΕΦΑΡΜΟΓΗΣ TIMOLOGIO ΑΑΔΕ - ΔΕΛΤΙΑ ΑΠΟΣΤΟΛΗΣ", "p": "2025-12-18", "v": 3394}, {"id": "nWYLoLOTz1s", "t": "Ψηφιακό Πελατολόγιο - Οδηγίες χρήσης εφαρμογής ΑΑΔΕ", "p": "2025-06-30", "v": 3672}, {"id": "mP6zI7D8Rwc", "t": "Έκδοση Προσωπικού Αριθμού Πολίτη", "p": "2025-06-08", "v": 4744}, {"id": "1g1UzdMtPFU", "t": "Ψηφιακό Δελτίο Αποστολής - Α' Φάση - Έναρξη 02.06.2025", "p": "2025-05-31", "v": 2850}, {"id": "sQP3DqnthKk", "t": "Μην τρελαίνεσαι με τα Deadlines! #accounting #aade #accountingservices #mydata #acbo", "p": "2025-05-29", "v": 236}, {"id": "wASUB9usT4Q", "t": "ACBO - Σύγχρονες Λογιστικές Υπηρεσίες", "p": "2025-05-25", "v": 238}, {"id": "qkMw3o7Iw5k", "t": "Εκτύπωση Ε1 - Ε2 - Ε3 - Εκκαθαριστικού 2025", "p": "2025-04-07", "v": 48808}, {"id": "dxVcNUByr9w", "t": "ΑΛΛΑΓΗ ΚΩΔΙΚΩΝ ΠΛΗΡΩΜΩΝ ΕΡΓΟΔΟΤΙΚΩΝ ΕΙΣΦΟΡΩΝ & ΚΕΑΟ ΑΠΟ 7/4/2025 - ΠΟΥ ΘΑ ΒΡΕΙΤΕ ΤA NEA RF", "p": "2025-04-07", "v": 518}, {"id": "hYZfUXeSqfQ", "t": "EPSILON SMART - ΠΑΡΑΜΕΤΡΟΠΟΙΗΣΗ ΨΗΦΙΑΚΑ ΠΑΡΑΣΤΑΤΙΚΑ ΔΙΑΚΙΝΗΣΗΣ", "p": "2025-03-16", "v": 3171}, {"id": "iweaidD9PDw", "t": "ΛΗΨΗ ΚΩΔΙΚΩΝ ΜΙΑΣ ΧΡΗΣΗΣ ΓΙΑ ΑΓΟΡΑ ΚΙΝΗΤΟΥ ΧΩΡΙΣ ΦΠΑ (ΑΡΘΡΟ 39Α)", "p": "2025-03-16", "v": 27494}, {"id": "GvmVHjRjcC0", "t": "PYLON - ΓΕΦΥΡΑ ΛΟΓΙΣΤΙΚΗΣ", "p": "2024-11-15", "v": 729}]</script>
+<script>
+(function(){
+const YT_URL = "https://www.youtube.com/@Acbosocial";
+const SOCIAL = [
+ ['Facebook','https://www.facebook.com/AcboSocial2','fb','M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z'],
+ ['Instagram','https://www.instagram.com/acboaccounting/','ig','M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077'],
+ ['YouTube','https://www.youtube.com/@Acbosocial','yt','M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z']
+];
+// Ενσωματωμένη αναπαραγωγή μόνο στο τελικό site (εδώ η προεπισκόπηση δεν επιτρέπει embeds)
+const CAN_EMBED = /(^|\.)acbo\.gr$|^localhost$|^127\.0\.0\.1$/.test(location.hostname);
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const POSTS = JSON.parse($('#postsData').textContent);
+const MONTHS=['Ιανουαρίου','Φεβρουαρίου','Μαρτίου','Απριλίου','Μαΐου','Ιουνίου','Ιουλίου','Αυγούστου','Σεπτεμβρίου','Οκτωβρίου','Νοεμβρίου','Δεκεμβρίου'];
+const fmtDate=s=>{const d=new Date(s+'T12:00:00');return d.getDate()+' '+MONTHS[d.getMonth()]+' '+d.getFullYear()};
+const ic={
+ book:'<path d="M4 19.5V5a2 2 0 0 1 2-2h13v16H6.5A2.5 2.5 0 0 0 4 21.5 2.5 2.5 0 0 0 6.5 24"/><path d="M8 7h7M8 11h5"/>',
+ pct:'<circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/><path d="M19 5 5 19"/>',
+ doc:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/>',
+ people:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18.5 20a6.5 6.5 0 0 0-3-5.5"/>',
+ cloud:'<path d="M17.5 19a4.5 4.5 0 0 0 .5-9 6 6 0 0 0-11.6 1.5A4 4 0 0 0 7 19z"/><path d="m9.5 14 2 2 3.5-3.5"/>',
+ rocket:'<path d="M5 15c-1.5 1.3-2 5-2 5s3.7-.5 5-2a2.1 2.1 0 0 0-3-3z"/><path d="m12 15-3-3a22 22 0 0 1 9-9c1.5 0 3 1.5 3 3a22 22 0 0 1-9 9z"/><path d="M9 12H5l2-4h5M12 15v4l4-2v-5"/>',
+ chart:'<path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/>',
+ shield:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/>'
+};
+const svg=k=>'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+ic[k]+'</svg>';
+const SERVICES=[
+ {k:'book',t:"Τήρηση βιβλίων Β' & Γ'",d:'Απλογραφικά και διπλογραφικά βιβλία, σωστά και πάντα ενημερωμένα.',l:['Λογιστικές εγγραφές & συμφωνίες','Ισολογισμοί & αποτελέσματα','Μηνιαία εικόνα της επιχείρησης'],p:['free','small','corp']},
+ {k:'pct',t:'ΦΠΑ & περιοδικές δηλώσεις',d:'Υπολογισμός και υποβολή ΦΠΑ, ΟΠΣ και ανακεφαλαιωτικών, χωρίς εκπλήξεις.',l:['Μηνιαίες & τριμηνιαίες δηλώσεις','Ενημέρωση για το ποσό εγκαίρως','Παρακολούθηση πιστωτικών'],p:['free','small','corp']},
+ {k:'doc',t:'Φορολογικές δηλώσεις',d:'Ε1, Ε2, Ε3 και δηλώσεις νομικών προσώπων, με έλεγχο για κάθε έκπτωση που δικαιούστε.',l:['Ατομικές & εταιρικές δηλώσεις','Δηλώσεις ακινήτων','Προγραμματισμός φόρου'],p:['free','small','corp','new']},
+ {k:'people',t:'Μισθοδοσία & ΕΡΓΑΝΗ',d:'Μισθοδοσίες, ΑΠΔ, προσλήψεις και αποχωρήσεις, όλα στην ώρα τους.',l:['Μηνιαία μισθοδοσία & ΑΠΔ','Ψηφιακή κάρτα εργασίας','Αναγγελίες στο ΕΡΓΑΝΗ'],p:['small','corp']},
+ {k:'cloud',t:'myDATA & ηλεκτρονική τιμολόγηση',d:'Χαρακτηρισμοί, έλεγχος αποκλίσεων και σωστή ρύθμιση της τιμολόγησής σας.',l:['Χαρακτηρισμοί εσόδων & εξόδων','Έλεγχος αποκλίσεων κάθε μήνα','Ρύθμιση παρόχου ή ERP'],p:['free','small','corp','new']},
+ {k:'rocket',t:'Ίδρυση επιχείρησης',d:'Από την επιλογή νομικής μορφής μέχρι το πρώτο τιμολόγιο.',l:['Επιλογή νομικής μορφής','Έναρξη εργασιών & ΓΕΜΗ','Στήσιμο βιβλίων & τιμολόγησης'],p:['new']},
+ {k:'chart',t:'Συμβουλευτική επιχειρήσεων',d:'Αριθμοί που βοηθούν να πάρετε αποφάσεις: κόστος, ρευστότητα, ανάπτυξη.',l:['Ανάλυση κόστους & κερδοφορίας','Προϋπολογισμοί','Επιδοτήσεις & χρηματοδότηση'],p:['small','corp','new']},
+ {k:'shield',t:'Φοροτεχνική υποστήριξη',d:'Δίπλα σας σε ελέγχους, ρυθμίσεις οφειλών και επικοινωνία με τη ΔΟΥ.',l:['Υποστήριξη σε φορολογικούς ελέγχους','Ρυθμίσεις & βεβαιώσεις','Ενημερότητες'],p:['free','small','corp']}
+];
+const PERSONAS=[
+ {id:'free',t:'Ελεύθερος επαγγελματίας',s:'Ατομική επιχείρηση ή μπλοκάκι',o:'Για <strong>ελεύθερους επαγγελματίες</strong> φροντίζουμε τα βιβλία, τον ΦΠΑ και το myDATA κάθε μήνα, και σας λέμε από νωρίς τι θα πληρώσετε, για να μη σας βρει απροετοίμαστους ο φόρος.'},
+ {id:'small',t:'Μικρή επιχείρηση',s:'ΟΕ, ΕΕ, ΙΚΕ, με ή χωρίς προσωπικό',o:'Για <strong>μικρές επιχειρήσεις</strong> αναλαμβάνουμε βιβλία, ΦΠΑ, μισθοδοσία και ΕΡΓΑΝΗ, με έναν σταθερό άνθρωπο που ξέρει την εταιρεία σας.'},
+ {id:'corp',t:'Εταιρεία',s:'ΑΕ ή επιχείρηση με διπλογραφικά',o:'Για <strong>εταιρείες</strong> τηρούμε διπλογραφικά βιβλία, συντάσσουμε ισολογισμούς και σας δίνουμε καθαρή εικόνα για να παίρνετε αποφάσεις με νούμερα.'},
+ {id:'new',t:'Ξεκινάω τώρα',s:'Θέλω να ανοίξω επιχείρηση',o:'<strong>Ξεκινάτε;</strong> Σας βοηθάμε να διαλέξετε τη σωστή νομική μορφή, κάνουμε την έναρξη και στήνουμε τιμολόγηση και myDATA σωστά από την πρώτη μέρα.'}
+];
+let VIDEOS = JSON.parse($('#videosData').textContent);
+const gslug=id=>'odigos-'+id.replace(/_/g,'z-');
+// Θέματα: κάθε νέο βίντεο μπαίνει αυτόματα στο σωστό θέμα από τις λέξεις του τίτλου
+const norm=s=>s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
+const VCATS=[
+ {id:'acbo',n:'Για εμάς',re:/λογιστης - η δουλεια|συγχρονες λογιστικες|deadlines/},
+ {id:'erp',n:'Προγράμματα',re:/epsilon|pylon|γεφυρα/},
+ {id:'efka',n:'ΕΦΚΑ & εργοδότες',re:/εφκα|κεαο|εργοδοτ|εισφορ|εργανη|καρτα εργασιας/},
+ {id:'mydata',n:'myDATA & παραστατικά',re:/mydata|παραστατικ|δελτι|timologio|τιμολογ/},
+ {id:'aade',n:'ΑΑΔΕ & Taxisnet',re:/./}
+];
+const SVC_VIDEO={pct:'iweaidD9PDw',doc:'qkMw3o7Iw5k',people:'dxVcNUByr9w',cloud:'-4gVKmbY5F4'};
+function prepVideos(){
+  VIDEOS.forEach(v=>{v.t=v.t.replace(/\s*#\S+/g,'').replace(/\s+/g,' ').trim();v.n=norm(v.t);v.c=(VCATS.find(c=>c.re.test(v.n))||VCATS[4]).id});
+  VIDEOS.sort((a,b)=>b.p.localeCompare(a.p));
+}
+prepVideos();
+const QUIZ=[
+ 'Ξέρετε περίπου πόσο ΦΠΑ θα πληρώσετε αυτόν τον μήνα;',
+ 'Ελέγχετε κάθε μήνα αν τα παραστατικά σας στο myDATA είναι σωστά;',
+ 'Έχετε υποβάλει όλες τις δηλώσεις σας εμπρόθεσμα τον τελευταίο χρόνο;',
+ 'Ο λογιστής σας σας ενημερώνει πριν από κάθε προθεσμία;',
+ 'Ξέρετε ποια έξοδα εκπίπτουν για την επιχείρησή σας;'
+];
+const OFFICES=[
+ {c:'Αθήνα',a:'Ηπείρου 143, 18121 Κορυδαλλός',ph:[['210 49 49 109','+302104949109'],['210 49 49 491','+302104949491']],q:'Ηπείρου 143, Κορυδαλλός 18121'},
+ {c:'Θεσσαλονίκη',a:'Υδραγωγείου 4Β, 56533 Πολίχνη',ph:[['2310 664 960','+302310664960']],q:'Υδραγωγείου 4Β, Πολίχνη 56533'}
+];
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* --- services --- */
+const vlink=k=>{const v=VIDEOS.find(x=>x.id===SVC_VIDEO[k]);return v?`<a class="vlink" href="#${gslug(v.id)}"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="currentColor" opacity=".14"/><path d="M10 8l6 4-6 4z" fill="currentColor"/></svg>Οδηγός: ${esc(v.t.length>48?v.t.slice(0,46)+'…':v.t)}</a>`:''};
+const svcCard=s=>`<article class="svc rv" data-p="${s.p.join(' ')}"><span class="match">Για εσάς</span><span class="ic">${svg(s.k)}</span><h3>${esc(s.t)}</h3><p>${esc(s.d)}</p><ul>${s.l.map(x=>'<li>'+esc(x)+'</li>').join('')}</ul>${vlink(s.k)}</article>`;
+$('#svcAll').innerHTML=SERVICES.map(svcCard).join('');
+$('#svcHome').innerHTML=SERVICES.slice(0,6).map(svcCard).join('');
+
+/* --- personas --- */
+function renderPersonas(){
+  $$('[data-persona-group]').forEach(g=>{
+    g.innerHTML=PERSONAS.map(p=>`<button type="button" data-id="${p.id}" aria-pressed="false"><b>${p.t}</b><small>${p.s}</small></button>`).join('');
+  });
+}
+renderPersonas();
+function setPersona(id,group){
+  try{localStorage.setItem('acbo-persona',id)}catch(e){}
+  $$('[data-persona-group] button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.id===id?'true':'false'));
+  const p=PERSONAS.find(x=>x.id===id);
+  const rel=SERVICES.filter(s=>s.p.includes(id));
+  $('#personaOutHome').innerHTML=`<div><p>${p.o}</p><div class="chips">${rel.map(s=>'<span class="chip">'+esc(s.t)+'</span>').join('')}</div></div><a class="btn btn-primary" style="background:#F3F0FA;color:#231C3D" href="#ypiresies">Δείτε τις λεπτομέρειες →</a>`;
+  [$('#svcAll'),$('#svcHome')].forEach(gr=>{gr.classList.add('filtered');$$('.svc',gr).forEach(c=>c.classList.toggle('on',c.dataset.p.split(' ').includes(id)))});
+}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-persona-group] button');if(b)setPersona(b.dataset.id)});
+let saved=null;try{saved=localStorage.getItem('acbo-persona')}catch(e){}
+setPersona(PERSONAS.some(p=>p.id===saved)?saved:'small');
+
+/* --- quiz --- */
+let qi=0,qs=0;
+function drawQuiz(){
+  const q=$('#quiz');
+  const dots='<div class="qdots">'+QUIZ.map((_,i)=>`<i class="${i<qi?'done':''}"></i>`).join('')+'</div>';
+  if(qi<QUIZ.length){
+    q.innerHTML=dots+`<span class="qnum">ΕΡΩΤΗΣΗ ${qi+1} / ${QUIZ.length}</span><p class="qtext">${QUIZ[qi]}</p><div class="qbtns"><button class="btn btn-primary" data-a="1" type="button">Ναι</button><button class="btn btn-ghost" data-a="0" type="button">Όχι / Δεν ξέρω</button></div>`;
+  }else{
+    const r=qs>=5?['Είστε σε πολύ καλό δρόμο.','Έχετε καλή εικόνα. Αν θέλετε, μπορούμε να σας δείξουμε πώς να κερδίσετε και χρόνο.']:qs>=3?['Καλή βάση, με κενά.','Υπάρχουν σημεία που μπορεί να σας κοστίσουν χρόνο ή πρόστιμα. Μια σύντομη γνωριμία αρκεί για να τα δούμε μαζί.']:['Ήρθε η ώρα για ησυχία.','Τα περισσότερα από αυτά τα αναλαμβάνουμε εμείς κάθε μήνα, ώστε εσείς να ξέρετε πάντα πού βρίσκεστε.'];
+    q.innerHTML=dots+`<div class="qres"><span class="qnum">ΑΠΟΤΕΛΕΣΜΑ</span><span class="qscore">${qs}/5</span><p class="qtext">${r[0]}</p><p style="color:var(--muted)">${r[1]}</p><div class="qbtns"><a class="btn btn-primary" href="#epikoinonia">Μιλήστε μαζί μας</a><button class="btn btn-ghost" data-restart type="button">Ξανά από την αρχή</button></div></div>`;
+  }
+}
+$('#quiz').addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(b){qs+=+b.dataset.a;qi++;drawQuiz()}if(e.target.closest('[data-restart]')){qi=qs=0;drawQuiz()}});
+drawQuiz();
+
+/* --- videos --- */
+const nf=n=>n.toLocaleString('el-GR');
+const ago=p=>{const d=Math.round((Date.now()-new Date(p+'T12:00:00'))/864e5);if(d<1)return'σήμερα';if(d<14)return'πριν '+d+' ημ.';if(d<60)return'πριν '+Math.round(d/7)+' εβδ.';if(d<365)return'πριν '+Math.round(d/30)+' μήνες';const y=Math.round(d/365);return'πριν '+y+(y>1?' χρόνια':' χρόνο')};
+const catName=id=>VCATS.find(c=>c.id===id).n;
+const watch=id=>'https://www.youtube.com/watch?v='+id;
+const markImg='<img class="mk" src="assets/mark-white.png" alt="" width="400" height="400">';
+const playI='<span class="play"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></span>';
+const ytImg=v=>`<img class="yt" src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg" alt="" loading="lazy" onload="this.naturalWidth>200&&this.classList.add('ok')" onerror="this.remove()">`;
+const isNew=v=>v===VIDEOS[0];
+const topIds=()=>[...VIDEOS].sort((a,b)=>b.v-a.v).slice(0,3).map(v=>v.id);
+const thumb=(v,sm)=>`<a class="thumb ${sm?'sm':''}" href="#${gslug(v.id)}" aria-label="${esc(v.t)}">${markImg}${ytImg(v)}<span class="shade"></span><span class="cat">${catName(v.c)}</span>${isNew(v)?'<span class="badge">Νέο</span>':topIds().includes(v.id)?'<span class="badge">Δημοφιλές</span>':''}<span class="t">${esc(v.t)}</span>${playI}</a>`;
+const feat=v=>`${thumb(v)}<div class="rv" style="display:grid;gap:var(--s3)"><span class="eyebrow">Νέο βίντεο · ${ago(v.p)}</span><h3 class="display" style="font-size:clamp(26px,3vw,34px)">${esc(v.t)}</h3><div><a class="btn btn-primary" href="${watch(v.id)}" data-vid="${v.id}" target="_blank" rel="noopener">▶ Δείτε το βίντεο</a></div><div class="pop"><span class="eyebrow" style="color:var(--muted)">Οι πιο δημοφιλείς οδηγοί</span>${[...VIDEOS].sort((a,b)=>b.v-a.v).slice(0,3).map((x,i)=>`<a href="#${gslug(x.id)}"><span class="rk">${i+1}</span><span style="min-width:0"><b>${esc(x.t)}</b><span class="vw">${nf(x.v)} προβολές</span></span></a>`).join('')}</div></div>`;
+let vCat='all',vSort='new',vQ='';
+function renderVideos(){
+  $('#vidHome').innerHTML=feat(VIDEOS[0]);
+  $('#vidFeature').innerHTML=feat(VIDEOS[0]);
+  const total=VIDEOS.reduce((s,v)=>s+v.v,0);
+  $('#vStats').innerHTML=`<div><b>${VIDEOS.length}</b><span>πρόσφατοι οδηγοί</span></div><div><b>${nf(total)}</b><span>προβολές</span></div><div><b>${nf(Math.max(...VIDEOS.map(v=>v.v)))}</b><span>προβολές ο πιο δημοφιλής</span></div>`;
+  $('#vCats').innerHTML=[{id:'all',n:'Όλα'},...VCATS].map(c=>{const k=c.id==='all'?VIDEOS.length:VIDEOS.filter(v=>v.c===c.id).length;return k?`<button type="button" data-cat="${c.id}" aria-pressed="${c.id===vCat}">${c.n}<small>${k}</small></button>`:''}).join('');
+  drawGrid();
+}
+function drawGrid(){
+  const words=norm(vQ).split(/\s+/).filter(Boolean);
+  let list=VIDEOS.filter(v=>(vCat==='all'||v.c===vCat)&&words.every(w=>v.n.includes(w)));
+  if(vSort==='pop')list=[...list].sort((a,b)=>b.v-a.v);
+  $('#vidGrid').innerHTML=list.map(v=>`<div class="vid">${thumb(v,true)}<h3><a href="#${gslug(v.id)}">${esc(v.t)}</a></h3><div class="vmeta"><span>${nf(v.v)} προβολές</span><span>·</span><span>${ago(v.p)}</span></div></div>`).join('');
+  $('#vEmpty').hidden=list.length>0;
+}
+$('#vq').addEventListener('input',e=>{vQ=e.target.value;drawGrid()});
+$('#vCats').addEventListener('click',e=>{const b=e.target.closest('[data-cat]');if(!b)return;vCat=b.dataset.cat;$$('#vCats button').forEach(x=>x.setAttribute('aria-pressed',x===b));drawGrid()});
+$('#vSort').addEventListener('click',e=>{const b=e.target.closest('[data-sort]');if(!b)return;vSort=b.dataset.sort;$$('#vSort button').forEach(x=>x.setAttribute('aria-pressed',x===b));drawGrid()});
+$$('[data-yt]').forEach(a=>a.href=YT_URL);
+$$('[data-social]').forEach(el=>{const lab=el.dataset.social==='labels';el.classList.toggle('labeled',lab);el.innerHTML=SOCIAL.map(s=>`<a class="${s[2]}" href="${s[1]}" target="_blank" rel="noopener" aria-label="${s[0]}" title="${s[0]}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="${s[3]}"/></svg>${lab?`<span>${s[0]}</span>`:''}</a>`).join('')});
+renderVideos();
+// Στο τελικό site: φρέσκια λίστα από το videos.json που ενημερώνει ο server
+fetch('videos.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(d=>{if(Array.isArray(d)&&d.length){VIDEOS=d;prepVideos();renderVideos();observe&&observe()}}).catch(()=>{});
+// Player: ανοίγει μέσα στο site στο acbo.gr, αλλιώς στο YouTube
+document.addEventListener('click',e=>{
+  const a=e.target.closest('[data-vid]');if(!a||!CAN_EMBED)return;
+  e.preventDefault();const v=VIDEOS.find(x=>x.id===a.dataset.vid)||{t:''};
+  const p=document.createElement('div');p.className='player';p.setAttribute('role','dialog');p.setAttribute('aria-modal','true');
+  p.innerHTML=`<div class="box"><div class="bar"><b>${esc(v.t)}</b><button type="button">Κλείσιμο ✕</button></div><div class="frame"><iframe src="https://www.youtube-nocookie.com/embed/${a.dataset.vid}?autoplay=1&rel=0" title="${esc(v.t)}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div></div>`;
+  const close=()=>{p.remove();removeEventListener('keydown',esc_)};const esc_=ev=>{if(ev.key==='Escape')close()};
+  p.addEventListener('click',ev=>{if(ev.target===p||ev.target.closest('button'))close()});addEventListener('keydown',esc_);
+  document.body.appendChild(p);p.querySelector('button').focus();
+});
+
+/* --- news --- */
+const item=p=>`<a class="news-item rv" href="#nea-${p.slug}"><time datetime="${p.date}">${fmtDate(p.date)}</time><div><h3>${esc(p.title)}</h3><p>${esc(p.summary)}</p></div><span class="tag">${esc(p.tag)}</span></a>`;
+$('#newsAll').innerHTML=POSTS.map(item).join('');
+$('#newsHome').innerHTML=POSTS.slice(0,3).map(item).join('');
+
+/* --- offices / cta --- */
+const mapsUrl=q=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q);
+const officeHTML=OFFICES.map(o=>`<div class="office"><img class="mk" src="assets/mark-white.png" alt="" width="400" height="400"><span class="city">${o.c}</span><span class="addr">${o.a}</span><div class="rows">${o.ph.map(p=>`<div class="row"><a href="tel:${p[1]}">${p[0]}</a><button class="copy" type="button" data-copy="${p[0]}">Αντιγραφή</button></div>`).join('')}<div class="row"><a href="mailto:info@acbo.gr" style="font-family:var(--f-body);font-size:16px">info@acbo.gr</a><button class="copy" type="button" data-copy="info@acbo.gr">Αντιγραφή</button></div></div><a class="btn btn-ghost" href="${mapsUrl(o.q)}" target="_blank" rel="noopener">Οδηγίες στον χάρτη →</a></div>`).join('');
+$$('[data-offices]').forEach(el=>el.innerHTML=officeHTML);
+$$('[data-cta]').forEach(el=>el.innerHTML=`<img class="mk" src="assets/mark-white.png" alt="" width="400" height="400"><div style="position:relative"><h2>Ας τα πούμε από κοντά.</h2><p>Καλέστε μας να κανονίσουμε μια πρώτη γνωριμία, χωρίς καμία δέσμευση. Αθήνα 210 49 49 109 · Θεσσαλονίκη 2310 664 960</p></div><a class="btn btn-primary" href="#epikoinonia">Καλέστε μας →</a>`);
+
+/* --- copy --- */
+function copyText(t,btn){
+  const done=()=>{const o=btn.textContent;btn.textContent='Αντιγράφηκε';setTimeout(()=>btn.textContent=o,1600)};
+  try{navigator.clipboard.writeText(t).then(done,()=>fallback())}catch(e){fallback()}
+  function fallback(){const r=document.createRange();const n=btn.previousElementSibling||$('#rssUrl');r.selectNodeContents(n);const s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Επιλέχθηκε'}
+}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-copy]');if(b)copyText(b.dataset.copy,b)});
+$('#copyRss').addEventListener('click',e=>copyText($('#rssUrl').textContent,e.currentTarget));
+
+/* --- forms: Cloudflare Turnstile + αποστολή στο info@acbo.gr (μέσω contact.php στο acbo.gr) --- */
+const TURNSTILE_SITEKEY=''; // βάλτε εδώ το Site Key από το Cloudflare Turnstile
+const IS_LIVE=/(^|\.)acbo\.gr$/.test(location.hostname);
+const FORM_T0=Date.now();
+function initTurnstile(){
+  $$('[data-ts]').forEach(el=>{
+    if(!(IS_LIVE&&TURNSTILE_SITEKEY)){el.innerHTML='<div class="ts-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>Προστασία από spam (Cloudflare Turnstile): ενεργοποιείται στο acbo.gr.</div>';return}
+  });
+  if(!(IS_LIVE&&TURNSTILE_SITEKEY))return;
+  window.onTsLoad=()=>$$('[data-ts]').forEach(el=>{el.dataset.wid=turnstile.render(el,{sitekey:TURNSTILE_SITEKEY,language:'el',theme:'auto'})});
+  const sc=document.createElement('script');sc.src='https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTsLoad&render=explicit';sc.async=true;document.head.appendChild(sc);
+}
+initTurnstile();
+async function sendForm(form,data,msg,okText){
+  const m=msg;m.hidden=false;m.className=m.className.replace(/\b(ok|err)\b/g,'').trim();
+  if(!IS_LIVE){m.textContent='Η αποστολή θα ενεργοποιηθεί όταν το site ανέβει στο acbo.gr. Μέχρι τότε, καλέστε μας στο 210 49 49 109 ή στο 2310 664 960.';return}
+  const ts=form.querySelector('[name="cf-turnstile-response"]');
+  if(TURNSTILE_SITEKEY&&!(ts&&ts.value)){m.classList.add('err');m.textContent='Περιμένετε να ολοκληρωθεί ο έλεγχος ασφαλείας και ξαναπατήστε.';return}
+  data.append('cf_token',ts?ts.value:'');data.append('elapsed',String(Date.now()-FORM_T0));data.append('website',(form.querySelector('[name="website"]')||{}).value||'');
+  const btn=form.querySelector('button[type="submit"]');btn.disabled=true;m.textContent='Αποστολή…';
+  try{
+    const r=await fetch('contact.php',{method:'POST',body:data});const j=await r.json().catch(()=>({}));
+    if(r.ok&&j.ok){m.classList.add('ok');m.textContent=okText;form.reset()}
+    else{m.classList.add('err');m.textContent=j.error||'Δεν ήταν δυνατή η αποστολή. Καλέστε μας στο 210 49 49 109 ή στο 2310 664 960.'}
+  }catch(_){m.classList.add('err');m.textContent='Δεν ήταν δυνατή η αποστολή. Καλέστε μας στο 210 49 49 109 ή στο 2310 664 960.'}
+  btn.disabled=false;
+  const el=form.querySelector('[data-ts]');if(window.turnstile&&el&&el.dataset.wid)turnstile.reset(el.dataset.wid);
+}
+$('#contactForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const f=e.currentTarget,m=$('#formMsg');
+  if(!f['cf-name'].value.trim()||f['cf-phone'].value.replace(/\D/g,'').length<10){m.hidden=false;m.className='full form-msg err';m.textContent='Συμπληρώστε ονοματεπώνυμο και ένα τηλέφωνο με 10 ψηφία, για να σας καλέσουμε.';return}
+  if(!$('#cf-ok').checked){m.hidden=false;m.className='full form-msg err';m.textContent='Τσεκάρετε τη συγκατάθεση για να σταλεί το μήνυμα.';return}
+  const d=new FormData();d.append('form','contact');['name','phone','email','office','type','message'].forEach(k=>d.append(k,f['cf-'+(k==='message'?'msg':k)].value));
+  sendForm(f,d,m,'Ευχαριστούμε! Λάβαμε το μήνυμά σας και θα σας καλέσουμε σύντομα.');
+});
+
+
+$('#yr').textContent=new Date().getFullYear();
+
+function relVideos(post){
+  const cat={'myDATA':'mydata','ΦΠΑ':'aade','Η εταιρεία':'acbo'}[post.tag];
+  const list=VIDEOS.filter(v=>v.c===cat).slice(0,2);
+  return list.length?`<div style="margin-top:var(--s7);display:grid;gap:var(--s4)"><span class="eyebrow">Σχετικοί οδηγοί σε βίντεο</span><div class="vid-grid" style="grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr))">${list.map(v=>`<div class="vid">${thumb(v,true)}<div class="vmeta"><span>${nf(v.v)} προβολές</span></div></div>`).join('')}</div></div>`:'';
+}
+function countUp(el){
+  $$('[data-count]',el).forEach(b=>{const to=+b.dataset.count,t0=performance.now();const f=t=>{const k=Math.min(1,(t-t0)/1200),e=1-Math.pow(1-k,3);b.textContent=Math.round(to*e)+'+';if(k<1)requestAnimationFrame(f)};requestAnimationFrame(f)});
+}
+/* ================= v3 ================= */
+const CHECKED='29 Οκτωβρίου 2026'; // τελευταίος έλεγχος στοιχείων εργαλείων
+const OFFICIAL=[['ΑΑΔΕ · Ανακοινώσεις','https://www.aade.gr/deltia-typoy-anakoinoseis'],['myAADE','https://www1.aade.gr/saadeapps2/myaade/'],['e-ΕΦΚΑ','https://www.efka.gov.gr/'],['ΕΡΓΑΝΗ','https://eservices.yeka.gr/'],['myDATA','https://www.aade.gr/mydata']];
+$$('[data-official]').forEach(el=>el.innerHTML=OFFICIAL.map(o=>`<a href="${o[1]}" target="_blank" rel="noopener">${o[0]} ↗</a>`).join(''));
+
+/* ---- Ποιότητα / Ταχύτητα / Κόστος ---- */
+(function(){
+  const NAMES={q:'Ποιότητα',s:'Ταχύτητα',c:'Χαμηλό κόστος'};
+  const OUT={
+    '':['Διαλέξτε τι θέλετε.','Ανάψτε έως δύο από τα τρία. Δοκιμάστε και το τρίτο.'],
+    'q':['Μόνο ποιότητα.','Καλή αρχή. Διαλέξτε και ένα δεύτερο.'],
+    's':['Μόνο ταχύτητα.','Διαλέξτε και ένα δεύτερο.'],
+    'c':['Μόνο χαμηλό κόστος.','Διαλέξτε και ένα δεύτερο.'],
+    'qs':['Ποιοτικό και γρήγορο; Δεν θα είναι φθηνό.','Έμπειροι άνθρωποι που δουλεύουν άμεσα και σωστά έχουν κόστος. Είναι όμως το φθηνότερο σε σχέση με ένα πρόστιμο.'],
+    'cq':['Ποιοτικό και φθηνό; Θα αργήσει.','Η σωστή δουλειά χωρίς επιπλέον κόστος μπαίνει στην ουρά. Στα λογιστικά όμως οι προθεσμίες δεν περιμένουν.'],
+    'cs':['Γρήγορο και φθηνό; Δεν θα είναι ποιοτικό.','Στα λογιστικά, η βιασύνη με το μικρότερο κόστος πληρώνεται αργότερα με λάθη, αποκλίσεις στο myDATA και πρόστιμα.']
+  };
+  let on=[];
+  const out=$('#trioOut'),mid=$('#vennMid');
+  function draw(bumped){
+    const key=[...on].sort().join('');
+    const o=OUT[key];
+    $$('#trioTog button').forEach(b=>b.setAttribute('aria-pressed',on.includes(b.dataset.k)));
+    $$('#venn circle').forEach(c=>{const a=on.includes(c.dataset.k);c.setAttribute('fill-opacity',a?.55:.12);c.setAttribute('stroke-width',a?3:2)});
+    mid.textContent=on.length===2?'✓':'?';
+    out.innerHTML=`<b>${o[0]}</b><p>${o[1]}</p>`+(bumped?`<p style="color:var(--c-c);font-weight:600">Τα τρία μαζί δεν γίνεται: έσβησε ${NAMES[bumped]}.</p>`:'')+(on.length===2?`<p style="color:var(--fg)">Εμείς επιλέγουμε πάντα <strong>ποιότητα</strong>, γιατί στα λογιστικά ένα λάθος κοστίζει περισσότερο από κάθε εξοικονόμηση.</p>`:'');
+    if(bumped){out.classList.remove('shake');out.offsetWidth;out.classList.add('shake')}
+  }
+  function toggle(k){
+    let bumped=null;
+    if(on.includes(k))on=on.filter(x=>x!==k);
+    else{on.push(k);if(on.length>2)bumped=on.shift()}
+    draw(bumped);
+  }
+  $('#trioTog').addEventListener('click',e=>{const b=e.target.closest('button');if(b)toggle(b.dataset.k)});
+  $('#venn').addEventListener('click',e=>{const c=e.target.closest('circle');if(c)toggle(c.dataset.k)});
+  draw();
+})();
+
+/* ---- Αργίες & προθεσμίες ---- */
+function orthEaster(y){const a=y%4,b=y%7,c=y%19,d=(19*c+15)%30,e=(2*a+4*b-d+34)%7,m=Math.floor((d+e+114)/31),day=((d+e+114)%31)+1;const dt=new Date(y,m-1,day);dt.setDate(dt.getDate()+13);return dt}
+const holCache={};
+function holidays(y){
+  if(holCache[y])return holCache[y];
+  const E=orthEaster(y),add=n=>{const d=new Date(E);d.setDate(d.getDate()+n);return d};
+  const list=[new Date(y,0,1),new Date(y,0,6),add(-48),new Date(y,2,25),add(-2),add(1),new Date(y,4,1),add(50),new Date(y,7,15),new Date(y,9,28),new Date(y,11,25),new Date(y,11,26)];
+  return holCache[y]=new Set(list.map(d=>d.toDateString()));
+}
+const isWork=d=>d.getDay()!==0&&d.getDay()!==6&&!holidays(d.getFullYear()).has(d.toDateString());
+function lastWork(y,m){const d=new Date(y,m+1,0);while(!isWork(d))d.setDate(d.getDate()-1);d.setHours(23,59,0,0);return d}
+const NOM=['Ιανουάριος','Φεβρουάριος','Μάρτιος','Απρίλιος','Μάιος','Ιούνιος','Ιούλιος','Αύγουστος','Σεπτέμβριος','Οκτώβριος','Νοέμβριος','Δεκέμβριος'];
+const DOW=['Κυρ','Δευ','Τρί','Τετ','Πέμ','Παρ','Σάβ'];
+const RULES=[
+ {id:'vat_m',t:'Δήλωση ΦΠΑ (μηνιαία)',who:['diplo'],per:'m',p:'Για επιχειρήσεις με διπλογραφικά βιβλία'},
+ {id:'vat_q',t:'Δήλωση ΦΠΑ (τριμηνιαία)',who:['aplo','free'],per:'q',p:'Για επιχειρήσεις με απλογραφικά βιβλία'},
+ {id:'fmy',t:'Απόδοση παρακρατούμενων φόρων',who:['employer'],per:'m',p:'Φόρος μισθωτών υπηρεσιών και αμοιβών'},
+ {id:'apd',t:'ΑΠΔ & εργοδοτικές εισφορές',who:['employer'],per:'m',p:'Υποβολή ΑΠΔ και πληρωμή εισφορών προσωπικού'},
+ {id:'efka',t:'Εισφορές ΕΦΚΑ μη μισθωτών',who:['free'],per:'m',p:'Πληρωμή ειδοποιητηρίου ελεύθερων επαγγελματιών'}
+];
+// Ετήσιες ή έκτακτες προθεσμίες: συμπληρώνονται από το γραφείο, π.χ. {d:'2027-07-15',t:'Δήλωση Ε1',who:['free','aplo','diplo','employer'],p:'Φορολογική δήλωση φυσικών προσώπων'}
+const EXTRA=[];
+const DL_FILTERS=[['all','Όλες'],['diplo','Διπλογραφικά (Γ\')'],['aplo','Απλογραφικά (Β\')'],['free','Ελεύθεροι επαγγελματίες'],['employer','Εργοδότες']];
+function deadlines(from,months){
+  const out=[];
+  for(let i=0;i<months;i++){
+    const y=from.getFullYear(),m=from.getMonth()+i;
+    const due=lastWork(y,m);const pm=new Date(y,m-1,1);
+    RULES.forEach(r=>{
+      if(r.per==='q'&&![0,3,6,9].includes(due.getMonth()))return;
+      const per=r.per==='q'?`${Math.floor(pm.getMonth()/3)+1}ο τρίμηνο ${pm.getFullYear()}`:`${NOM[pm.getMonth()]} ${pm.getFullYear()}`;
+      out.push({d:new Date(due),t:r.t,who:r.who,p:r.p,per});
+    });
+  }
+  EXTRA.forEach(x=>out.push({d:new Date(x.d+'T23:59:00'),t:x.t,who:x.who,p:x.p,per:''}));
+  return out.filter(x=>x.d>=new Date(from.getFullYear(),from.getMonth(),from.getDate())).sort((a,b)=>a.d-b.d);
+}
+let dlF='all';
+try{const f=localStorage.getItem('acbo-dlf');if(f&&DL_FILTERS.some(x=>x[0]===f))dlF=f}catch(e){}
+const daysLeft=d=>{const t=new Date();t.setHours(0,0,0,0);const x=new Date(d);x.setHours(0,0,0,0);return Math.round((x-t)/864e5)};
+function renderDeadlines(){
+  const now=new Date(),all=deadlines(new Date(now.getFullYear(),now.getMonth(),now.getDate()),7);
+  const list=all.filter(x=>dlF==='all'||x.who.includes(dlF));
+  $('#dlFilter').innerHTML=DL_FILTERS.map(f=>`<button type="button" data-f="${f[0]}" aria-pressed="${f[0]===dlF}">${f[1]}</button>`).join('');
+  const first=list[0];
+  if(first){
+    const same=list.filter(x=>x.d.toDateString()===first.d.toDateString());
+    $('#dlNext').innerHTML=`<div><span class="eyebrow">Επόμενη προθεσμία</span><h3>${DOW[first.d.getDay()]} ${first.d.getDate()} ${MONTHS[first.d.getMonth()]}</h3><ul>${same.map(x=>`<li>${x.t} · ${x.per}</li>`).join('')}</ul></div><div class="dl-count" data-cd="${first.d.getTime()}"></div>`;
+  }
+  const groups={};list.forEach(x=>{const k=x.d.getFullYear()+'-'+x.d.getMonth();(groups[k]=groups[k]||[]).push(x)});
+  $('#dlList').innerHTML=Object.values(groups).slice(0,6).map(g=>`<div class="month"><h3>${NOM[g[0].d.getMonth()]} <span style="color:var(--muted)">${g[0].d.getFullYear()}</span></h3><div class="dl-items">${g.map(x=>{const n=daysLeft(x.d);return `<div class="dl-item"><span class="day"><b>${x.d.getDate()}</b><span>${DOW[x.d.getDay()]}</span></span><div style="min-width:0"><strong>${x.t}</strong><small>${x.per?'Περίοδος: '+x.per+' · ':''}${x.p}</small></div><span class="left ${n<=7?'soon':''}">${n<=0?'σήμερα':n===1?'αύριο':'σε '+n+' ημ.'}</span></div>`}).join('')}</div></div>`).join('');
+  tickAll();
+}
+$('#dlFilter').addEventListener('click',e=>{const b=e.target.closest('[data-f]');if(!b)return;dlF=b.dataset.f;try{localStorage.setItem('acbo-dlf',dlF)}catch(_){}renderDeadlines()});
+function cdHTML(t){const s=Math.max(0,(t-Date.now())/1000);return `<div><b>${Math.floor(s/86400)}</b><span>Ημέρες</span></div><div><b>${String(Math.floor(s%86400/3600)).padStart(2,'0')}</b><span>Ώρες</span></div><div><b>${String(Math.floor(s%3600/60)).padStart(2,'0')}</b><span>Λεπτά</span></div>`}
+function tickAll(){
+  $$('[data-cd]').forEach(el=>el.innerHTML=cdHTML(+el.dataset.cd));
+  // λωρίδα αρχικής & hub
+  const now=new Date(),all=deadlines(new Date(now.getFullYear(),now.getMonth(),now.getDate()),2);
+  if(all[0]){
+    const same=all.filter(x=>x.d.toDateString()===all[0].d.toDateString());
+    $('#dlTitle').textContent=same.length>1?`${same.length} υποχρεώσεις λήγουν ${DOW[all[0].d.getDay()]} ${all[0].d.getDate()} ${MONTHS[all[0].d.getMonth()]}`:same[0].t;
+    $('#dlSub').textContent=same.map(x=>x.t).join(' · ');
+    const s=Math.max(0,(all[0].d-Date.now())/1000);
+    $('#dD').textContent=Math.floor(s/86400);$('#dH').textContent=String(Math.floor(s%86400/3600)).padStart(2,'0');$('#dM').textContent=String(Math.floor(s%3600/60)).padStart(2,'0');
+    $$('[data-hub-next]').forEach(el=>el.textContent=`Επόμενη: ${all[0].d.getDate()} ${MONTHS[all[0].d.getMonth()]} · σε ${daysLeft(all[0].d)} ημ.`);
+  }
+}
+renderDeadlines();setInterval(tickAll,30000);
+$('#copyIcs').addEventListener('click',e=>copyText($('#icsUrl').textContent,e.currentTarget));
+let nfCh='email';
+$('#nfChan').addEventListener('click',e=>{const b=e.target.closest('[data-ch]');if(!b)return;nfCh=b.dataset.ch;$$('#nfChan button').forEach(x=>x.setAttribute('aria-pressed',x===b));const i=$('#nf-val');$('#nfLbl').textContent=nfCh==='email'?'Email':'Κινητό (Viber)';i.type=nfCh==='email'?'email':'tel';i.autocomplete=nfCh==='email'?'email':'tel';i.value=''});
+$('#notifyForm').addEventListener('submit',e=>{e.preventDefault();const m=$('#nfMsg'),v=$('#nf-val').value.trim();m.hidden=false;
+  if(!v||(nfCh==='email'&&!/^\S+@\S+\.\S+$/.test(v))||(nfCh==='viber'&&v.replace(/\D/g,'').length<10)){m.textContent=nfCh==='email'?'Γράψτε ένα έγκυρο email.':'Γράψτε ένα κινητό με 10 ψηφία.';return}
+  if(!$('#nf-ok').checked){m.textContent='Τσεκάρετε τη συγκατάθεση για να γίνει η εγγραφή.';return}
+  const d=new FormData();d.append('form','notify');d.append('channel',nfCh);d.append('contact',v);sendForm(e.currentTarget,d,m,'Έγινε! Θα λαμβάνετε τις ενημερώσεις μας.')});
+
+/* ---- Εργαλεία υπολογισμού ---- */
+const eur=n=>n.toLocaleString('el-GR',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';
+const seg=(id,cb)=>{$(id).addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;$$(id+' button').forEach(x=>x.setAttribute('aria-pressed',x===b));cb()})};
+const segVal=(id,attr)=>$(id+' button[aria-pressed="true"]').dataset[attr];
+$('#calcTabs').addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(!b)return;$$('#calcTabs button').forEach(x=>x.setAttribute('aria-selected',x===b));$$('[data-panel]').forEach(p=>p.hidden=p.dataset.panel!==b.dataset.t);calcNote(b.dataset.t)});
+function calcNote(t){$('#calcNote').textContent={vat:'Ο υπολογισμός είναι ενδεικτικός. ',sal:'Ενδεικτικός υπολογισμός για μισθωτό ιδιωτικού τομέα: 14 μισθοί τον χρόνο, εισφορές εργαζομένου 13,37% (e-ΕΦΚΑ, χωρίς ΒΑΕ), κλίμακα φόρου 2026 με τη μείωση φόρου του άρθρου 16 ΚΦΕ. Δεν λαμβάνει υπόψη ανώτατο όριο εισφορών, ειδικές περιπτώσεις και άλλα εισοδήματα. ',free:'Ποσά 2026 σύμφωνα με την εγκύκλιο e-ΕΦΚΑ 6/2026, για αυτοαπασχολούμενους και ελεύθερους επαγγελματίες. '}[t]+'Τελευταίος έλεγχος στοιχείων: '+CHECKED+'.'}
+function calcVat(){
+  const a=Math.max(0,+$('#vat-amt').value||0),r=+segVal('#vatRate','r')/100,net=segVal('#vatMode','m')==='net';
+  const n=net?a:a/(1+r),v=n*r,g=n+v;
+  $('#vatOut').innerHTML=`<span class="lbl">${net?'Σύνολο με ΦΠΑ':'Καθαρή αξία'}</span><span class="big">${eur(net?g:n)}</span><dl><dt>Καθαρή αξία</dt><dd>${eur(n)}</dd><dt>ΦΠΑ ${Math.round(r*100)}%</dt><dd>${eur(v)}</dd><dt>Σύνολο</dt><dd>${eur(g)}</dd></dl>`;
+}
+function taxScale(taxable,kids,age){
+  const B=[[10000,.09],[10000,.20],[10000,.26],[10000,.34],[20000,.39],[Infinity,.44]];
+  const r2=[.20,.18,.16,.09,0][Math.min(kids,4)];
+  const r3=kids<=4?[.26,.24,.22,.20,.18][kids]:Math.max(0,.18-.02*(kids-4));
+  B[1][1]=r2;B[2][1]=r3;
+  if(age<=25){B[0][1]=0;B[1][1]=0}else if(age<=30){B[1][1]=Math.min(B[1][1],.09)}
+  let rest=taxable,tax=0;for(const [w,r] of B){const p=Math.min(rest,w);tax+=p*r;rest-=p;if(rest<=0)break}
+  let red=kids<=4?[777,900,1120,1340,1580][kids]:1780+220*(kids-5);
+  if(kids<5&&taxable>12000)red=Math.max(0,red-20*(taxable-12000)/1000);
+  return Math.max(0,tax-red);
+}
+function calcSal(){
+  const g=Math.max(0,+$('#sal-gross').value||0),kids=+segVal('#salKids','v'),age=+segVal('#salAge','v');
+  const yr=g*14,ins=yr*.1337,tax=taxScale(yr-ins,kids,age),net=yr-ins-tax;
+  const pct=x=>yr?(x/yr*100):0;
+  $('#salOut').innerHTML=`<span class="lbl">Καθαρές αποδοχές τον μήνα</span><span class="big">${eur(net/14)}</span><div class="bar" aria-hidden="true"><i style="width:${pct(net)}%;background:var(--c-q)"></i><i style="width:${pct(ins)}%;background:var(--c-s)"></i><i style="width:${pct(tax)}%;background:var(--c-c)"></i></div><div class="legend"><span style="--c:var(--c-q)">Καθαρά</span><span style="--c:var(--c-s)">Εισφορές</span><span style="--c:var(--c-c)">Φόρος</span></div><dl><dt>Μικτά τον μήνα</dt><dd>${eur(g)}</dd><dt>Εισφορές τον μήνα</dt><dd>−${eur(ins/14)}</dd><dt>Φόρος τον μήνα</dt><dd>−${eur(tax/14)}</dd><dt>Καθαρά τον χρόνο (14 μισθοί)</dt><dd>${eur(net)}</dd></dl>`;
+}
+const FR_MAIN=[150.46,250.77,300.93,360.63,433.47,519.45,675.87],FR_AUX=[0,46.57,56.13,66.88],FR_LUMP=[0,31.05,37.02,44.18];
+function calcFree(){
+  const c=+segVal('#frCat','v'),a=+segVal('#frAux','v'),l=+segVal('#frLump','v'),u=$('#fr-un').checked?10:0;
+  const m=FR_MAIN[c]+FR_AUX[a]+FR_LUMP[l]+u;
+  $('#frOut').innerHTML=`<span class="lbl">Μηνιαία εισφορά</span><span class="big">${eur(m)}</span><dl><dt>Κύρια σύνταξη & υγεία (${c?c+'η':'ειδική'} κατ.)</dt><dd>${eur(FR_MAIN[c])}</dd>${a?`<dt>Επικουρική (${a}η)</dt><dd>${eur(FR_AUX[a])}</dd>`:''}${l?`<dt>Εφάπαξ (${l}η)</dt><dd>${eur(FR_LUMP[l])}</dd>`:''}${u?'<dt>Ανεργία</dt><dd>10,00 €</dd>':''}<dt>Τον χρόνο</dt><dd>${eur(m*12)}</dd></dl>`;
+}
+['#vat-amt'].forEach(i=>$(i).addEventListener('input',calcVat));seg('#vatMode',calcVat);seg('#vatRate',calcVat);
+$('#sal-gross').addEventListener('input',calcSal);seg('#salKids',calcSal);seg('#salAge',calcSal);
+seg('#frCat',calcFree);seg('#frAux',calcFree);seg('#frLump',calcFree);$('#fr-un').addEventListener('change',calcFree);
+calcVat();calcSal();calcFree();calcNote('vat');
+
+/* ---- Τι χρειάζομαι για… ---- */
+const CHECKLISTS=[
+ {id:'enarxi',t:'Έναρξη επιχείρησης',items:[['Ταυτότητα ή διαβατήριο','Και για κάθε εταίρο, αν πρόκειται για εταιρεία'],['ΑΦΜ και κωδικοί Taxisnet',''],['ΑΜΚΑ',''],['Έδρα επιχείρησης','Μισθωτήριο ή παραχωρητήριο του χώρου'],['Περιγραφή της δραστηριότητας','Για να επιλεγούν οι σωστοί ΚΑΔ'],['Τραπεζικός λογαριασμός','Για τις συναλλαγές της επιχείρησης'],['Καταστατικό','Μόνο για εταιρείες· το συντάσσουμε μαζί'],['Τρόπος τιμολόγησης','Πρόγραμμα ή πάροχος για myDATA, το επιλέγουμε μαζί']]},
+ {id:'e1',t:'Φορολογική δήλωση',items:[['Κωδικοί Taxisnet',''],['Βεβαιώσεις αποδοχών ή συντάξεων','Συνήθως είναι ήδη προσυμπληρωμένες'],['Μισθωτήρια και ενοίκια','Αν έχετε ή πληρώνετε ενοίκιο'],['Ιατρικές δαπάνες','Αποδείξεις ή βεβαιώσεις'],['Δωρεές','Αποδείξεις δωρεών'],['Αλλαγές στην οικογένεια','Γάμος, παιδιά, προστατευόμενα μέλη'],['Αγορές ή πωλήσεις ακινήτων και οχημάτων','Μέσα στη χρονιά'],['IBAN','Για επιστροφή φόρου']]},
+ {id:'proslipsi',t:'Πρόσληψη εργαζομένου',items:[['Ταυτότητα εργαζομένου',''],['ΑΦΜ και ΑΜΚΑ',''],['ΑΜΑ (αριθμός μητρώου ΕΦΚΑ)','Αν έχει ξαναεργαστεί'],['IBAN εργαζομένου','Για την πληρωμή μισθοδοσίας'],['Ημερομηνία και ώρα έναρξης','Η αναγγελία γίνεται πριν ξεκινήσει'],['Ωράριο και ημέρες εργασίας','Πλήρης ή μερική απασχόληση'],['Συμφωνημένες αποδοχές',''],['Άδεια διαμονής και εργασίας','Μόνο για πολίτες εκτός ΕΕ']]}
+];
+let clId='enarxi';
+function clState(){try{return JSON.parse(localStorage.getItem('acbo-cl-'+clId)||'[]')}catch(e){return[]}}
+function renderCl(){
+  const c=CHECKLISTS.find(x=>x.id===clId),st=clState();
+  $('#clTabs').innerHTML=CHECKLISTS.map(x=>`<button role="tab" type="button" data-cl="${x.id}" aria-selected="${x.id===clId}">${x.t}</button>`).join('');
+  $('#clList').innerHTML=c.items.map((it,i)=>`<li><label for="cl-${clId}-${i}"><input type="checkbox" id="cl-${clId}-${i}" data-i="${i}" ${st.includes(i)?'checked':''}><span>${it[0]}${it[1]?`<small>${it[1]}</small>`:''}</span></label></li>`).join('');
+  side();
+}
+function side(){
+  const c=CHECKLISTS.find(x=>x.id===clId),have=$$('#clList input:checked').length,n=c.items.length,miss=n-have;
+  $('#clSide').innerHTML=`<span class="eyebrow" style="color:var(--deep-muted)">${c.t}</span><span class="big">${have}/${n}</span><div class="prog"><i style="width:${have/n*100}%"></i></div><p>${miss===0?'Έχετε ό,τι χρειάζεται. Καλέστε μας να το προχωρήσουμε.':miss<=2?`Σας λείπ${miss===1?'ει ένα':'ουν δύο'}. Μπορούμε να σας βοηθήσουμε να ${miss===1?'το':'τα'} βρείτε.`:'Δεν πειράζει αν λείπουν αρκετά: τα περισσότερα τα βρίσκουμε μαζί.'}</p><a class="btn btn-primary" style="background:#F3F0FA;color:#231C3D;justify-self:start" href="#epikoinonia">Καλέστε μας</a>`;
+}
+$('#clTabs').addEventListener('click',e=>{const b=e.target.closest('[data-cl]');if(b){clId=b.dataset.cl;renderCl()}});
+$('#clList').addEventListener('change',()=>{const v=$$('#clList input').filter(i=>i.checked).map(i=>+i.dataset.i);try{localStorage.setItem('acbo-cl-'+clId,JSON.stringify(v))}catch(e){}side()});
+renderCl();
+
+/* ---- Λεξικό & tooltips ---- */
+const GLOSSARY=[
+ ['ΑΑΔΕ','Ανεξάρτητη Αρχή Δημοσίων Εσόδων: η φορολογική διοίκηση (εφορίες, Taxisnet, myDATA).'],
+ ['ΑΦΜ','Αριθμός Φορολογικού Μητρώου: ο μοναδικός φορολογικός αριθμός κάθε προσώπου και επιχείρησης.'],
+ ['ΑΜΚΑ','Αριθμός Μητρώου Κοινωνικής Ασφάλισης, για την υγειονομική και ασφαλιστική κάλυψη.'],
+ ['ΑΜΑ','Αριθμός Μητρώου Ασφαλισμένου στον e-ΕΦΚΑ, που χρησιμοποιείται για την ασφάλιση των εργαζομένων.'],
+ ['ΚΑΔ','Κωδικός Αριθμός Δραστηριότητας: δείχνει τι ακριβώς κάνει η επιχείρηση.'],
+ ['ΓΕΜΗ','Γενικό Εμπορικό Μητρώο, όπου εγγράφονται οι επιχειρήσεις και οι εταιρείες.'],
+ ['e-ΕΦΚΑ','Ο ενιαίος φορέας κοινωνικής ασφάλισης για μισθωτούς και ελεύθερους επαγγελματίες.'],
+ ['ΚΕΑΟ','Κέντρο Είσπραξης Ασφαλιστικών Οφειλών: εδώ πηγαίνουν οι ληξιπρόθεσμες οφειλές προς τον ΕΦΚΑ.'],
+ ['ΑΠΔ','Αναλυτική Περιοδική Δήλωση: η μηνιαία δήλωση του εργοδότη για τις αποδοχές και τις εισφορές του προσωπικού.'],
+ ['ΕΡΓΑΝΗ','Το σύστημα του Υπουργείου Εργασίας όπου δηλώνονται προσλήψεις, αποχωρήσεις και ωράρια.'],
+ ['myDATA','Η πλατφόρμα ηλεκτρονικών βιβλίων της ΑΑΔΕ, όπου καταγράφονται τα έσοδα και τα έξοδα των επιχειρήσεων.'],
+ ['ΦΠΑ','Φόρος Προστιθέμενης Αξίας: ο φόρος που προστίθεται στην τιμή αγαθών και υπηρεσιών.'],
+ ['ΜΥΦ','Μηνιαίες ή ετήσιες καταστάσεις συναλλαγών πελατών και προμηθευτών προς την ΑΑΔΕ.'],
+ ['Ε1','Η ετήσια δήλωση φορολογίας εισοδήματος φυσικών προσώπων.'],
+ ['Ε2','Αναλυτική κατάσταση των ενοικίων από ακίνητα, που συνοδεύει το Ε1.'],
+ ['Ε3','Κατάσταση οικονομικών στοιχείων από επιχειρηματική δραστηριότητα.'],
+ ['Ε9','Η δήλωση των ακινήτων που έχει κάποιος.'],
+ ['ΕΝΦΙΑ','Ενιαίος Φόρος Ιδιοκτησίας Ακινήτων, που πληρώνεται κάθε χρόνο σε δόσεις.'],
+ ['Εκκαθαριστικό','Η πράξη της ΑΑΔΕ που δείχνει τον φόρο που πληρώνετε ή σας επιστρέφεται μετά τη δήλωση.'],
+ ['Φορολογική ενημερότητα','Βεβαίωση της ΑΑΔΕ ότι δεν έχετε ληξιπρόθεσμες φορολογικές οφειλές.'],
+ ['Ασφαλιστική ενημερότητα','Βεβαίωση του e-ΕΦΚΑ ότι δεν έχετε ληξιπρόθεσμες ασφαλιστικές οφειλές.'],
+ ['Απλογραφικά βιβλία','Βιβλία Β\' κατηγορίας, για μικρότερες επιχειρήσεις και ελεύθερους επαγγελματίες.'],
+ ['Διπλογραφικά βιβλία','Βιβλία Γ\' κατηγορίας, για εταιρείες και μεγαλύτερες επιχειρήσεις.'],
+ ['Ειδοποιητήριο','Το μηνιαίο έγγραφο του e-ΕΦΚΑ με το ποσό και τον κωδικό πληρωμής των εισφορών σας.'],
+ ['Ψηφιακό δελτίο αποστολής','Δελτίο αποστολής που διαβιβάζεται ηλεκτρονικά στην ΑΑΔΕ, για τη διακίνηση αγαθών.'],
+ ['Taxisnet','Οι ηλεκτρονικές υπηρεσίες της ΑΑΔΕ, όπου μπαίνετε με τους προσωπικούς σας κωδικούς.']
+];
+const gid=t=>'gl-'+norm(t).replace(/[^a-z0-9α-ω]+/g,'-');
+function renderGl(q=''){
+  const w=norm(q).trim();
+  $('#glList').innerHTML=[...GLOSSARY].sort((a,b)=>a[0].localeCompare(b[0],'el')).filter(g=>!w||norm(g[0]+' '+g[1]).includes(w)).map(g=>`<div id="${gid(g[0])}"><dt>${g[0]}</dt><dd>${g[1]}</dd></div>`).join('')||'<p class="vempty">Δεν βρέθηκε ο όρος. Ρωτήστε μας!</p>';
+}
+$('#glq').addEventListener('input',e=>renderGl(e.target.value));renderGl();
+const glTerms=GLOSSARY.filter(g=>!['Ε1','Ε2','Ε3','Ε9','Taxisnet'].includes(g[0])).map(g=>g[0]).sort((a,b)=>b.length-a.length);
+const glRe=new RegExp('(^|[^\\p{L}\\p{N}])('+glTerms.map(t=>t.replace(/[\\^$*+?.()|[\]{}]/g,'\\$&')).join('|')+')(?![\\p{L}\\p{N}])','u');
+function markTerms(root){
+  const seen=new Set();
+  const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>{const p=n.parentElement;if(!p||p.closest('a,button,abbr,h1,h2,h3,label,code,script,style,.thumb,.gl,#ask,.chip,.tag,.eyebrow,dt'))return NodeFilter.FILTER_REJECT;return glRe.test(n.nodeValue)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP}});
+  const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
+  nodes.forEach(n=>{
+    const m=n.nodeValue.match(glRe);if(!m)return;const term=m[2];if(seen.has(term))return;seen.add(term);
+    const i=m.index+m[1].length;const after=n.splitText(i);after.nodeValue=after.nodeValue.slice(term.length);
+    const ab=document.createElement('abbr');ab.className='term';ab.tabIndex=0;ab.textContent=term;ab.dataset.term=term;n.parentNode.insertBefore(ab,after);
+  });
+}
+const tip=$('#tip');
+function showTip(el){const g=GLOSSARY.find(x=>x[0]===el.dataset.term);if(!g)return;tip.innerHTML=`<b>${g[0]}</b>${g[1]}`;tip.hidden=false;const r=el.getBoundingClientRect(),w=tip.offsetWidth,h=tip.offsetHeight;let x=Math.min(Math.max(16,r.left+r.width/2-w/2),innerWidth-w-16),y=r.top-h-10;if(y<70)y=r.bottom+10;tip.style.left=x+'px';tip.style.top=y+'px'}
+document.addEventListener('mouseover',e=>{const a=e.target.closest('abbr.term');if(a)showTip(a)});
+document.addEventListener('mouseout',e=>{if(e.target.closest('abbr.term'))tip.hidden=true});
+document.addEventListener('focusin',e=>{const a=e.target.closest('abbr.term');a?showTip(a):tip.hidden=true});
+document.addEventListener('click',e=>{const a=e.target.closest('abbr.term');if(a){showTip(a)}else tip.hidden=true});
+addEventListener('scroll',()=>tip.hidden=true,{passive:true});
+
+/* ---- Σελίδες-οδηγοί βίντεο ---- */
+const VSUM={
+ 'iovOmhb-fU0':'Μια ματιά στη δουλειά του λογιστή πίσω από τις προθεσμίες, τις δηλώσεις και τα νούμερα της επιχείρησής σας.',
+ '-4gVKmbY5F4':'Σύντομη επίδειξη του scanner της εφαρμογής myDATA app για τα ψηφιακά παραστατικά διακίνησης.',
+ 'JIjC6APeEn0':'Πώς εκδίδονται οι φιλικοί κωδικοί και πώς δίνονται εξουσιοδοτήσεις σε υπαλλήλους, για να χρησιμοποιούν το myDATA app στα παραστατικά διακίνησης.',
+ 'uGNCePfXzZo':'Πού θα βρείτε και πώς θα εκτυπώσετε το ειδοποιητήριο εισφορών από τη νέα ιστοσελίδα του e-ΕΦΚΑ.',
+ 'b_xOWuE41a0':'Σύντομη επίδειξη της εφαρμογής Timologio της ΑΑΔΕ για την έκδοση δελτίων αποστολής.',
+ 'nWYLoLOTz1s':'Οδηγίες χρήσης της εφαρμογής Ψηφιακό Πελατολόγιο της ΑΑΔΕ.',
+ 'mP6zI7D8Rwc':'Η έκδοση του Προσωπικού Αριθμού Πολίτη, βήμα βήμα.',
+ '1g1UzdMtPFU':'Συνοπτικός οδηγός για την Α\' φάση των ψηφιακών παραστατικών διακίνησης, που ξεκίνησε στις 2 Ιουνίου 2025.',
+ 'sQP3DqnthKk':'Σύντομο βίντεο για τις προθεσμίες της επιχείρησής σας και πώς σας βοηθάμε να μη χάνετε καμία.',
+ 'wASUB9usT4Q':'Η ACBO σε λίγα λεπτά: ποιοι είμαστε και πώς δουλεύουμε.',
+ 'qkMw3o7Iw5k':'Πώς εκτυπώνετε το Ε1, το Ε2, το Ε3 και το εκκαθαριστικό σας από το Taxisnet.',
+ 'dxVcNUByr9w':'Οι νέοι κωδικοί πληρωμής (RF) για τις εργοδοτικές εισφορές και τις οφειλές ΚΕΑΟ από 7/4/2025, και πού θα τους βρείτε.',
+ 'hYZfUXeSqfQ':'Η παραμετροποίηση του Epsilon Smart για τα ψηφιακά παραστατικά διακίνησης.',
+ 'iweaidD9PDw':'Πώς λαμβάνετε κωδικούς μιας χρήσης από την ΑΑΔΕ για αγορά κινητού χωρίς ΦΠΑ, σύμφωνα με το άρθρο 39Α.',
+ 'GvmVHjRjcC0':'Η γέφυρα λογιστικής του Pylon: πώς συνδέεται η εμπορική διαχείριση με τη λογιστική.'
+};
+const VLINKS={
+ '-4gVKmbY5F4':[['Οδηγίες ΑΑΔΕ για το myDATA app (PDF)','https://www.aade.gr/sites/default/files/myDATAapp/manual_myDATAapp.pdf']],
+ 'nWYLoLOTz1s':[['Ψηφιακό Πελατολόγιο (ΑΑΔΕ)','https://www.aade.gr/psifiako-pelatologio']],
+ 'iweaidD9PDw':[['Ειδικοί κωδικοί πρόσβασης ΑΑΔΕ','https://www.aade.gr/eidikoi-kodikoi-prosbasis-aade']]
+};
+const CAT_SVC={mydata:'#ypiresies',aade:'#ypiresies',efka:'#ypiresies',erp:'#ypiresies',acbo:'#emeis'};
+function renderGuide(v){
+  const rel=VIDEOS.filter(x=>x.c===v.c&&x.id!==v.id).slice(0,3);
+  $('#guideView').innerHTML=`<a class="back" href="#video">← Όλοι οι οδηγοί</a><div class="guide" style="margin-top:var(--s4)"><div style="min-width:0"><span class="eyebrow">${catName(v.c)}</span><h1>${esc(v.t)}</h1><div class="vmeta" style="margin-bottom:var(--s5)"><span>${nf(v.v)} προβολές</span><span>·</span><span>${fmtDate(v.p)}</span></div><a class="thumb" href="${watch(v.id)}" data-vid="${v.id}" data-play target="_blank" rel="noopener" aria-label="Αναπαραγωγή: ${esc(v.t)}">${markImg}${ytImg(v)}<span class="shade"></span><span class="t">${esc(v.t)}</span>${playI}</a><div class="article" style="margin:var(--s6) 0 0;max-width:none"><div class="body"><h3>Σε λίγα λόγια</h3><p>${esc(VSUM[v.id]||'Οδηγός βήμα βήμα από την ομάδα της ACBO.')}</p><p style="color:var(--muted);font-size:15px">Τα βίντεο είναι εκπαιδευτικά. Οι διαδικασίες των δημόσιων υπηρεσιών αλλάζουν συχνά· αν κάτι δεν ταιριάζει με αυτό που βλέπετε, καλέστε μας.</p></div></div></div><aside>${VLINKS[v.id]?`<div class="box"><b>Χρήσιμοι σύνδεσμοι</b>${VLINKS[v.id].map(l=>`<a href="${l[1]}" target="_blank" rel="noopener">${l[0]} ↗</a>`).join('')}</div>`:''}<div class="box"><b>Χρειάζεστε βοήθεια;</b><p style="color:var(--muted);font-size:15px">Αν προτιμάτε να το αναλάβουμε εμείς, καλέστε μας.</p><span style="font:500 16px var(--f-mono);user-select:all">210 49 49 109</span><span style="font:500 16px var(--f-mono);user-select:all">2310 664 960</span></div>${rel.length?`<div class="box"><b>Σχετικοί οδηγοί</b>${rel.map(x=>`<a href="#${gslug(x.id)}">${esc(x.t)}</a>`).join('')}</div>`:''}</aside></div>`;
+  document.title=v.t+' · ACBO';
+}
+
+/* ---- Βοηθός «Ρωτήστε μας» ---- */
+function askIndex(){
+  const I=[];
+  VIDEOS.forEach(v=>I.push({k:'Οδηγός βίντεο',t:v.t,d:VSUM[v.id]||'',h:'#'+gslug(v.id)}));
+  POSTS.forEach(p=>I.push({k:'Άρθρο',t:p.title,d:p.summary,h:'#nea-'+p.slug}));
+  GLOSSARY.forEach(g=>I.push({k:'Λεξικό',t:g[0],d:g[1],h:'#lexiko',g:g[0]}));
+  CHECKLISTS.forEach(c=>I.push({k:'Λίστα',t:'Τι χρειάζομαι για: '+c.t,d:c.items.map(i=>i[0]).join(', '),h:'#xreiazomai',cl:c.id}));
+  [['Υπολογισμός ΦΠΑ','Από καθαρό σε τελικό ποσό και αντίστροφα','#ergaleia','vat'],['Καθαρός μισθός από μικτό','Εισφορές, φόρος, καθαρά τον μήνα','#ergaleia','sal'],['Εισφορές ελεύθερου επαγγελματία','Μηνιαίο ποσό ανά κατηγορία 2026','#ergaleia','free'],['Προθεσμίες','ΦΠΑ, ΑΠΔ, παρακρατούμενοι φόροι, εισφορές ΕΦΚΑ','#prothesmies']].forEach(x=>I.push({k:'Εργαλείο',t:x[0],d:x[1],h:x[2],tab:x[3]}));
+  SERVICES.forEach(s=>I.push({k:'Υπηρεσία',t:s.t,d:s.d+' '+s.l.join(', '),h:'#ypiresies'}));
+  $$('.faq details').forEach(d=>I.push({k:'Ερώτηση',t:d.querySelector('summary').textContent,d:d.querySelector('p').textContent,h:'#ypiresies'}));
+  return I.map(x=>({...x,n:norm(x.t+' '+x.d),nt:norm(x.t)}));
+}
+let ASK=null;
+function askSearch(q){
+  ASK=ASK||askIndex();
+  const w=norm(q).split(/\s+/).filter(x=>x.length>1);
+  if(!w.length){$('#askRes').innerHTML=`<div class="sugg">${['Εκκαθαριστικό','ΦΠΑ','Καθαρός μισθός','Πρόσληψη','myDATA','Προθεσμίες','ΚΑΔ'].map(s=>`<button type="button">${s}</button>`).join('')}</div>`;return}
+  const scored=ASK.map(x=>{let s=0;w.forEach(t=>{if(x.nt.includes(t))s+=3;else if(x.n.includes(t))s+=1;else if(t.length>4&&x.n.includes(t.slice(0,-2)))s+=.5});return[s,x]}).filter(a=>a[0]>0).sort((a,b)=>b[0]-a[0]).slice(0,7);
+  $('#askRes').innerHTML=scored.length?scored.map(([_,x],i)=>`<a href="${x.h}" data-i="${ASK.indexOf(x)}"><small>${x.k}</small><b>${esc(x.t)}</b>${x.d?`<span>${esc(x.d.length>90?x.d.slice(0,88)+'…':x.d)}</span>`:''}</a>`).join(''):`<p style="padding:10px;color:var(--muted)">Δεν βρήκαμε κάτι σχετικό. Καλέστε μας και θα σας απαντήσουμε.</p>`;
+}
+function askOpen(o){$('#ask').hidden=!o;$('#askBtn').hidden=o;$('#askBtn').setAttribute('aria-expanded',o);if(o){askSearch($('#askQ').value);setTimeout(()=>$('#askQ').focus(),30)}}
+$('#askBtn').addEventListener('click',()=>askOpen(true));
+$('#askClose').addEventListener('click',()=>askOpen(false));
+$('#askQ').addEventListener('input',e=>askSearch(e.target.value));
+$('#askRes').addEventListener('click',e=>{
+  const s=e.target.closest('.sugg button');if(s){$('#askQ').value=s.textContent;askSearch(s.textContent);return}
+  const a=e.target.closest('a[data-i]');if(!a)return;const x=ASK[+a.dataset.i];
+  if(x.tab)setTimeout(()=>$(`#calcTabs [data-t="${x.tab}"]`).click(),60);
+  if(x.cl){clId=x.cl;renderCl()}
+  if(x.g)setTimeout(()=>{$('#glq').value=x.g;renderGl(x.g)},60);
+  askOpen(false);
+});
+addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#ask').hidden)askOpen(false)});
+
+/* --- router --- */
+const PAGES=['home','ypiresies','emeis','video','nea','epikoinonia','xrisima','prothesmies','ergaleia','xreiazomai','lexiko'];
+const NAVMAP={prothesmies:'xrisima',ergaleia:'xrisima',xreiazomai:'xrisima',lexiko:'xrisima',article:'nea',odigos:'video'};
+const reduceM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let io;
+function route(){
+  let h=location.hash.slice(1)||'home',page=h,post=null;
+  let guide=null;
+  if(h.startsWith('nea-')){post=POSTS.find(p=>'nea-'+p.slug===h);page=post?'article':'nea'}
+  else if(h.startsWith('odigos-')){guide=VIDEOS.find(v=>gslug(v.id)===h);page=guide?'odigos':'video'}
+  else if(!PAGES.includes(h))page='home';
+  $$('.page').forEach(p=>p.hidden=p.dataset.page!==page);
+  const navKey=NAVMAP[page]||page;
+  $$('nav.main a').forEach(a=>{if(a.getAttribute('href')==='#'+navKey)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+  if(post){
+    $('#articleView').innerHTML=`<a class="back" href="#nea">← Όλα τα νέα</a><h1>${esc(post.title)}</h1><div class="meta"><span class="tag" style="font-size:12px;padding:5px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent-strong)">${esc(post.tag)}</span><time datetime="${post.date}">${fmtDate(post.date)}</time></div><div style="height:var(--s6)"></div><div class="body">${post.body}</div>${relVideos(post)}`;
+    document.title=post.title+' · ACBO';
+  }else if(guide)renderGuide(guide);
+  else document.title='ACBO Accounting & Bookkeeping';
+  if(page==='prothesmies')renderDeadlines();
+  const cur=$('.page:not([hidden])');cur.style.animation='none';cur.offsetHeight;cur.style.animation='';
+  window.scrollTo({top:0,behavior:'instant'});
+  $('#nav').classList.remove('open');$('#menuBtn').setAttribute('aria-expanded','false');
+  observe();
+  markTerms($('.page:not([hidden])'));
+}
+function observe(){
+  if(!('IntersectionObserver' in window))return;
+  io&&io.disconnect();
+  io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');if(en.target.classList.contains('stats')&&!reduceM)countUp(en.target);io.unobserve(en.target)}}),{rootMargin:'0px 0px -8% 0px'});
+  $$('.page:not([hidden]) .rv:not(.in)').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<innerHeight)return;io.observe(el)});
+}
+addEventListener('hashchange',route);
+$('#menuBtn').addEventListener('click',()=>{const n=$('#nav');const o=n.classList.toggle('open');$('#menuBtn').setAttribute('aria-expanded',o)});
+route();
+
+/* --- progress --- */
+addEventListener('scroll',()=>{const h=document.documentElement;const p=h.scrollTop/(h.scrollHeight-h.clientHeight||1);$('#progress').style.width=(p*100)+'%'},{passive:true});
+
+/* --- hero rings (from the logo mark) --- */
+const cv=$('#rings'),ctx=cv.getContext('2d');
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let W,H,DPR,mx=0,my=0,tx=0,ty=0;
+function size(){DPR=Math.min(2,devicePixelRatio||1);W=cv.clientWidth;H=cv.clientHeight;cv.width=W*DPR;cv.height=H*DPR;ctx.setTransform(DPR,0,0,DPR,0,0)}
+const RINGS=[{r:.16,w:.045,g:.9,s:.12},{r:.27,w:.045,g:.7,s:-.08},{r:.38,w:.045,g:.55,s:.05},{r:.49,w:.045,g:.42,s:-.035},{r:.6,w:.03,g:.3,s:.02},{r:.72,w:.012,g:.2,s:-.012}];
+function draw(t){
+  const col=getComputedStyle(document.documentElement).getPropertyValue('--ring').trim()||'#8C7FBF';
+  ctx.clearRect(0,0,W,H);
+  tx+=(mx-tx)*.04;ty+=(my-ty)*.04;
+  const narrow=W<760, base=narrow?W*0.95:Math.min(W*.62,H*1.35);
+  const cx=(narrow?W*.78:W*.8)+tx*18, cy=(narrow?H*.32:H*.5)+ty*14;
+  RINGS.forEach((g,i)=>{
+    const R=g.r*base, a0=(t*0.001*g.s)+i*0.9;
+    ctx.beginPath();ctx.lineWidth=g.w*base*0.55;ctx.lineCap='butt';
+    ctx.strokeStyle=col;ctx.globalAlpha=narrow?.18:.32-i*.035;
+    ctx.arc(cx,cy,R,a0+g.g,a0+Math.PI*2-g.g*.15);ctx.stroke();
+  });
+  ctx.globalAlpha=1;
+  if(!reduce)requestAnimationFrame(draw);
+}
+addEventListener('resize',size);
+$('.hero').addEventListener('pointermove',e=>{const r=cv.getBoundingClientRect();mx=(e.clientX-r.left)/r.width-.5;my=(e.clientY-r.top)/r.height-.5});
+size();requestAnimationFrame(draw);
+})();
+</script>
