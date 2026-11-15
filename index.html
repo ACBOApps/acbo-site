@@ -38,6 +38,10 @@
 @font-face{font-family:'Manrope';font-style:normal;font-display:swap;font-weight:800;src:url(assets/fonts/manrope-latin-800-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:'JetBrains Mono';font-style:normal;font-display:swap;font-weight:500;src:url(assets/fonts/jetbrains-mono-greek-500-normal.woff2) format('woff2');unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
 @font-face{font-family:'JetBrains Mono';font-style:normal;font-display:swap;font-weight:500;src:url(assets/fonts/jetbrains-mono-latin-500-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+.skip{position:fixed;left:16px;top:-60px;z-index:200;padding:10px 16px;border-radius:10px;background:var(--accent);color:var(--on-accent);font-weight:600;text-decoration:none;transition:top .15s}.skip:focus{top:12px}
+.dl-label .eyebrow{color:var(--accent-strong)}
+[aria-pressed="true"] > small{color:var(--on-accent)!important;opacity:1!important}
+#app:focus{outline:none}
 </style>
 <style>
 /* Layout: sticky header + hash-routed pages; deep-violet hero band with live concentric rings (from the logo mark), airy lavender-tinted pages below. */
@@ -703,6 +707,7 @@ header.site::after{content:"";position:absolute;left:0;right:0;bottom:-1px;heigh
 .fmap{display:inline-block;margin-top:6px;font-size:13px;color:var(--accent);text-decoration:none}.fmap:hover{text-decoration:underline}
 </style>
 
+<a class="skip" href="#app" onclick="event.preventDefault();var m=document.getElementById('app');m.setAttribute('tabindex','-1');m.focus()">Μετάβαση στο περιεχόμενο</a>
 <div id="progress" aria-hidden="true"></div>
 
 <header class="site">
@@ -1209,7 +1214,7 @@ header.site::after{content:"";position:absolute;left:0;right:0;bottom:-1px;heigh
 
 </main>
 
-<button id="askBtn" type="button" aria-expanded="false" aria-controls="ask"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.2M12 16.5h.01"/></svg><span>Ρωτήστε μας</span></button>
+<button id="askBtn" type="button" aria-label="Ρωτήστε μας" aria-expanded="false" aria-controls="ask"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.2M12 16.5h.01"/></svg><span>Ρωτήστε μας</span></button>
 <div id="ask" role="dialog" aria-label="Ρωτήστε μας" hidden>
   <header><b>Τι ψάχνετε;</b><button type="button" id="askClose" aria-label="Κλείσιμο">✕</button></header>
   <div class="q"><input id="askQ" type="search" placeholder="π.χ. εκκαθαριστικό, ΦΠΑ, πρόσληψη" autocomplete="off" aria-label="Ερώτηση"></div>
@@ -1464,8 +1469,8 @@ async function sendForm(form,data,msg,okText){
   const btn=form.querySelector('button[type="submit"]');btn.disabled=true;m.textContent='Αποστολή…';
   try{
     const r=await fetch(FORM_ENDPOINT,{method:'POST',body:data});const j=await r.json().catch(()=>({}));
-    if(r.ok&&j.ok){m.classList.add('ok');m.textContent=okText;form.reset()}
-    else{m.classList.add('err');m.textContent=j.error||'Δεν ήταν δυνατή η αποστολή. Καλέστε μας στο 210 49 49 109 ή στο 2310 664 960.'}
+    if(r.ok&&j.ok){m.classList.add('ok');m.textContent=okText;form.reset();clEvent('form_sent')}
+    else{clEvent('form_error');m.classList.add('err');m.textContent=j.error||'Δεν ήταν δυνατή η αποστολή. Καλέστε μας στο 210 49 49 109 ή στο 2310 664 960.'}
   }catch(_){m.classList.add('err');m.textContent='Δεν ήταν δυνατή η αποστολή. Καλέστε μας στο 210 49 49 109 ή στο 2310 664 960.'}
   btn.disabled=false;
   const el=form.querySelector('[data-ts]');if(window.turnstile&&el&&el.dataset.wid)turnstile.reset(el.dataset.wid);
@@ -1775,6 +1780,14 @@ function clarityLoad(){if(!CLARITY_ID||window.clarity)return;
   window.clarity('consentv2',{ad_Storage:'denied',analytics_Storage:'granted'})}
 function clarityStop(){if(window.clarity)window.clarity('consent',false);
   ['_clck','_clsk','CLID','MUID','ANONCHK','MR','SM'].forEach(n=>{document.cookie=n+'=;Max-Age=0;path=/';document.cookie=n+'=;Max-Age=0;path=/;domain=.'+location.hostname.replace(/^www\./,'')})}
+/* Μέτρηση κλικ στα σημαντικά κουμπιά (μόνο αν ο επισκέπτης έχει δώσει συγκατάθεση και έχει φορτώσει το Clarity) */
+function clEvent(n){try{if(window.clarity)window.clarity('event',n)}catch(e){}}
+document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a[href],button');if(!a)return;const h=a.getAttribute('href')||'';
+  if(h.startsWith('tel:'))clEvent(h.includes('2310')?'call_thessaloniki':'call_athens');
+  else if(h.startsWith('mailto:'))clEvent('email_click');
+  else if(h==='#epikoinonia')clEvent('cta_contact');
+  else if(/google\.com\/maps/.test(h))clEvent('map_directions');
+  else if(a.dataset&&a.dataset.vid)clEvent('video_open')},true);
 function ckShow(){if(CLARITY_ID)$('#ck').hidden=false}
 function ckInit(){const v=ckGet();if(v==='yes')clarityLoad();else if(v===null)ckShow();
   $('#ckYes').addEventListener('click',()=>{ckSet('yes');$('#ck').hidden=true;clarityLoad()});

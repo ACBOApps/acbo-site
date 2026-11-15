@@ -1,0 +1,23 @@
+name: Έλεγχος φόρμας
+# Μία φορά την ημέρα ελέγχει ότι η φόρμα μπορεί να στείλει email (χωρίς να στείλει).
+# Αν αποτύχει, το GitHub στέλνει email αποτυχίας στον λογαριασμό ACBOApps.
+on:
+  schedule:
+    - cron: "23 6 * * *"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Έλεγχος
+        run: |
+          for i in 1 2 3; do
+            r=$(curl -s --max-time 30 https://acbo-forms.cold-poetry-1424.workers.dev/health || true)
+            echo "Απάντηση: $r"
+            echo "$r" | grep -q '"ok":true' && exit 0
+            sleep 60
+          done
+          echo "::error::Η φόρμα επικοινωνίας του site ΔΕΝ μπορεί να στείλει email. Ελέγξτε Cloudflare (acbo-forms → Logs) και Microsoft 365."
+          exit 1

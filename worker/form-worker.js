@@ -1,5 +1,5 @@
 /*
- * ACBO – Φόρμες του site (επικοινωνία & εγγραφή σε ειδοποιήσεις).
+ * ACBO – Φόρμα επικοινωνίας του site.
  * Cloudflare Worker: ελέγχει Turnstile, μπλοκάρει spam και στέλνει email στο info@acbo.gr μέσω Microsoft 365 (Graph).
  * Τα μυστικά (secrets) ΔΕΝ μπαίνουν ποτέ στον κώδικα ή στο GitHub: ορίζονται στο Cloudflare.
  */
@@ -29,7 +29,7 @@ async function turnstileOk(env, token, ip) {
   } catch { return false; }
 }
 
-async function graphSend(env, subject, text, replyTo) {
+async function graphToken(env) {
   const tr = await fetch(`https://login.microsoftonline.com/${env.MS_TENANT_ID}/oauth2/v2.0/token`, {
     method: 'POST',
     body: new URLSearchParams({
@@ -38,7 +38,36 @@ async function graphSend(env, subject, text, replyTo) {
     }),
   });
   const tok = tr.ok ? (await tr.json()).access_token : null;
-  if (!tok) { console.log('ACBO form: token', tr.status); return false; }
+  if (!tok) console.log('ACBO form: token', tr.status);
+  return tok;
+}
+
+/* Ημερήσιος έλεγχος υγείας: ελέγχει κλειδιά, δικαίωμα και πολιτική της Microsoft ΧΩΡΙΣ να στείλει email.
+   Στέλνει μήνυμα χωρίς παραλήπτη: αν η Microsoft απαντήσει «λάθος παραλήπτης» (400), η πρόσβαση είναι εντάξει.
+   Αν απαντήσει 401/403, κάτι χάλασε (π.χ. έληξε το κλειδί ή άλλαξε η πολιτική). */
+let lastHealth = null;
+async function health(env) {
+  if (lastHealth && Date.now() - lastHealth.t < 10 * 60 * 1000) return lastHealth.ok;
+  let ok = false;
+  try {
+    const tok = await graphToken(env);
+    if (tok) {
+      const r = await fetch(`https://graph.microsoft.com/v1.0/users/${encodeURIComponent(env.MAIL_FROM)}/sendMail`, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${tok}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: { subject: 'health', body: { contentType: 'Text', content: '-' }, toRecipients: [] }, saveToSentItems: false }),
+      });
+      ok = r.status === 400;
+      if (!ok) console.log('ACBO form: health', r.status, (await r.text()).slice(0, 300));
+    }
+  } catch (e) { console.log('ACBO form: health error', String(e)); }
+  lastHealth = { t: Date.now(), ok };
+  return ok;
+}
+
+async function graphSend(env, subject, text, replyTo) {
+  const tok = await graphToken(env);
+  if (!tok) return false;
   const message = {
     subject,
     body: { contentType: 'Text', content: text },
@@ -64,6 +93,10 @@ export default {
       return new Response(null, { status: 204, headers: okOrigin ? {
         'Access-Control-Allow-Origin': okOrigin, 'Access-Control-Allow-Methods': 'POST', 'Access-Control-Max-Age': '86400', 'Vary': 'Origin',
       } : {} });
+    }
+    if (req.method === 'GET' && new URL(req.url).pathname === '/health') {
+      const ok = await health(env);
+      return json({ ok }, ok ? 200 : 503, '');
     }
     if (req.method !== 'POST') return json({ ok: false, error: 'Μη αποδεκτό αίτημα.' }, 405, okOrigin);
     if (!okOrigin) return json({ ok: false, error: 'Μη αποδεκτό αίτημα.' }, 403, '');
@@ -98,15 +131,6 @@ export default {
       subject = `Νέο αίτημα από το site: ${type} (${office})`;
       text = `Νέο μήνυμα από τη φόρμα επικοινωνίας του acbo.gr\n\nΟνοματεπώνυμο: ${name}\nΤηλέφωνο: ${phone}\nEmail: ${email || '-'}\nΓραφείο: ${office}\nΘέμα: ${type}\n\nΜήνυμα:\n${message || '-'}\n\n---\nΗμερομηνία: ${when}`;
       replyTo = email;
-    } else if (form === 'notify') {
-      const viber = String(get('channel')) === 'viber';
-      const contact = clean(get('contact'), 120);
-      if (!viber && !validEmail(contact)) return json({ ok: false, error: 'Γράψτε ένα έγκυρο email.' }, 400, okOrigin);
-      if (viber && digits(contact).length < 10) return json({ ok: false, error: 'Γράψτε ένα κινητό με 10 ψηφία.' }, 400, okOrigin);
-      const channel = viber ? 'Viber' : 'Email';
-      subject = `Νέα εγγραφή σε ειδοποιήσεις (${channel})`;
-      text = `Νέα εγγραφή σε ειδοποιήσεις από το acbo.gr\n\nΚανάλι: ${channel}\nΣτοιχείο: ${contact}\nΣυγκατάθεση: ναι\n\n---\nΗμερομηνία: ${when}`;
-      replyTo = viber ? '' : contact;
     } else {
       return json({ ok: false, error: 'Μη αποδεκτό αίτημα.' }, 400, okOrigin);
     }

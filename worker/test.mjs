@@ -29,9 +29,8 @@ assert.match(body.message.body.content,/Ονοματεπώνυμο: Γιάννη
 r=await post({...base,email:'not-an-email'});assert.equal(r.status,200);
 graph=500;r=await post(base);assert.equal(r.status,500);graph=202;
 token=false;r=await post(base);assert.equal(r.status,500);token=true;
-r=await post({form:'notify',channel:'email',contact:'a@b.gr',elapsed:'4000',cf_token:'ok'});assert.equal(r.status,200);
-r=await post({form:'notify',channel:'email',contact:'nope',elapsed:'4000',cf_token:'ok'});assert.equal(r.status,400);
-r=await post({form:'notify',channel:'viber',contact:'6912345678',elapsed:'4000',cf_token:'ok'});assert.equal(r.status,200);
-r=await post({form:'notify',channel:'viber',contact:'123',elapsed:'4000',cf_token:'ok'});assert.equal(r.status,400);
+r=await post({form:'notify',channel:'email',contact:'a@b.gr',elapsed:'4000',cf_token:'ok'});assert.equal(r.status,400);
 r=await post({...base,form:'other'});assert.equal(r.status,400);
+calls=[];graph=400;r=await worker.fetch(new Request('https://w.test/health'),env);assert.equal(r.status,200);assert.equal((await r.json()).ok,true);
+const hb=JSON.parse(calls.find(c=>c[0].includes('sendMail'))[1].body);assert.equal(hb.message.toRecipients.length,0);graph=202;
 console.log('ΟΛΑ ΤΑ ΤΕΣΤ ΠΕΡΑΣΑΝ');
