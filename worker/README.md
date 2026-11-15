@@ -33,3 +33,5 @@ Cloudflare dashboard → Turnstile → Add widget. Hostnames: `acbo.gr`, `www.ac
 
 ## Δοκιμές κώδικα
 `node worker/test.mjs`: ελέγχει όλους τους κανόνες (spam, ασφάλεια, αποστολή) χωρίς πραγματική αποστολή.
+
+Ανέβασμα: γίνεται αυτόματα από το GitHub Actions (.github/workflows/deploy-worker.yml) όταν αλλάζει κάτι στον φάκελο worker/. Το κλειδί CLOUDFLARE_API_TOKEN (λήγει 15/11/2027) είναι στα Secrets του GitHub.
