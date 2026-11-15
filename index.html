@@ -1048,7 +1048,7 @@ header.site::after{content:"";position:absolute;left:0;right:0;bottom:-1px;heigh
         <p class="lead">Προθεσμίες, υπολογισμοί και λίστες, για να ξέρετε πάντα πού βρίσκεστε.</p>
       </div>
       <div class="hub">
-        <a href="#prothesmies"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="17" rx="2"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/><path d="m9 15 2 2 4-4"/></svg></span><h3>Προθεσμίες</h3><p>Όλες οι μηνιαίες υποχρεώσεις, με αντίστροφη μέτρηση και συνδρομή στο ημερολόγιο του κινητού σας.</p><span class="live" data-hub-next></span></a>
+        <a href="#prothesmies"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="17" rx="2"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/><path d="m9 15 2 2 4-4"/></svg></span><h3>Προθεσμίες</h3><p>Οι φορολογικές προθεσμίες του μήνα, από το φορολογικό ημερολόγιο του Taxheaven.</p><span class="live" data-hub-next></span></a>
         <a href="#ergaleia"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2.5" width="16" height="19" rx="2"/><path d="M8 6.5h8M8 11h.01M12 11h.01M16 11h.01M8 14.5h.01M12 14.5h.01M16 14.5v3.5M8 18h4"/></svg></span><h3>Εργαλεία υπολογισμού</h3><p>ΦΠΑ, καθαρός μισθός από μικτό και εισφορές ελεύθερου επαγγελματία.</p><span class="live">Στοιχεία 2026</span></a>
         <a href="#xreiazomai"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11"/><path d="m3.5 6 1.5 1.5L7.5 5M3.5 12l1.5 1.5L7.5 11M3.5 18l1.5 1.5 2.5-2.5"/></svg></span><h3>Για να ξεκινήσουμε…</h3><p>Τα βασικά για έναρξη επιχείρησης, φορολογική δήλωση και πρόσληψη.</p></a>
         <a href="#lexiko"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V5a2 2 0 0 1 2-2h14v15H6.5A2.5 2.5 0 0 0 4 20.5 2.5 2.5 0 0 0 6.5 23H20"/><path d="M9 7h7M9 11h5"/></svg></span><h3>Λεξικό όρων</h3><p>ΚΑΔ, ΑΠΔ, ΚΕΑΟ, ΜΥΦ… Τι σημαίνουν, σε απλά λόγια.</p></a>
@@ -1072,38 +1072,6 @@ header.site::after{content:"";position:absolute;left:0;right:0;bottom:-1px;heigh
       <div class="chips-row" id="dlFilter" role="group" aria-label="Τι σας αφορά" style="margin-bottom:var(--s5)"></div>
       <div id="dlList"></div>
       <p class="calc-note">Οι ημερομηνίες είναι ενδεικτικές: υπολογίζονται ως η τελευταία εργάσιμη του μήνα και δεν περιλαμβάνουν παρατάσεις που ανακοινώνονται κατά περίπτωση. Για τη δική σας περίπτωση, ρωτήστε την ομάδα μας.</p>
-
-      <div class="sub-box">
-        <div style="display:grid;gap:var(--s3);align-content:start">
-          <span class="eyebrow">Στο κινητό σας</span>
-          <h3>Βάλτε τις προθεσμίες στο ημερολόγιό σας</h3>
-          <p style="color:var(--muted)">Κάντε συνδρομή μία φορά και οι προθεσμίες εμφανίζονται στο Google Calendar, στο Outlook ή στο iPhone σας, με υπενθύμιση 3 ημέρες πριν. Όταν αλλάζει κάτι, ενημερώνεται μόνο του.</p>
-          <div><code id="icsUrl">https://www.acbo.gr/calendar.ics</code></div>
-          <div style="display:flex;flex-wrap:wrap;gap:10px"><button class="btn btn-primary" type="button" id="copyIcs">Αντιγραφή συνδέσμου</button><a class="btn btn-ghost" href="calendar.ics" target="_blank" rel="noopener">Άνοιγμα αρχείου</a></div>
-        </div>
-        <div>
-          <details open><summary>Google Calendar</summary><p>Στον υπολογιστή: Ρυθμίσεις → Προσθήκη ημερολογίου → Από URL, και επικολλήστε τον σύνδεσμο.</p></details>
-          <details><summary>iPhone</summary><p>Ρυθμίσεις → Ημερολόγιο → Λογαριασμοί → Προσθήκη λογαριασμού → Άλλο → Προσθήκη ημερολογίου συνδρομής, και επικολλήστε τον σύνδεσμο.</p></details>
-          <details><summary>Outlook</summary><p>Ημερολόγιο → Προσθήκη ημερολογίου → Από το Internet / Εγγραφή από το web, και επικολλήστε τον σύνδεσμο.</p></details>
-        </div>
-      </div>
-
-      <div class="sub-box" style="background:var(--surface);border:1px solid var(--line)">
-        <div style="display:grid;gap:var(--s3);align-content:start">
-          <span class="eyebrow">Ειδοποιήσεις</span>
-          <h3>Ενημέρωση πριν από κάθε προθεσμία</h3>
-          <p style="color:var(--muted)">Λάβετε σύντομη υπενθύμιση και ό,τι αλλάζει στα φορολογικά, με email ή Viber. Μπορείτε να διαγραφείτε όποτε θέλετε.</p>
-        </div>
-        <form id="notifyForm" data-clarity-mask="True" novalidate style="display:grid;gap:var(--s3)">
-          <div class="seg" id="nfChan" role="group" aria-label="Κανάλι"><button type="button" data-ch="email" aria-pressed="true">Email</button><button type="button" data-ch="viber" aria-pressed="false">Viber</button></div>
-          <div class="field"><label for="nf-val" id="nfLbl">Email</label><input id="nf-val" type="email" autocomplete="email" required></div>
-          <label class="check-row" for="nf-ok"><input id="nf-ok" type="checkbox" required><span>Συμφωνώ να λαμβάνω ενημερώσεις από την ACBO. Τα στοιχεία μου χρησιμοποιούνται μόνο γι' αυτόν τον σκοπό. <a href="#aporrito">Πολιτική απορρήτου</a></span></label>
-          <div class="hp" aria-hidden="true"><label for="nf-website">Ιστοσελίδα</label><input id="nf-website" name="website" tabindex="-1" autocomplete="off"></div>
-          <div class="ts" data-ts></div>
-          <button class="btn btn-primary" type="submit" style="justify-self:start">Εγγραφή</button>
-          <div class="form-msg" id="nfMsg" hidden></div>
-        </form>
-      </div>
     </div>
   </section>
 </div>
@@ -1241,17 +1209,14 @@ header.site::after{content:"";position:absolute;left:0;right:0;bottom:-1px;heigh
         <p>ACBO Ο.Ε. (ACBO Accounting &amp; Bookkeeping), Ηπείρου 143, 18121 Κορυδαλλός και Υδραγωγείου 4Β, 56533 Πολίχνη. Για οτιδήποτε αφορά τα στοιχεία σας γράψτε μας στο <b>info@acbo.gr</b> ή καλέστε στο 210 49 49 109 ή 2310 664 960.</p>
 
         <h3>Φόρμα επικοινωνίας</h3>
-        <p>Ονοματεπώνυμο, τηλέφωνο, email, το γραφείο και το θέμα που επιλέγετε και το μήνυμά σας. Τα χρησιμοποιούμε μόνο για να σας απαντήσουμε. Νομική βάση είναι το αίτημά σας πριν από μια πιθανή συνεργασία (άρθρο 6 παρ. 1 β΄ ΓΚΠΔ). Τα κρατάμε όσο χρειάζεται για να απαντήσουμε και το πολύ 12 μήνες. Αν γίνετε πελάτης μας, ισχύουν οι χρόνοι φύλαξης του φακέλου πελάτη.</p>
-
-        <h3>Ειδοποιήσεις για προθεσμίες</h3>
-        <p>Αν εγγραφείτε, κρατάμε το email ή το κινητό σας (Viber) για να σας στέλνουμε υπενθυμίσεις και φορολογικά νέα. Νομική βάση είναι η συγκατάθεσή σας (άρθρο 6 παρ. 1 α΄ ΓΚΠΔ). Μπορείτε να διαγραφείτε όποτε θέλετε απαντώντας σε ένα μήνυμά μας ή γράφοντας στο info@acbo.gr. Μετά τη διαγραφή σβήνουμε τα στοιχεία σας.</p>
+        <p>Ονοματεπώνυμο, τηλέφωνο, email, το γραφείο και το θέμα που επιλέγετε και το μήνυμά σας. Τα χρησιμοποιούμε μόνο για να σας απαντήσουμε. Νομική βάση είναι το αίτημά σας πριν από μια πιθανή συνεργασία (άρθρο 6 παρ. 1 β΄ ΓΚΠΔ). Τα κρατάμε όσο διαρκεί η επικοινωνία μας για πιθανή συνεργασία. Αν δεν προχωρήσει, τα διαγράφουμε. Αν γίνετε πελάτης μας, ισχύουν οι χρόνοι φύλαξης του φακέλου πελάτη.</p>
 
         <h3>Καταγραφή επισκεψιμότητας (Microsoft Clarity)</h3>
         <p>Μόνο αν πατήσετε «Αποδοχή» στη σχετική μπάρα, χρησιμοποιούμε το Microsoft Clarity για να δούμε ανώνυμα πώς χρησιμοποιείται το site: σε ποιες σελίδες μπαίνετε, πού πατάτε και μέχρι πού κατεβαίνετε. Έτσι βλέπουμε τι δεν είναι κατανοητό και το διορθώνουμε. Ό,τι γράφετε στις φόρμες κρύβεται πριν φύγει από τον υπολογιστή σας και δεν το βλέπουμε. Νομική βάση είναι η συγκατάθεσή σας (άρθρο 6 παρ. 1 α΄ ΓΚΠΔ και άρθρο 4 παρ. 5 ν. 3471/2006). Η Microsoft κρατά τις εγγραφές 30 ημέρες και τα συγκεντρωτικά στοιχεία έως 13 μήνες. Αν πατήσετε «Απόρριψη», το Clarity δεν φορτώνεται καθόλου.</p>
 
         <h3>Cookies και αποθήκευση στη συσκευή σας</h3>
         <ul>
-          <li><b>Απαραίτητα, χωρίς συγκατάθεση:</b> το site θυμάται στη συσκευή σας την επιλογή σας για τα cookies και ό,τι ρυθμίσατε εσείς (π.χ. φίλτρα προθεσμιών, τσεκαρισμένα σημεία στις λίστες). Τίποτα από αυτά δεν φεύγει από τη συσκευή σας.</li>
+          <li><b>Απαραίτητα, χωρίς συγκατάθεση:</b> το site θυμάται στη συσκευή σας την επιλογή σας για τα cookies και ό,τι ρυθμίσατε εσείς (π.χ. τσεκαρισμένα σημεία στις λίστες). Τίποτα από αυτά δεν φεύγει από τη συσκευή σας.</li>
           <li><b>Μόνο με συγκατάθεση:</b> cookies του Microsoft Clarity (_clck, _clsk, CLID, MUID και σχετικά), με διάρκεια έως 13 μήνες.</li>
         </ul>
         <p>Μπορείτε να αλλάξετε ή να ανακαλέσετε την επιλογή σας όποτε θέλετε από τις <a href="#cookies" data-ck-open>Ρυθμίσεις cookies</a>, και στο κάτω μέρος κάθε σελίδας.</p>
@@ -1666,20 +1631,12 @@ function tickAll(){
   }
 }
 renderDeadlines();setInterval(tickAll,30000);
-$('#copyIcs').addEventListener('click',e=>copyText($('#icsUrl').textContent,e.currentTarget));
-let nfCh='email';
-$('#nfChan').addEventListener('click',e=>{const b=e.target.closest('[data-ch]');if(!b)return;nfCh=b.dataset.ch;$$('#nfChan button').forEach(x=>x.setAttribute('aria-pressed',x===b));const i=$('#nf-val');$('#nfLbl').textContent=nfCh==='email'?'Email':'Κινητό (Viber)';i.type=nfCh==='email'?'email':'tel';i.autocomplete=nfCh==='email'?'email':'tel';i.value=''});
-$('#notifyForm').addEventListener('submit',e=>{e.preventDefault();const m=$('#nfMsg'),v=$('#nf-val').value.trim();m.hidden=false;
-  if(!v||(nfCh==='email'&&!/^\S+@\S+\.\S+$/.test(v))||(nfCh==='viber'&&v.replace(/\D/g,'').length<10)){m.textContent=nfCh==='email'?'Γράψτε ένα έγκυρο email.':'Γράψτε ένα κινητό με 10 ψηφία.';return}
-  if(!$('#nf-ok').checked){m.textContent='Τσεκάρετε τη συγκατάθεση για να γίνει η εγγραφή.';return}
-  const d=new FormData();d.append('form','notify');d.append('channel',nfCh);d.append('contact',v);sendForm(e.currentTarget,d,m,'Έγινε! Θα λαμβάνετε τις ενημερώσεις μας.')});
-
 /* ---- Εργαλεία υπολογισμού ---- */
 const eur=n=>n.toLocaleString('el-GR',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';
 const seg=(id,cb)=>{$(id).addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;$$(id+' button').forEach(x=>x.setAttribute('aria-pressed',x===b));cb()})};
 const segVal=(id,attr)=>$(id+' button[aria-pressed="true"]').dataset[attr];
 $('#calcTabs').addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(!b)return;$$('#calcTabs button').forEach(x=>x.setAttribute('aria-selected',x===b));$$('[data-panel]').forEach(p=>p.hidden=p.dataset.panel!==b.dataset.t);calcNote(b.dataset.t)});
-function calcNote(t){$('#calcNote').textContent={vat:'Ο υπολογισμός είναι ενδεικτικός. ',sal:'Ενδεικτικός υπολογισμός για μισθωτό ιδιωτικού τομέα: 14 μισθοί τον χρόνο, εισφορές εργαζομένου 13,37% (e-ΕΦΚΑ, χωρίς ΒΑΕ), κλίμακα φόρου 2026 με τη μείωση φόρου του άρθρου 16 ΚΦΕ. Δεν λαμβάνει υπόψη ανώτατο όριο εισφορών, ειδικές περιπτώσεις και άλλα εισοδήματα. ',free:'Ποσά 2026 σύμφωνα με την εγκύκλιο e-ΕΦΚΑ 6/2026, για αυτοαπασχολούμενους και ελεύθερους επαγγελματίες. '}[t]+'Τελευταίος έλεγχος στοιχείων: '+CHECKED+'.'}
+function calcNote(t){$('#calcNote').textContent={vat:'Ο υπολογισμός είναι κατά προσέγγιση. ',sal:'Οι υπολογισμοί μισθού και φόρου είναι κατά προσέγγιση. Υπολογισμός για μισθωτό ιδιωτικού τομέα: 14 μισθοί τον χρόνο, εισφορές εργαζομένου 13,37% (e-ΕΦΚΑ, χωρίς ΒΑΕ), κλίμακα φόρου 2026 με τη μείωση φόρου του άρθρου 16 ΚΦΕ. Δεν λαμβάνει υπόψη ανώτατο όριο εισφορών, ειδικές περιπτώσεις και άλλα εισοδήματα. ',free:'Ποσά 2026 σύμφωνα με την εγκύκλιο e-ΕΦΚΑ 6/2026, για αυτοαπασχολούμενους και ελεύθερους επαγγελματίες. '}[t]+'Τελευταίος έλεγχος στοιχείων: '+CHECKED+'.'}
 function calcVat(){
   const a=Math.max(0,+$('#vat-amt').value||0),r=+segVal('#vatRate','r')/100,net=segVal('#vatMode','m')==='net';
   const n=net?a:a/(1+r),v=n*r,g=n+v;
