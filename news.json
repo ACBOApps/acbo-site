@@ -2,20 +2,44 @@
  "source": "Taxheaven.gr",
  "items": [
   {
+   "feed": "new",
+   "source": "Νέα & Ειδήσεις",
+   "title": "Κατατέθηκε στη Βουλή ο Κρατικός Προϋπολογισμός του 2027",
+   "summary": "",
+   "link": "https://www.taxheaven.gr/news/75182/katateohke-sth-boylh-o-kratikos-proypologismos-toy-2027",
+   "date": "2026-11-20"
+  },
+  {
+   "feed": "new",
+   "source": "Νέα & Ειδήσεις",
+   "title": "Τεχνητή διευθέτηση (άρθρο 39 ΚΦΔ) η εγγραφή ζημίας 578.000€ από διαγραφή συμμετοχής σε εταιρεία που αγοράστηκε, πώλησε ακίνητα σε συνδεδεμένα πρόσωπα…",
+   "summary": "",
+   "link": "https://www.taxheaven.gr/news/75181/texnhth-dieyoethsh-aroro-39-kfd-h-eggrafh-zhmias-578000-apo-diagrafh-symmetoxhs-se-etaireia-poy-agorasthke-pwlhse-akinhta-se-syndedemena-proswpa-kai-ekkaoaristhke-entos-14-mhnwn-aporripsh-prosfyghs-kai-meiwsh-pistwtikoy-ypoloipoy-pros-epistrofh",
+   "date": "2026-11-20"
+  },
+  {
+   "feed": "new",
+   "source": "Νέα & Ειδήσεις",
+   "title": "Η αδυναμία κλειστής αποθήκης δεν συνιστά μη τήρηση αξιόπιστου λογιστικού συστήματος. Ακυρώθηκε το πρόστιμο των 2.500 ευρώ και μειώθηκε ο συντελεστής…",
+   "summary": "",
+   "link": "https://www.taxheaven.gr/news/75180/h-adynamia-kleisths-apoohkhs-den-synista-mh-thrhsh-axiopistoy-logistikoy-systhmatos-akyrwohke-to-prostimo-twn-2500-eyrw-kai-meiwohke-o-syntelesths-miktoy-kerdoys-sthn-arxh-twn-analogiwn",
+   "date": "2026-11-20"
+  },
+  {
+   "feed": "new",
+   "source": "Νέα & Ειδήσεις",
+   "title": "ΑΑΔΕ - ΔΕΟΣ: Εξάρθρωση κυκλώματος εταιρειών-βιτρίνα για παράνομες επιστροφές φόρων – 15 συλλήψεις",
+   "summary": "Οι ελεγκτές των Δυνάμεων Ελέγχου Οικονομικών Συναλλαγών (ΔΕΟΣ) της ΑΑΔΕ εξάρθρωσαν οργανωμένο κύκλωμα εταιρειών, το οποίο, μέσω εικονικών…",
+   "link": "https://www.taxheaven.gr/news/75177/aade-deos-exarorwsh-kyklwmatos-etaireiwn-bitrina-gia-paranomes-epistrofes-forwn-15-syllhpseis",
+   "date": "2026-11-20"
+  },
+  {
    "feed": "law",
    "source": "Αποφάσεις & Εγκύκλιοι",
    "title": "ΣτΕ 1016/2024 - Η βεβαίωση της ΔΟΥ για την παύση εργασιών και όχι η δημοσίευση της λύσης της ΑΕ στο ΓΕΜΗ καθορίζει τη λήξη της ασφάλισης στον ΟΑΕΕ",
    "summary": "Η βεβαίωση της ΔΟΥ για την παύση εργασιών και όχι η δημοσίευση της λύσης της ΑΕ στο ΓΕΜΗ καθορίζει τη λήξη της ασφάλισης στον ΟΑΕΕ",
    "link": "https://www.taxheaven.gr/circulars/55961/ste-1016-2024",
-   "date": "2026-11-21"
-  },
-  {
-   "feed": "law",
-   "source": "Αποφάσεις & Εγκύκλιοι",
-   "title": "ΣτΕ 774/2026 - Η προθεσμία των 120 ημερών για επιστροφή του μισού ΦΜΑ λόγω διαλυτικής αίρεσης τρέχει από την επέλευση του γεγονότος, όχι από τη λήξη…",
-   "summary": "Η προθεσμία των 120 ημερών για επιστροφή του μισού ΦΜΑ λόγω διαλυτικής αίρεσης τρέχει από την επέλευση του γεγονότος, όχι από τη λήξη της…",
-   "link": "https://www.taxheaven.gr/circulars/55959/ste-774-2026",
-   "date": "2026-11-21"
+   "date": "2026-11-20"
   },
   {
    "feed": "law",
@@ -28,8 +52,16 @@
   {
    "feed": "law",
    "source": "Αποφάσεις & Εγκύκλιοι",
-   "title": "ΣτΕ 250/2026 - Σύνταξη χηρείας και ελάχιστη διάρκεια γάμου 24 μηνών. Η μακροχρόνια συμβίωση συνυπολογίζεται μόνο όταν υπήρχε νομικό κώλυμα για τον…",
-   "summary": "Σύνταξη χηρείας και ελάχιστη διάρκεια γάμου 24 μηνών. Η μακροχρόνια συμβίωση συνυπολογίζεται μόνο όταν υπήρχε νομικό κώλυμα για τον γάμο",
+   "title": "ΣτΕ 774/2026 - Η προθεσμία των 120 ημερών για επιστροφή του μισού ΦΜΑ λόγω διαλυτικής αίρεσης τρέχει από την επέλευση του γεγονότος, όχι από τη λήξη…",
+   "summary": "Η προθεσμία των 120 ημερών για επιστροφή του μισού ΦΜΑ λόγω διαλυτικής αίρεσης τρέχει από την επέλευση του γεγονότος, όχι από τη λήξη της…",
+   "link": "https://www.taxheaven.gr/circulars/55959/ste-774-2026",
+   "date": "2026-11-20"
+  },
+  {
+   "feed": "law",
+   "source": "Αποφάσεις & Εγκύκλιοι",
+   "title": "ΣτΕ 250/2026 - Σύνταξη χηρείας και ελάχιστη διάρκεια γάμου 24 μηνών. Η μακροχρόνια συμβίωση συνυπολογίζεται μόνο όταν υπήρχε νομικό κώλυμα για το γάμο",
+   "summary": "Σύνταξη χηρείας και ελάχιστη διάρκεια γάμου 24 μηνών. Η μακροχρόνια συμβίωση συνυπολογίζεται μόνο όταν υπήρχε νομικό κώλυμα για το γάμο",
    "link": "https://www.taxheaven.gr/circulars/55958/ste-250-2026",
    "date": "2026-11-20"
   },
@@ -88,39 +120,7 @@
    "summary": "",
    "link": "https://www.taxheaven.gr/news/75176/anarthohke-o-odhgos-oloklhrwsewn-gia-ta-ependytika-sxedia-toy-anaptyxiakoy-nomoy-43992016",
    "date": "2026-11-19"
-  },
-  {
-   "feed": "new",
-   "source": "Νέα & Ειδήσεις",
-   "title": "Μία καθησυχαστική ανοδική συνεδρίαση στο ελληνικό χρηματιστήριο - Επέστρεψε πάνω από τις 2.600 μονάδες ο Γενικός Δείκτης",
-   "summary": "",
-   "link": "https://www.taxheaven.gr/news/75175/mia-kaohsyxastikh-anodikh-synedriash-sto-ellhniko-xrhmatisthrio-epestrepse-panw-apo-tis-2600-monades-o-genikos-deikths",
-   "date": "2026-11-19"
-  },
-  {
-   "feed": "new",
-   "source": "Νέα & Ειδήσεις",
-   "title": "ΑΑΔΕ-myBusinessSupport: Στήριξη κτηνοτρόφων λόγω επιζωοτιών έως 03/12",
-   "summary": "",
-   "link": "https://www.taxheaven.gr/news/75174/aade-mybusinesssupport-sthrixh-kthnotrofwn-logw-epizwotiwn-ews-0312",
-   "date": "2026-11-19"
-  },
-  {
-   "feed": "new",
-   "source": "Νέα & Ειδήσεις",
-   "title": "Στις 30 Νοεμβρίου η επιστροφή ενοικίου σε 1 εκατ. πολίτες",
-   "summary": "Από 27/11 η καταβολή της ετήσιας οικονομικής ενίσχυσης των 400 ευρώ σε πολίτες με αναπηρικά επιδόματα και σε ανασφάλιστους υπερήλικες",
-   "link": "https://www.taxheaven.gr/news/75173/stis-30-noembrioy-h-epistrofh-enoikioy-se-1-ekat-polites",
-   "date": "2026-11-19"
-  },
-  {
-   "feed": "new",
-   "source": "Νέα & Ειδήσεις",
-   "title": "Έντονες ρευστοποιήσεις στο ελληνικό χρηματιστήριο από ξένα χαρτοφυλάκια - «Κλειδώνουν» κέρδη στις τράπεζες (-3,57%) οι ξένοι",
-   "summary": "",
-   "link": "https://www.taxheaven.gr/news/75172/entones-reystopoihseis-sto-ellhniko-xrhmatisthrio-apo-xena-xartofylakia-kleidwnoyn-kerdh-stis-trapezes-357-oi-xenoi",
-   "date": "2026-11-18"
   }
  ],
- "updated": "2026-11-20 02:18 UTC"
+ "updated": "2026-11-20 11:36 UTC"
 }
