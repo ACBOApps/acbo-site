@@ -44,6 +44,14 @@
   {
    "feed": "new",
    "source": "Νέα & Ειδήσεις",
+   "title": "Δύο λογιστές, δύο επιλογές",
+   "summary": "",
+   "link": "https://www.taxheaven.gr/news/75191/dyo-logistes-dyo-epiloges",
+   "date": "2026-11-22"
+  },
+  {
+   "feed": "new",
+   "source": "Νέα & Ειδήσεις",
    "title": "Ανθρώπινη εποπτεία στους αλγορίθμους και Μητρώο Απασχόλησης σε πλατφόρμες φέρνει το νέο νομοσχέδιο",
    "summary": "",
    "link": "https://www.taxheaven.gr/news/75190/anorwpinh-epopteia-stoys-algoriomoys-kai-mhtrwo-apasxolhshs-se-platformes-fernei-to-neo-nomosxedio",
@@ -106,14 +114,6 @@
    "date": "2026-11-20"
   },
   {
-   "feed": "new",
-   "source": "Νέα & Ειδήσεις",
-   "title": "Στα 687.024 άτομα το σύνολο των εγγεγραμμένων στο μητρώο ΔΥΠΑ για τον Οκτώβριο",
-   "summary": "",
-   "link": "https://www.taxheaven.gr/news/75185/sta-687024-atoma-to-synolo-twn-eggegrammenwn-sto-mhtrwo-dypa-gia-ton-oktwbrio",
-   "date": "2026-11-20"
-  },
-  {
    "feed": "law",
    "source": "Αποφάσεις & Εγκύκλιοι",
    "title": "Ο.3055/2026 - Κοινοποίηση των διατάξεων των άρθρων 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 25, 29, 31, 43, 44, 51 και…",
@@ -122,5 +122,5 @@
    "date": "2026-11-20"
   }
  ],
- "updated": "2026-11-22 01:17 UTC"
+ "updated": "2026-11-22 19:37 UTC"
 }
