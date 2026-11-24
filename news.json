@@ -4,9 +4,9 @@
   {
    "feed": "dat",
    "source": "Φορολογικό ημερολόγιο",
-   "title": "Υποβολή στατιστικής δήλωσης Intrastat μηνός Οκτωβρίου",
-   "summary": "Υποβολή στατιστικής δήλωσης Intrastat μηνός Οκτωβρ...",
-   "link": "https://www.taxheaven.gr/calendar/event/11626",
+   "title": "Υποβολή δήλωσης και απόδοσης του ειδικού φόρου πολυτελείας για τον προηγούμενο ημερολογιακό μήνα",
+   "summary": "Υποβολή δήλωσης και απόδοσης του ειδικού φόρου πολ...",
+   "link": "https://www.taxheaven.gr/calendar/event/11624",
    "date": "2026-11-26"
   },
   {
@@ -15,6 +15,14 @@
    "title": "Υποβολή ανακεφαλαιωτικού πίνακα ενδοκοινοτικών παραδόσεων αγαθών και παροχών υπηρεσιών - αποθεμάτων στη διάθεση συγκεκριμένου πελάτη σε άλλο κ-μ και…",
    "summary": "Υποβολή ανακεφαλαιωτικού πίνακα ενδοκοινοτικών παρ...",
    "link": "https://www.taxheaven.gr/calendar/event/11625",
+   "date": "2026-11-26"
+  },
+  {
+   "feed": "dat",
+   "source": "Φορολογικό ημερολόγιο",
+   "title": "Υποβολή στατιστικής δήλωσης Intrastat μηνός Οκτωβρίου",
+   "summary": "Υποβολή στατιστικής δήλωσης Intrastat μηνός Οκτωβρ...",
+   "link": "https://www.taxheaven.gr/calendar/event/11626",
    "date": "2026-11-26"
   },
   {
@@ -36,41 +44,57 @@
   {
    "feed": "new",
    "source": "Νέα & Ειδήσεις",
-   "title": "Έως αύριο Τρίτη 24/11 οι αιτήσεις για τις αποζημιώσεις των παράκτιων αλιέων",
-   "summary": "25 εκατ. ευρώ χρηματοδότηση για ζημιές σε αλιευτικά δίχτυα",
-   "link": "https://www.taxheaven.gr/news/75199/ews-ayrio-trith-2411-oi-aithseis-gia-tis-apozhmiwseis-twn-paraktiwn-aliewn",
+   "title": "«Αντίδραση πιεσμένου ελατηρίου» σε ΗΠΑ και Ευρώπη. Με άνοδο 7% ξεκίνησε ο Nasdaq στις ΗΠΑ",
+   "summary": "Αφορμή στο τεχνολογικό ράλι η ‘αποκατάσταση’ του Χουάνγκ στην NVIDIA αλλά και η διόρθωση της τάξης του 20% περίπου στις τεχνολογικές…",
+   "link": "https://www.taxheaven.gr/news/75206/antidrash-piesmenoy-elathrioy-se-hpa-kai-eyrwph-me-anodo-7-xekinhse-o-nasdaq-stis-hpa",
    "date": "2026-11-23"
   },
   {
    "feed": "new",
    "source": "Νέα & Ειδήσεις",
-   "title": "ΠΟΜΙΔΑ προς ΥΠΑΝ: Να εξαιρεθούν οι προσυμφωνημένες αυξήσεις ενοικίων από το πλαφόν 3% των επαγγελματικών μισθώσεων για το 2027",
+   "title": "Επιθεώρηση Εργασίας - Προσωρινή μη διαθεσιμότητα ηλεκτρονικών υπηρεσιών την Τετάρτη 25/11 από 09:30 έως 10:30",
    "summary": "",
-   "link": "https://www.taxheaven.gr/news/75198/pomida-pros-ypan-na-exaireooyn-oi-prosymfwnhmenes-ayxhseis-enoikiwn-apo-to-plafon-3-twn-epaggelmatikwn-misowsewn-gia-to-2027",
+   "link": "https://www.taxheaven.gr/news/75205/epioewrhsh-ergasias-proswrinh-mh-diaoesimothta-hlektronikwn-yphresiwn-thn-tetarth-2511-apo-0930-ews-1030",
    "date": "2026-11-23"
   },
   {
    "feed": "new",
    "source": "Νέα & Ειδήσεις",
-   "title": "ΕΛΦΕΕ Ρόδου: Στήριξη της κινητοποίησης στις ΔΟΥ Ρόδου και Κω",
+   "title": "ΟΕΕ 12ο Π.Τ. Δωδεκανήσου - Στήριξη στους εργαζόμενους των ΔΟΥ Δωδεκανήσου για τη διατήρηση και ενίσχυση των τοπικών φορολογικών υπηρεσιών",
    "summary": "",
-   "link": "https://www.taxheaven.gr/news/75197/elfee-rodoy-sthrixh-ths-kinhtopoihshs-stis-doy-rodoy-kai-kw",
+   "link": "https://www.taxheaven.gr/news/75203/oee-12o-pt-dwdekanhsoy-sthrixh-stoys-ergazomenoys-twn-doy-dwdekanhsoy-gia-th-diathrhsh-kai-enisxysh-twn-topikwn-forologikwn-yphresiwn",
    "date": "2026-11-23"
   },
   {
    "feed": "new",
    "source": "Νέα & Ειδήσεις",
-   "title": "ΠΔΣΟ Ηπείρου: Όχι στην κατάργηση των περιφερειακών ΔΟΥ - Στο πλευρό των εργαζομένων στις φορολογικές υπηρεσίες της Ηπείρου",
+   "title": "Νέα ψηφιακή διαδικασία για την προσωρινή εισαγωγή οχημάτων με ξένες πινακίδες",
+   "summary": "Στην απλοποίηση και την ψηφιοποίηση της διαδικασίας για την προσωρινή εισαγωγή οχημάτων με ξένες πινακίδες προχώρησε η ΑΑΔΕ, διευκολύνοντας…",
+   "link": "https://www.taxheaven.gr/news/75202/nea-pshfiakh-diadikasia-gia-thn-proswrinh-eisagwgh-oxhmatwn-me-xenes-pinakides",
+   "date": "2026-11-23"
+  },
+  {
+   "feed": "new",
+   "source": "Νέα & Ειδήσεις",
+   "title": "Ψηφιακό δελτίο αποστολής: Οι αλλαγές της Α 1233/2026 και η πρακτική εφαρμογή της Β1 φάσης στο επόμενο webinar του κόμβου",
    "summary": "",
-   "link": "https://www.taxheaven.gr/news/75196/pdso-hpeiroy-oxi-sthn-katarghsh-twn-perifereiakwn-doy-sto-pleyro-twn-ergazomenwn-stis-forologikes-yphresies-ths-hpeiroy",
+   "link": "https://www.taxheaven.gr/news/75201/pshfiako-deltio-apostolhs-oi-allages-ths-a-12332026-kai-h-praktikh-efarmogh-ths-b1-fashs-sto-epomeno-webinar-toy-komboy",
    "date": "2026-11-23"
   },
   {
-   "feed": "new",
-   "source": "Νέα & Ειδήσεις",
-   "title": "Νέο Μητρώο Εκπαιδευτικών Οχημάτων Σχολών Οδηγών και αλλαγές στον ΚΟΚ - Τι προβλέπει το νομοσχέδιο του Υπ. Μεταφορών",
-   "summary": "Δημόσια ηλεκτρονική διαβούλευση για το σχέδιο νόμου του Υπουργείου Υποδομών και Μεταφορών με τον τίτλο: «Πλαίσιο ανάπτυξης των Ευφυών…",
-   "link": "https://www.taxheaven.gr/news/75195/neo-mhtrwo-ekpaideytikwn-oxhmatwn-sxolwn-odhgwn-kai-allages-ston-kok-ti-problepei-to-nomosxedio-toy-yp-metaforwn",
+   "feed": "law",
+   "source": "Αποφάσεις & Εγκύκλιοι",
+   "title": "Α.1254/2026 - Τροποποίηση της υπό στοιχεία Α.1161/03-08-2026 απόφασης του Διοικητή της Ανεξάρτητης Αρχής Δημοσίων Εσόδων «Υποβολή Ενιαίας Αίτησης…",
+   "summary": "Τροποποίηση της υπό στοιχεία Α.1161/03-08-2026 απόφασης του Διοικητή της Ανεξάρτητης Αρχής Δημοσίων Εσόδων «Υποβολή Ενιαίας Αίτησης…",
+   "link": "https://www.taxheaven.gr/circulars/55980/a-1254-2026",
+   "date": "2026-11-23"
+  },
+  {
+   "feed": "law",
+   "source": "Αποφάσεις & Εγκύκλιοι",
+   "title": "83913/17-11-2026 - Υπαγωγή πληγεισών επιχειρήσεων από τις πλημμύρες που εκδηλώθηκαν από την 30η Νοεμβρίου έως την 2α Δεκεμβρίου 2024 σε περιοχές της…",
+   "summary": "Υπαγωγή πληγεισών επιχειρήσεων από τις πλημμύρες που εκδηλώθηκαν από την 30η Νοεμβρίου έως την 2α Δεκεμβρίου 2024 σε περιοχές της…",
+   "link": "https://www.taxheaven.gr/circulars/55979/83913-17-11-2026",
    "date": "2026-11-23"
   },
   {
@@ -96,31 +120,7 @@
    "summary": "Αλληλέγγυα ευθύνη και διασφαλιστικά μέτρα σε γραμματέα συνεταιρισμού",
    "link": "https://www.taxheaven.gr/circulars/55973/ste-1525-2024",
    "date": "2026-11-23"
-  },
-  {
-   "feed": "law",
-   "source": "Αποφάσεις & Εγκύκλιοι",
-   "title": "ΣτΕ 1577/2024 - Παραδεκτός ο πρόσθετος λόγος προσφυγής για το χρόνο επέλευσης της προσαύξησης περιουσίας από εμβάσματα εξωτερικού, αφού τα κρίσιμα…",
-   "summary": "Παραδεκτός ο πρόσθετος λόγος προσφυγής για το χρόνο επέλευσης της προσαύξησης περιουσίας από εμβάσματα εξωτερικού, αφού τα κρίσιμα στοιχεία…",
-   "link": "https://www.taxheaven.gr/circulars/55972/ste-1577-2024",
-   "date": "2026-11-23"
-  },
-  {
-   "feed": "law",
-   "source": "Αποφάσεις & Εγκύκλιοι",
-   "title": "ΣτΕ 1519/2024 - Απαράδεκτο νέων ισχυρισμών εκτός ενδικοφανούς διαδικασίας - Μόνον ανάπτυξη των ήδη προβληθέντων, με την ενδικοφανή προσφυγή…",
-   "summary": "Απαράδεκτο νέων ισχυρισμών εκτός ενδικοφανούς διαδικασίας - Μόνον ανάπτυξη των ήδη προβληθέντων, με την ενδικοφανή προσφυγή, ισχυρισμών και…",
-   "link": "https://www.taxheaven.gr/circulars/55971/ste-1519-2024",
-   "date": "2026-11-23"
-  },
-  {
-   "feed": "dat",
-   "source": "Φορολογικό ημερολόγιο",
-   "title": "Υποβολή Δήλωσης Έναρξης Ηλεκτρονικής Έκδοσης Στοιχείων από οντότητες που χρησιμοποιούν παρόχους οι οποίοι δεν έχουν υποβάλλει έως τις 12.11.2026 τη…",
-   "summary": "Υποβολή Δήλωσης Έναρξης Ηλεκτρονικής Έκδοσης Στοιχ...",
-   "link": "https://www.taxheaven.gr/calendar/event/11003",
-   "date": "2026-11-23"
   }
  ],
- "updated": "2026-11-23 12:34 UTC"
+ "updated": "2026-11-24 02:12 UTC"
 }
