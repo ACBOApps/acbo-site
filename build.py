@@ -45,4 +45,15 @@ def rfc822(d):
     return format_datetime(datetime.strptime(d, "%Y-%m-%d").replace(hour=9, tzinfo=timezone.utc))
 
 
-print("OK:", len(posts), "άρθρα")
+# Οδηγός Ψηφιακού Δελτίου Αποστολής (ξεχωριστή σελίδα): ίδιος κανόνας ασφαλείας, μόνο δικά μας scripts.
+_ps = open(os.path.join(here, "diakinisi.src.html"), encoding="utf-8").read()
+_ph = sorted({"'sha256-" + base64.b64encode(hashlib.sha256(m.encode("utf-8")).digest()).decode() + "'"
+              for m in _re.findall(r"<script>(.*?)</script>", _ps, _re.S)})
+_pcsp = "; ".join(["default-src 'self'", "script-src 'self' " + " ".join(_ph), "style-src 'self' 'unsafe-inline'",
+                   "img-src 'self' data:", "font-src 'self'", "connect-src 'self'", "object-src 'none'",
+                   "base-uri 'self'", "form-action 'self'", "upgrade-insecure-requests"])
+assert "<!--CSP-->" in _ps
+_ps = _ps.replace("<!--CSP-->", '<meta http-equiv="Content-Security-Policy" content="' + _pcsp + '">\n<meta name="referrer" content="strict-origin-when-cross-origin">', 1)
+open(os.path.join(here, "diakinisi.html"), "w", encoding="utf-8").write(_ps)
+
+print("OK:", len(posts), "άρθρα + οδηγός διακίνησης")
