@@ -96,6 +96,11 @@ nav.main{display:flex;gap:2px;margin-left:auto}
 nav.main a{text-decoration:none;font-weight:500;font-size:15px;padding:9px 14px;border-radius:999px;color:var(--muted);transition:color .2s,background .2s}
 nav.main a:hover{color:var(--fg);background:var(--accent-soft)}
 nav.main a[aria-current="page"]{color:var(--accent-strong);background:var(--accent-soft)}
+nav.main a{white-space:nowrap}
+nav.main a.nav-psd{color:#fff;background:linear-gradient(135deg,#5B4B8A,#7A68B8);font-weight:700;font-size:12.5px;line-height:1.15;padding:5px 14px;display:flex;flex-direction:column;justify-content:center;text-align:center;box-shadow:0 2px 10px rgba(91,75,138,.4);margin:0 4px}
+nav.main a.nav-psd:hover{color:#fff;background:linear-gradient(135deg,#4F4378,#6C5AA8)}
+@media (min-width:1121px){nav.main a{padding:9px 9px}.hdr .cta{white-space:nowrap}}
+@media (max-width:1120px){nav.main a.nav-psd{display:block;font-size:17px;padding:13px 14px;text-align:left;margin:6px 0}}
 .hdr .cta{margin-left:var(--s3)}
 .menu-btn{display:none;margin-left:auto;background:none;border:1px solid var(--line);border-radius:12px;width:44px;height:44px;color:var(--fg);cursor:pointer}
 .menu-btn svg{width:22px;height:22px}
@@ -721,6 +726,7 @@ header.site::after{content:"";position:absolute;left:0;right:0;bottom:-1px;heigh
       <a href="#video">Οδηγοί</a>
       <a href="#xrisima">Χρήσιμα</a>
       <a href="#emeis">Ποιοι είμαστε</a>
+      <a class="nav-psd" href="diakinisi.html"><span>Οδηγός Ψηφιακών</span> <span>Δελτίων Αποστολής</span></a>
       <a href="#nea">Νέα</a>
       <a href="#epikoinonia">Επικοινωνία</a>
     </nav>
