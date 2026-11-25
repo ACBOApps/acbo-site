@@ -90,7 +90,8 @@ p{margin:0}
 header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--surface) 88%,transparent);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--line)}
 .hdr{display:flex;align-items:center;gap:var(--s5);height:70px}
 .brand{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
-.brand img{height:34px;width:auto}
+.brand img{height:46px;width:auto}
+@media (max-width:600px){.brand img{height:40px}}
 .brand .l{display:var(--logo-light)} .brand .d{display:var(--logo-dark)}
 nav.main{display:flex;gap:2px;margin-left:auto}
 nav.main a{text-decoration:none;font-weight:500;font-size:15px;padding:9px 14px;border-radius:999px;color:var(--muted);transition:color .2s,background .2s}
@@ -100,6 +101,7 @@ nav.main a{white-space:nowrap}
 nav.main a.nav-psd{color:#fff;background:linear-gradient(135deg,#5B4B8A,#7A68B8);font-weight:700;font-size:12.5px;line-height:1.15;padding:5px 14px;display:flex;flex-direction:column;justify-content:center;text-align:center;box-shadow:0 2px 10px rgba(91,75,138,.4);margin:0 4px}
 nav.main a.nav-psd:hover{color:#fff;background:linear-gradient(135deg,#4F4378,#6C5AA8)}
 @media (min-width:1121px){nav.main a{padding:9px 9px}.hdr .cta{white-space:nowrap}}
+@media (min-width:1121px) and (max-width:1240px){nav.main a{padding:9px 6px}.brand img{height:40px}}
 @media (max-width:1120px){nav.main a.nav-psd{display:block;font-size:17px;padding:13px 14px;text-align:left;margin:6px 0}}
 .hdr .cta{margin-left:var(--s3)}
 .menu-btn{display:none;margin-left:auto;background:none;border:1px solid var(--line);border-radius:12px;width:44px;height:44px;color:var(--fg);cursor:pointer}
@@ -168,6 +170,7 @@ section.band{padding-block:var(--s9)}
 
 /* services */
 .svc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s4)}
+@media (min-width:981px){.svc-grid>:last-child:nth-child(3n+1){grid-column:2}}
 @media (max-width:980px){.svc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:620px){.svc-grid{grid-template-columns:1fr}}
 .svc{position:relative;display:grid;align-content:start;gap:var(--s3);padding:var(--s6) var(--s5) var(--s5);background:var(--surface);border:1px solid var(--line);border-radius:var(--r);transition:transform .25s,box-shadow .25s,border-color .25s,opacity .3s;overflow:hidden}
@@ -1280,7 +1283,9 @@ const ic={
  cloud:'<path d="M17.5 19a4.5 4.5 0 0 0 .5-9 6 6 0 0 0-11.6 1.5A4 4 0 0 0 7 19z"/><path d="m9.5 14 2 2 3.5-3.5"/>',
  rocket:'<path d="M5 15c-1.5 1.3-2 5-2 5s3.7-.5 5-2a2.1 2.1 0 0 0-3-3z"/><path d="m12 15-3-3a22 22 0 0 1 9-9c1.5 0 3 1.5 3 3a22 22 0 0 1-9 9z"/><path d="M9 12H5l2-4h5M12 15v4l4-2v-5"/>',
  chart:'<path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/>',
- shield:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/>'
+ shield:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/>',
+ truck:'<path d="M2 6h11v10H2zM13 9h4.5l3.5 3.5V16h-8"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/>',
+ euro:'<circle cx="12" cy="12" r="9.5"/><path d="M15.5 8.2A4.5 4.5 0 0 0 8.7 10.5v3a4.5 4.5 0 0 0 6.8 2.3M7 11h6M7 13.5h6"/>'
 };
 const svg=k=>'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+ic[k]+'</svg>';
 const SERVICES=[
@@ -1291,7 +1296,9 @@ const SERVICES=[
  {k:'cloud',t:'myDATA & ηλεκτρονική τιμολόγηση',d:'Χαρακτηρισμοί, έλεγχος αποκλίσεων και σωστή ρύθμιση της τιμολόγησής σας.',l:['Χαρακτηρισμοί εσόδων & εξόδων','Έλεγχος αποκλίσεων κάθε μήνα','Ρύθμιση παρόχου ή ERP'],p:['free','small','corp','new']},
  {k:'rocket',t:'Ίδρυση επιχείρησης',d:'Από την επιλογή νομικής μορφής μέχρι το πρώτο τιμολόγιο.',l:['Επιλογή νομικής μορφής','Έναρξη εργασιών & ΓΕΜΗ','Στήσιμο βιβλίων & τιμολόγησης'],p:['new']},
  {k:'chart',t:'Συμβουλευτική επιχειρήσεων',d:'Αριθμοί που βοηθούν να πάρετε αποφάσεις: κόστος, ρευστότητα, ανάπτυξη.',l:['Ανάλυση κόστους & κερδοφορίας','Προϋπολογισμοί','Επιδοτήσεις & χρηματοδότηση'],p:['small','corp','new']},
- {k:'shield',t:'Φοροτεχνική υποστήριξη',d:'Δίπλα σας σε ελέγχους, ρυθμίσεις οφειλών και επικοινωνία με τη ΔΟΥ.',l:['Υποστήριξη σε φορολογικούς ελέγχους','Ρυθμίσεις & βεβαιώσεις','Ενημερότητες'],p:['free','small','corp']}
+ {k:'shield',t:'Φοροτεχνική υποστήριξη',d:'Δίπλα σας σε ελέγχους, ρυθμίσεις οφειλών και επικοινωνία με τη ΔΟΥ.',l:['Υποστήριξη σε φορολογικούς ελέγχους','Ρυθμίσεις & βεβαιώσεις','Ενημερότητες'],p:['free','small','corp']},
+ {k:'truck',t:'Ψηφιακή διακίνηση',d:'Σωστή έκδοση των ψηφιακών παραστατικών διακίνησης και προετοιμασία για την παρακολούθηση σε πραγματικό χρόνο.',l:['Ρύθμιση τιμολόγησης & παραστατικών διακίνησης','Δελτία Ποσοτικής Παραλαβής & αποκλίσεις','Ετοιμότητα για τη Φάση Β (1/1/2027)'],p:['free','small','corp'],a:['diakinisi.html','Οδηγός Ψηφιακών Δελτίων Αποστολής']},
+ {k:'euro',t:'Επιδοτούμενα προγράμματα ΕΣΠΑ-ΔΥΠΑ',d:'Ενημέρωση για τα προγράμματα που σας αφορούν και υποστήριξη από την αίτηση έως την ολοκλήρωση.',l:['Έλεγχος επιλεξιμότητας','Υποβολή αίτησης & δικαιολογητικών','Παρακολούθηση υποχρεώσεων του προγράμματος'],p:['free','small','corp','new']}
 ];
 const PERSONAS=[
  {id:'free',t:'Ελεύθερος επαγγελματίας',s:'Ατομική επιχείρηση ή μπλοκάκι',o:'Για <strong>ελεύθερους επαγγελματίες</strong> φροντίζουμε τα βιβλία, τον ΦΠΑ και το myDATA κάθε μήνα, και σας λέμε από νωρίς τι θα πληρώσετε, για να μη σας βρει απροετοίμαστους ο φόρος.'},
@@ -1342,7 +1349,7 @@ const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&qu
 
 /* --- services --- */
 const vlink=k=>{const v=VIDEOS.find(x=>x.id===SVC_VIDEO[k]);return v?`<a class="vlink" href="#${gslug(v.id)}"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="currentColor" opacity=".14"/><path d="M10 8l6 4-6 4z" fill="currentColor"/></svg>Οδηγός: ${esc(v.t)}</a>`:''};
-const svcCard=s=>`<article class="svc rv" data-p="${s.p.join(' ')}"><span class="match">Για εσάς</span><span class="ic">${svg(s.k)}</span><h3>${esc(s.t)}</h3><p>${esc(s.d)}</p><ul>${s.l.map(x=>'<li>'+esc(x)+'</li>').join('')}</ul>${vlink(s.k)}</article>`;
+const svcCard=s=>`<article class="svc rv" data-p="${s.p.join(' ')}"><span class="match">Για εσάς</span><span class="ic">${svg(s.k)}</span><h3>${esc(s.t)}</h3><p>${esc(s.d)}</p><ul>${s.l.map(x=>'<li>'+esc(x)+'</li>').join('')}</ul>${vlink(s.k)}${s.a?`<a class="vlink" href="${s.a[0]}"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="currentColor" opacity=".14"/><path d="M10 7l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg>${esc(s.a[1])}</a>`:''}</article>`;
 $('#svcAll').innerHTML=SERVICES.map(svcCard).join('');
 $('#svcHome').innerHTML=SERVICES.map(svcCard).join('');
 
