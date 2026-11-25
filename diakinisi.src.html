@@ -168,6 +168,7 @@ h2.sec{font-size:22px;margin:30px 0 4px}
 .foot b{color:var(--fg)}
 .cta{margin-top:24px;background:var(--accent-soft);border-radius:14px;padding:18px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
 @media print{.top,.tabs,.hero,.foot,.dlg-f,.x{display:none!important}dialog{position:static;box-shadow:none;width:100%;max-height:none}}
+.qz-nav{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px}.qz-nav #nx{margin-left:auto}.btn[disabled]{opacity:.45;cursor:default}
 </style>
 </head>
 <body>
@@ -759,19 +760,26 @@ const QZ=[
 ['Επιστρέφετε το ελαττωματικό ανταλλακτικό στον εισαγωγέα, ο οποίος το ζητά για έλεγχο. Τι εκδίδετε;',['Τίποτα, είναι ελαττωματικό','Δελτίο Αποστολής με σκοπό «Εγγύηση» ή «Επιστροφή»','Δελτίο Ποσοτικής Παραλαβής'],1,'Το ανταλλακτικό έχει αξία για τον εισαγωγέα, οπότε για τη μεταφορά του απαιτείται Δελτίο Αποστολής.'],
 ['Ποιο είναι το πρόστιμο για μεταφορά εμπορευμάτων χωρίς παραστατικό, όταν τηρείτε διπλογραφικά βιβλία;',['1.000 €','5.000 €','10.000 € σε κάθε έλεγχο'],2,'ΚΦΔ άρθρο 57 παρ. 13: 5.000 € για απλογραφικά και 10.000 € για διπλογραφικά βιβλία, σε κάθε έλεγχο.']
 ];
-let qi=0,score=0,answered=false;
+let qi=0,ans=[];
+const scoreOf=()=>ans.reduce((n,a,i)=>n+(a===QZ[i][2]?1:0),0);
+function resetQ(){qi=0;ans=[];drawQ();$('#quiz').scrollIntoView({behavior:'smooth',block:'start'})}
 function drawQ(){
-  const z=$('#quiz');
+  const z=$('#quiz'),score=scoreOf();
   if(qi>=QZ.length){const pct=Math.round(score/QZ.length*100);
-    z.innerHTML='<div class="score"><b>'+score+'/'+QZ.length+'</b><p>'+(pct>=80?'Πολύ καλά. Γνωρίζετε τους βασικούς κανόνες.':pct>=50?'Καλή βάση. Διαβάστε και την ενότητα «Τα βασικά».':'Διαβάστε την ενότητα «Τα βασικά» και δοκιμάστε ξανά.')+'</p><p style="margin-top:16px"><button class="btn p" type="button" id="again">Ξανά από την αρχή</button></p></div>';
-    $('#again').addEventListener('click',()=>{qi=0;score=0;drawQ()});return}
-  const q=QZ[qi];answered=false;
-  z.innerHTML='<div class="qz-top"><span>Ερώτηση '+(qi+1)+' από '+QZ.length+'</span><span>Σωστές: '+score+'</span></div><div class="bar"><i style="width:'+(qi/QZ.length*100)+'%"></i></div><h3>'+esc(q[0])+'</h3><div class="opts">'+q[1].map((o,i)=>'<button class="opt" type="button" data-i="'+i+'">'+esc(o)+'</button>').join('')+'</div><div id="why"></div>';
-  z.querySelector('.opts').addEventListener('click',e=>{const o=e.target.closest('.opt');if(!o||answered)return;answered=true;
-    const i=+o.dataset.i,ok=i===q[2];if(ok)score++;
-    z.querySelectorAll('.opt').forEach((b,j)=>{if(j===q[2])b.classList.add('ok');else if(j===i)b.classList.add('bad')});
-    $('#why').innerHTML='<div class="why"><b>'+(ok?'✓ Σωστά.':'✗ Λάθος.')+'</b> '+esc(q[3])+'</div><div class="nav"><button class="btn p" type="button" id="next">'+(qi+1<QZ.length?'Επόμενη →':'Δείτε το αποτέλεσμα')+'</button></div>';
-    $('#next').addEventListener('click',()=>{qi++;drawQ()})});
+    z.innerHTML='<div class="score"><b>'+score+'/'+QZ.length+'</b><p>'+(pct>=80?'Πολύ καλά. Γνωρίζετε τους βασικούς κανόνες.':pct>=50?'Καλή βάση. Διαβάστε και την ενότητα «Τα βασικά».':'Διαβάστε την ενότητα «Τα βασικά» και δοκιμάστε ξανά.')+'</p><p style="margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn" type="button" id="prev">← Προηγούμενη</button><button class="btn p" type="button" id="again">Ξανά από την αρχή</button></p></div>';
+    $('#again').addEventListener('click',resetQ);$('#prev').addEventListener('click',()=>{qi=QZ.length-1;drawQ()});return}
+  const q=QZ[qi],done=ans[qi]!==undefined;
+  z.innerHTML='<div class="qz-top"><span>Ερώτηση '+(qi+1)+' από '+QZ.length+'</span><span>Σωστές: '+score+'</span></div><div class="bar"><i style="width:'+(qi/QZ.length*100)+'%"></i></div><h3>'+esc(q[0])+'</h3><div class="opts">'+q[1].map((o,i)=>'<button class="opt" type="button" data-i="'+i+'">'+esc(o)+'</button>').join('')+'</div><div id="why"></div><div class="nav qz-nav"><button class="btn" type="button" id="prev"'+(qi?'':' disabled')+'>← Προηγούμενη</button><button class="btn" type="button" id="clr">Καθαρισμός</button><span id="nx"></span></div>';
+  const show=()=>{const i=ans[qi],ok=i===q[2];
+    z.querySelectorAll('.opt').forEach((b,j)=>{b.classList.remove('ok','bad');if(j===q[2])b.classList.add('ok');else if(j===i)b.classList.add('bad')});
+    $('#why').innerHTML='<div class="why"><b>'+(ok?'✓ Σωστά.':'✗ Λάθος.')+'</b> '+esc(q[3])+'</div>';
+    $('#nx').innerHTML='<button class="btn p" type="button" id="next">'+(qi+1<QZ.length?'Επόμενη →':'Δείτε το αποτέλεσμα')+'</button>';
+    $('#next').addEventListener('click',()=>{qi++;drawQ()});
+    z.querySelector('.qz-top span:last-child').textContent='Σωστές: '+scoreOf()};
+  if(done)show();
+  z.querySelector('.opts').addEventListener('click',e=>{const o=e.target.closest('.opt');if(!o||ans[qi]!==undefined)return;ans[qi]=+o.dataset.i;show()});
+  $('#prev').addEventListener('click',()=>{if(qi){qi--;drawQ()}});
+  $('#clr').addEventListener('click',resetQ);
 }
 
 /* ---------- Εκκίνηση ---------- */
