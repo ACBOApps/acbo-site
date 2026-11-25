@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex">
 <title>ACBO Accounting & Bookkeeping | Λογιστικές και φοροτεχνικές υπηρεσίες σε Αθήνα και Θεσσαλονίκη</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-C/lILVkJ8A4NDSkfPZ6F9PdGpOiIbplw1jKyX9a/cbc=' 'sha256-I4fWOieusOexXKqRq+xd/nrvIEoZEfnCyJUP51zoesU=' 'sha256-fjIjNjtQnVQK+RQ1Pp36bB+E+Jnc5RoEU6ukYEemr4E=' https://challenges.cloudflare.com https://www.clarity.ms https://scripts.clarity.ms; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i.ytimg.com https://*.clarity.ms https://c.bing.com; font-src 'self'; connect-src 'self' https://acbo-forms.cold-poetry-1424.workers.dev https://*.clarity.ms https://c.bing.com; frame-src https://challenges.cloudflare.com https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-C/lILVkJ8A4NDSkfPZ6F9PdGpOiIbplw1jKyX9a/cbc=' 'sha256-I4fWOieusOexXKqRq+xd/nrvIEoZEfnCyJUP51zoesU=' 'sha256-SEjj4sx/dF7bbvSfZHPrgxfllmLAS3xCm8z+7j5/Y34=' https://challenges.cloudflare.com https://www.clarity.ms https://scripts.clarity.ms; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i.ytimg.com https://*.clarity.ms https://c.bing.com; font-src 'self'; connect-src 'self' https://acbo-forms.cold-poetry-1424.workers.dev https://*.clarity.ms https://c.bing.com; frame-src https://challenges.cloudflare.com https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="description" content="Λογιστικές και φοροτεχνικές υπηρεσίες σε Αθήνα και Θεσσαλονίκη: τήρηση βιβλίων, ΦΠΑ, μισθοδοσία, myDATA και φορολογικές δηλώσεις. ACBO Accounting & Bookkeeping και TAXExpert T.P.M.">
 <meta property="og:type" content="website">
@@ -60,7 +60,7 @@
   --r:14px; --wrap:1160px;
 }
 
-:root,:root[data-theme="dark"]{
+:root[data-theme="dark"]{
   --bg:#383840; --surface:#45454F; --fg:#F2F2F6; --muted:#C3C3CE; --line:#585865;
   --accent:#B3A7E0; --accent-strong:#CFC6F0; --accent-soft:#4F4B67; --on-accent:#17132A;
   --deep:#25252C; --deep-2:#34343E; --deep-fg:#F4F4F7; --deep-muted:#CDCDD7; --ring:#8A84A3;
@@ -611,6 +611,8 @@ body{background:
 .eyebrow{font-family:var(--f-body);font-size:14.5px;font-weight:600;letter-spacing:0;text-transform:none;color:var(--gold);display:inline-flex;align-items:center;gap:10px}
 .eyebrow::before{content:"";width:8px;height:8px;rotate:45deg;background:linear-gradient(135deg,var(--gold-hi),var(--gold-lo));box-shadow:0 0 12px rgba(179,167,224,.7);flex:none}
 .hero .eyebrow{color:var(--gold-hi)}
+:root:not([data-theme="dark"]) .eyebrow{color:var(--accent-strong)}
+:root:not([data-theme="dark"]) .hero .eyebrow,:root:not([data-theme="dark"]) .dl-next .eyebrow{color:var(--gold-hi)}
 .display{font-weight:650;letter-spacing:-.02em}
 .display em{color:var(--gold);font-weight:inherit}
 /* buttons */
@@ -1498,7 +1500,7 @@ function initTurnstile(){
     if(!IS_LIVE){el.innerHTML='<div class="ts-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>Προστασία από spam (Cloudflare Turnstile): ενεργοποιείται όταν συνδεθεί η φόρμα.</div>';return}
   });
   if(!IS_LIVE)return;
-  window.onTsLoad=()=>$$('[data-ts]').forEach(el=>{el.dataset.wid=turnstile.render(el,{sitekey:TURNSTILE_SITEKEY,language:'el',theme:'auto'})});
+  window.onTsLoad=()=>$$('[data-ts]').forEach(el=>{el.dataset.wid=turnstile.render(el,{sitekey:TURNSTILE_SITEKEY,language:'el',theme:'light'})});
   const sc=document.createElement('script');sc.src='https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTsLoad&render=explicit';sc.async=true;document.head.appendChild(sc);
 }
 initTurnstile();
