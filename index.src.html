@@ -1070,7 +1070,8 @@ header.site::after{content:"";position:absolute;left:0;right:0;bottom:-1px;heigh
       </div>
       <div class="tabs" role="tablist" id="calcTabs">
         <button role="tab" type="button" data-t="vat" aria-selected="true">ΦΠΑ</button>
-        <button role="tab" type="button" data-t="sal" aria-selected="false">Καθαρός μισθός</button>
+        <button role="tab" type="button" data-t="sal" aria-selected="false">Μισθός: μικτά – καθαρά</button>
+        <button role="tab" type="button" data-t="hour" aria-selected="false">Ωρομίσθιο & προσαυξήσεις</button>
         <button role="tab" type="button" data-t="free" aria-selected="false">Εισφορές ελεύθερου επαγγελματία</button>
       </div>
 
@@ -1085,11 +1086,27 @@ header.site::after{content:"";position:absolute;left:0;right:0;bottom:-1px;heigh
 
       <div class="calc" data-panel="sal" hidden>
         <div class="inputs">
-          <div class="field"><label for="sal-gross">Μικτός μηνιαίος μισθός</label><div class="money"><input id="sal-gross" type="number" inputmode="decimal" min="0" step="10" value="1200"></div></div>
+          <div class="field"><label>Τι γνωρίζετε</label><div class="seg" id="salMode"><button type="button" data-v="g" aria-pressed="true">Μικτό μισθό</button><button type="button" data-v="n" aria-pressed="false">Καθαρό μισθό</button></div></div>
+          <div class="field"><label for="sal-gross" id="salLbl">Μικτός μηνιαίος μισθός</label><div class="money"><input id="sal-gross" type="number" inputmode="decimal" min="0" step="10" value="1200"></div></div>
+          <div class="field"><label>Αριθμός μισθών τον χρόνο</label><div class="seg" id="salPay"><button type="button" data-v="12" aria-pressed="false">12</button><button type="button" data-v="14" aria-pressed="true">14</button><button type="button" data-v="14.5" aria-pressed="false">14,5</button></div></div>
           <div class="field"><label>Παιδιά που βαρύνουν</label><div class="seg" id="salKids"><button type="button" data-v="0" aria-pressed="true">0</button><button type="button" data-v="1" aria-pressed="false">1</button><button type="button" data-v="2" aria-pressed="false">2</button><button type="button" data-v="3" aria-pressed="false">3</button><button type="button" data-v="4" aria-pressed="false">4</button><button type="button" data-v="5" aria-pressed="false">5+</button></div></div>
           <div class="field"><label>Ηλικία</label><div class="seg" id="salAge"><button type="button" data-v="25" aria-pressed="false">έως 25</button><button type="button" data-v="30" aria-pressed="false">26–30</button><button type="button" data-v="99" aria-pressed="true">31+</button></div></div>
         </div>
         <div class="result" id="salOut" aria-live="polite"></div>
+      </div>
+
+      <div class="calc" data-panel="hour" hidden>
+        <div class="inputs">
+          <div class="field"><label for="hr-sal">Μικτός μηνιαίος μισθός</label><div class="money"><input id="hr-sal" type="number" inputmode="decimal" min="0" step="10" value="1200"></div></div>
+          <div class="field"><label for="hr-wk">Συμβατικές ώρες την εβδομάδα</label><input id="hr-wk" type="number" inputmode="decimal" min="1" max="48" step="0.5" value="40"></div>
+          <div class="field"><label for="hr-0">Ώρες υπερεργασίας (+20%)</label><input id="hr-0" data-hr type="number" inputmode="decimal" min="0" step="0.5" value="0"></div>
+          <div class="field"><label for="hr-1">Ώρες νόμιμης υπερωρίας (+40%)</label><input id="hr-1" data-hr type="number" inputmode="decimal" min="0" step="0.5" value="0"></div>
+          <div class="field"><label for="hr-2">Ώρες νόμιμης υπερωρίας (+60%)</label><input id="hr-2" data-hr type="number" inputmode="decimal" min="0" step="0.5" value="0"></div>
+          <div class="field"><label for="hr-3">Ώρες υπερωρίας κατ’ εξαίρεση (+80%)</label><input id="hr-3" data-hr type="number" inputmode="decimal" min="0" step="0.5" value="0"></div>
+          <div class="field"><label for="hr-4">Ώρες νυχτερινής εργασίας (+25%)</label><input id="hr-4" data-hr type="number" inputmode="decimal" min="0" step="0.5" value="0"></div>
+          <div class="field"><label for="hr-5">Ώρες Κυριακής ή αργίας (+75%)</label><input id="hr-5" data-hr type="number" inputmode="decimal" min="0" step="0.5" value="0"></div>
+        </div>
+        <div class="result" id="hrOut" aria-live="polite"></div>
       </div>
 
       <div class="calc" data-panel="free" hidden>
@@ -1613,7 +1630,7 @@ const eur=n=>n.toLocaleString('el-GR',{minimumFractionDigits:2,maximumFractionDi
 const seg=(id,cb)=>{$(id).addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;$$(id+' button').forEach(x=>x.setAttribute('aria-pressed',x===b));cb()})};
 const segVal=(id,attr)=>$(id+' button[aria-pressed="true"]').dataset[attr];
 $('#calcTabs').addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(!b)return;$$('#calcTabs button').forEach(x=>x.setAttribute('aria-selected',x===b));$$('[data-panel]').forEach(p=>p.hidden=p.dataset.panel!==b.dataset.t);calcNote(b.dataset.t)});
-function calcNote(t){$('#calcNote').textContent={vat:'Ο υπολογισμός είναι κατά προσέγγιση. ',sal:'Οι υπολογισμοί μισθού και φόρου είναι κατά προσέγγιση. Υπολογισμός για μισθωτό ιδιωτικού τομέα: 14 μισθοί τον χρόνο, εισφορές εργαζομένου 13,37% (e-ΕΦΚΑ, χωρίς ΒΑΕ), κλίμακα φόρου 2026 με τη μείωση φόρου του άρθρου 16 ΚΦΕ. Δεν λαμβάνει υπόψη ανώτατο όριο εισφορών, ειδικές περιπτώσεις και άλλα εισοδήματα. ',free:'Ποσά 2026 σύμφωνα με την εγκύκλιο e-ΕΦΚΑ 6/2026, για αυτοαπασχολούμενους και ελεύθερους επαγγελματίες. '}[t]+'Τελευταίος έλεγχος στοιχείων: '+CHECKED+'.'}
+function calcNote(t){$('#calcNote').textContent={vat:'Ο υπολογισμός είναι κατά προσέγγιση. ',sal:'Οι υπολογισμοί μισθού και φόρου είναι κατά προσέγγιση. Εισφορές εργαζομένου 13,37% και εργοδότη 21,79% (e-ΕΦΚΑ, χωρίς ΒΑΕ), με ανώτατο μηνιαίο όριο ασφαλιστέων αποδοχών 7.761,94 € (ΥΑ Δ.15/Δ΄/1865/23.01.2026, εγκ. e-ΕΦΚΑ 4/2026) επί τον αριθμό των μισθών. Κλίμακα φόρου του άρθρου 15 ΚΦΕ όπως ισχύει με τον ν. 5246/2025 (φορολογικό έτος 2026) και μείωση φόρου του άρθρου 16 ΚΦΕ. Ο καθαρός μισθός είναι ο μέσος όρος ανά μισθό· η πραγματική παρακράτηση φόρου ανά μήνα μπορεί να διαφέρει. Δεν λαμβάνονται υπόψη ειδικές περιπτώσεις, άλλα εισοδήματα και αναπροσαρμογές της εργοδοτικής εισφοράς. ',hour:'Ωρομίσθιο έμμισθου = μηνιαίος μισθός × 6/25 ÷ συμβατικές εβδομαδιαίες ώρες (ΕΓΣΣΕ άρθρο 5, ν. 4808/2021 άρθρο 55). Προσαυξήσεις: υπερεργασία 20%, νόμιμη υπερωρία 40% ή 60%, υπερωρία κατ’ εξαίρεση 80%, νυχτερινή 25%, Κυριακή/αργία 75%, σύμφωνα με τον Κώδικα Ατομικού Εργατικού Δικαίου (π.δ. 62/2025). Η νυχτερινή και η Κυριακή/αργία υπολογίζονται ως προσαύξηση πάνω στον μισθό που ήδη καταβάλλεται. Ποσά μικτά, χωρίς εισφορές και φόρο· τα ποσοστά 40% και 60% και η έννοια της υπερωρίας κατ’ εξαίρεση εξαρτώνται από το ωράριο και τις ώρες που έχουν ήδη πραγματοποιηθεί, ελέγξτε την περίπτωσή σας. ',free:'Ποσά 2026 σύμφωνα με την εγκύκλιο e-ΕΦΚΑ 6/2026, για αυτοαπασχολούμενους και ελεύθερους επαγγελματίες. '}[t]+'Τελευταίος έλεγχος στοιχείων: '+CHECKED+'.'}
 function calcVat(){
   const a=Math.max(0,+$('#vat-amt').value||0),r=+segVal('#vatRate','r')/100,net=segVal('#vatMode','m')==='net';
   const n=net?a:a/(1+r),v=n*r,g=n+v;
@@ -1624,17 +1641,34 @@ function taxScale(taxable,kids,age){
   const r2=[.20,.18,.16,.09,0][Math.min(kids,4)];
   const r3=kids<=4?[.26,.24,.22,.20,.18][kids]:Math.max(0,.18-.02*(kids-4));
   B[1][1]=r2;B[2][1]=r3;
+  if(kids>=4)B[0][1]=0;
   if(age<=25){B[0][1]=0;B[1][1]=0}else if(age<=30){B[1][1]=Math.min(B[1][1],.09)}
   let rest=taxable,tax=0;for(const [w,r] of B){const p=Math.min(rest,w);tax+=p*r;rest-=p;if(rest<=0)break}
   let red=kids<=4?[777,900,1120,1340,1580][kids]:1780+220*(kids-5);
   if(kids<5&&taxable>12000)red=Math.max(0,red-20*(taxable-12000)/1000);
   return Math.max(0,tax-red);
 }
+const SAL_CAP=7761.94,EMP_RATE=.1337,ER_RATE=.2179;
+function salCore(g,pay,kids,age){
+  const yr=g*pay,base=Math.min(g,SAL_CAP)*pay,ins=base*EMP_RATE,er=base*ER_RATE;
+  const tax=taxScale(yr-ins,kids,age);
+  return {yr,ins,er,tax,net:yr-ins-tax,cost:yr+er};
+}
 function calcSal(){
-  const g=Math.max(0,+$('#sal-gross').value||0),kids=+segVal('#salKids','v'),age=+segVal('#salAge','v');
-  const yr=g*14,ins=yr*.1337,tax=taxScale(yr-ins,kids,age),net=yr-ins-tax;
-  const pct=x=>yr?(x/yr*100):0;
-  $('#salOut').innerHTML=`<span class="lbl">Καθαρές αποδοχές τον μήνα</span><span class="big">${eur(net/14)}</span><div class="bar" aria-hidden="true"><i style="width:${pct(net)}%;background:var(--c-q)"></i><i style="width:${pct(ins)}%;background:var(--c-s)"></i><i style="width:${pct(tax)}%;background:var(--c-c)"></i></div><div class="legend"><span style="--c:var(--c-q)">Καθαρά</span><span style="--c:var(--c-s)">Εισφορές</span><span style="--c:var(--c-c)">Φόρος</span></div><dl><dt>Μικτά τον μήνα</dt><dd>${eur(g)}</dd><dt>Εισφορές τον μήνα</dt><dd>−${eur(ins/14)}</dd><dt>Φόρος τον μήνα</dt><dd>−${eur(tax/14)}</dd><dt>Καθαρά τον χρόνο (14 μισθοί)</dt><dd>${eur(net)}</dd></dl>`;
+  const mode=segVal('#salMode','v'),pay=+segVal('#salPay','v'),kids=+segVal('#salKids','v'),age=+segVal('#salAge','v');
+  const a=Math.max(0,Math.min(1e6,+$('#sal-gross').value||0));
+  $('#salLbl').textContent=mode==='g'?'Μικτός μηνιαίος μισθός':'Καθαρός μηνιαίος μισθός';
+  let g=a;
+  if(mode==='n'){let lo=0,hi=200000;for(let i=0;i<60;i++){const m=(lo+hi)/2;if(salCore(m,pay,kids,age).net/pay<a)lo=m;else hi=m}g=(lo+hi)/2}
+  const c=salCore(g,pay,kids,age),yr=c.yr,pct=x=>yr?(x/yr*100):0,capped=g>SAL_CAP;
+  $('#salOut').innerHTML=`<span class="lbl">${mode==='g'?'Καθαρές αποδοχές ανά μισθό':'Μικτός μηνιαίος μισθός'}</span><span class="big">${eur(mode==='g'?c.net/pay:g)}</span><div class="bar" aria-hidden="true"><i style="width:${pct(c.net)}%;background:var(--c-q)"></i><i style="width:${pct(c.ins)}%;background:var(--c-s)"></i><i style="width:${pct(c.tax)}%;background:var(--c-c)"></i></div><div class="legend"><span style="--c:var(--c-q)">Καθαρά</span><span style="--c:var(--c-s)">Εισφορές</span><span style="--c:var(--c-c)">Φόρος</span></div><dl><dt>Μικτά ανά μισθό</dt><dd>${eur(g)}</dd><dt>Εισφορές εργαζομένου ανά μισθό</dt><dd>−${eur(c.ins/pay)}</dd><dt>Φόρος ανά μισθό</dt><dd>−${eur(c.tax/pay)}</dd><dt>Καθαρά ανά μισθό</dt><dd>${eur(c.net/pay)}</dd><dt>Καθαρά τον χρόνο (${String(pay).replace('.',',')} μισθοί)</dt><dd>${eur(c.net)}</dd><dt>Εργοδοτικές εισφορές τον χρόνο</dt><dd>${eur(c.er)}</dd><dt>Συνολικό κόστος εργοδότη τον χρόνο</dt><dd>${eur(c.cost)}</dd></dl>${capped?'<p class="calc-note">Ο μισθός υπερβαίνει το ανώτατο όριο ασφαλιστέων αποδοχών και οι εισφορές υπολογίζονται μέχρι αυτό.</p>':''}`;
+}
+const HR_CAT=[['Υπερεργασία',.2,1],['Νόμιμη υπερωρία 40%',.4,1],['Νόμιμη υπερωρία 60%',.6,1],['Υπερωρία κατ’ εξαίρεση',.8,1],['Νυχτερινή εργασία',.25,0],['Κυριακή / αργία',.75,0]];
+function calcHour(){
+  const sal=Math.max(0,+$('#hr-sal').value||0),wk=Math.max(1,Math.min(48,+$('#hr-wk').value||40)),h=sal*6/25/wk;
+  let tot=0,rows='';
+  HR_CAT.forEach((c,i)=>{const n=Math.max(0,Math.min(1000,+$('#hr-'+i).value||0));if(!n)return;const rate=h*(c[2]+c[1]),amt=rate*n;tot+=amt;rows+=`<dt>${c[0]}: ${String(n).replace('.',',')} ώρ. × ${eur(rate)}</dt><dd>${eur(amt)}</dd>`});
+  $('#hrOut').innerHTML=`<span class="lbl">Ωρομίσθιο</span><span class="big">${eur(h)}</span><dl><dt>Ημερομίσθιο (μισθός ÷ 25)</dt><dd>${eur(sal/25)}</dd>${rows}<dt>Σύνολο προσαυξήσεων / υπερωριών</dt><dd>${eur(tot)}</dd></dl>`;
 }
 const FR_MAIN=[150.46,250.77,300.93,360.63,433.47,519.45,675.87],FR_AUX=[0,46.57,56.13,66.88],FR_LUMP=[0,31.05,37.02,44.18];
 function calcFree(){
@@ -1643,9 +1677,10 @@ function calcFree(){
   $('#frOut').innerHTML=`<span class="lbl">Μηνιαία εισφορά</span><span class="big">${eur(m)}</span><dl><dt>Κύρια σύνταξη & υγεία (${c?c+'η':'ειδική'} κατ.)</dt><dd>${eur(FR_MAIN[c])}</dd>${a?`<dt>Επικουρική (${a}η)</dt><dd>${eur(FR_AUX[a])}</dd>`:''}${l?`<dt>Εφάπαξ (${l}η)</dt><dd>${eur(FR_LUMP[l])}</dd>`:''}${u?'<dt>Ανεργία</dt><dd>10,00 €</dd>':''}<dt>Τον χρόνο</dt><dd>${eur(m*12)}</dd></dl>`;
 }
 ['#vat-amt'].forEach(i=>$(i).addEventListener('input',calcVat));seg('#vatMode',calcVat);seg('#vatRate',calcVat);
-$('#sal-gross').addEventListener('input',calcSal);seg('#salKids',calcSal);seg('#salAge',calcSal);
+$('#sal-gross').addEventListener('input',calcSal);seg('#salMode',calcSal);seg('#salPay',calcSal);seg('#salKids',calcSal);seg('#salAge',calcSal);
 seg('#frCat',calcFree);seg('#frAux',calcFree);seg('#frLump',calcFree);$('#fr-un').addEventListener('change',calcFree);
-calcVat();calcSal();calcFree();calcNote('vat');
+['#hr-sal','#hr-wk'].forEach(i=>$(i).addEventListener('input',calcHour));$$('[data-hr]').forEach(i=>i.addEventListener('input',calcHour));
+calcVat();calcSal();calcHour();calcFree();calcNote('vat');
 
 /* ---- Τι χρειάζομαι για… ---- */
 const CHECKLISTS=[
