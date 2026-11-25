@@ -29,11 +29,12 @@
   --deep:#453B6E;--deep-fg:#F3F0FA;--ok:#2E7D5B;--ok-soft:#E4F3EC;--warn:#9A5B12;--warn-soft:#FBF0DF;
   --shadow:0 1px 2px rgba(28,24,48,.06),0 8px 24px rgba(28,24,48,.07);
   --f-d:"Manrope","Commissioner",system-ui,"Segoe UI",Roboto,sans-serif;--f-b:"Commissioner",system-ui,"Segoe UI",Roboto,sans-serif;
-  --r:14px;--wrap:1160px;color-scheme:light}
+  --r:14px;--wrap:1160px;color-scheme:light;
+  --gold:#B8862E;--tile:linear-gradient(180deg,#fff,#F7F5FC);--tile-sh:0 1px 0 #fff inset,0 10px 24px rgba(50,35,100,.08),0 3px 0 #E4DEF1;--ci:radial-gradient(circle at 30% 25%,#5E4F96,#3A2F66);--row-sh:0 2px 0 #E9E4F4;--hov:#F1EEF9}
 @media (prefers-color-scheme:dark){:root{
-  --bg:#383840;--surface:#45454F;--fg:#F2F2F6;--muted:#C3C3CE;--line:#585865;
-  --accent:#B3A7E0;--accent-strong:#CFC6F0;--accent-soft:#4F4B67;--on-accent:#17132A;
-  --deep:#25252C;--deep-fg:#F4F4F7;--ok:#6FCB9C;--ok-soft:#24392F;--warn:#E8B46B;--warn-soft:#3E3222;
+  --bg:#1E1932;--surface:#28213F;--fg:#EEEAF7;--muted:#B4ACCB;--line:#3D345E;
+  --accent:#B9A7F0;--accent-strong:#CFC6F0;--accent-soft:#30284B;--on-accent:#1E1932;
+  --deep:#1E1932;--gold:#E6C27A;--tile:linear-gradient(180deg,#30284B,#251E3B);--tile-sh:inset 0 1px 0 rgba(255,255,255,.08),0 10px 22px rgba(0,0,0,.28),0 3px 0 #171329;--ci:radial-gradient(circle at 30% 25%,#4A3F78,#2E2650);--row-sh:0 2px 0 #171329;--hov:#231C3A;--deep-fg:#F4F4F7;--ok:#6FCB9C;--ok-soft:#24392F;--warn:#E8B46B;--warn-soft:#3E3222;
   --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);color-scheme:dark}}
 *{box-sizing:border-box}[hidden]{display:none!important}
 html{scroll-behavior:smooth}
@@ -170,6 +171,56 @@ h2.sec{font-size:22px;margin:30px 0 4px}
 .cta{margin-top:24px;background:var(--accent-soft);border-radius:14px;padding:18px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
 @media print{.top,.tabs,.hero,.foot,.dlg-f,.x{display:none!important}dialog{position:static;box-shadow:none;width:100%;max-height:none}}
 .qz-nav{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px}.qz-nav #nx{margin-left:auto}.btn[disabled]{opacity:.45;cursor:default}
+
+/* ===== Εμφάνιση (σκούρο μωβ, πλακίδια κατηγοριών) ===== */
+.hero{background:linear-gradient(180deg,#2B2250,#3A2F66)}
+.rule span{color:#EDE8FA;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2)}
+.tab{border:0;border-radius:12px 12px 0 0;font-size:15.5px}
+.tab[aria-selected="false"]{background:transparent;color:#D9D2F0;box-shadow:none}
+.tab[aria-selected="true"]{background:var(--surface);color:var(--accent-strong);box-shadow:inset 0 3px 0 var(--gold)}
+.panel{border:0;box-shadow:0 30px 70px rgba(40,30,90,.14)}
+.search{border:1px solid var(--line);border-radius:14px;background:var(--bg)}
+.catgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.cat-t{position:relative;text-align:left;display:grid;gap:6px;align-content:start;padding:20px 18px 18px;border-radius:18px;border:1px solid var(--line);cursor:pointer;color:var(--fg);background:var(--tile);box-shadow:var(--tile-sh);transition:transform .2s,box-shadow .2s;font:inherit}
+.cat-t:hover,.cat-t:focus-visible{transform:translateY(-4px);box-shadow:var(--tile-sh),0 0 0 1.5px var(--accent)}
+.cat-t .ci{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;font-size:28px;background:var(--ci);box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 6px 14px rgba(40,30,90,.3);margin-bottom:8px}
+.cat-t b{font:700 17px/1.25 var(--f-d)}.cat-t small{color:var(--muted);font-size:14px}
+.cat-t .go{position:absolute;right:16px;top:18px;color:var(--gold);font-weight:700;font-size:18px}
+.crumb{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:2px 0 14px}
+.crumb button{border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:999px;padding:9px 14px;font:600 14px var(--f-b);cursor:pointer}
+.crumb button:hover{border-color:var(--accent)}
+.crumb b{font:700 20px var(--f-d)}
+#list.one .grp{margin-top:0}#list.one .grp h2{display:none}
+.grp h2{font-size:18px}
+.cards{grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:10px}
+.card{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:15px 16px;align-items:center;box-shadow:var(--row-sh)}
+.card::after{content:"›";margin-left:auto;padding-left:8px;font-size:24px;color:var(--accent-strong);line-height:1}
+.card:hover{border-color:var(--accent);background:var(--hov);transform:none}
+.card .n{background:transparent;border:1.5px solid var(--line);color:var(--gold);border-radius:10px}
+.bgrid{grid-template-columns:1fr;gap:0;max-width:840px}
+.box{display:grid;grid-template-columns:1fr;gap:8px;background:transparent;border:0;border-left:2px solid var(--line);border-radius:0;padding:0 0 26px 40px;margin-left:26px;position:relative}
+.box:last-child{border-left-color:transparent}
+.box h3{font-size:20px;min-height:44px}
+.box h3 i{position:absolute;left:-27px;top:-4px;width:52px;height:52px;border-radius:50%;background:var(--ci);border:2px solid var(--surface);color:#fff;font:700 20px var(--f-d);box-shadow:0 6px 14px rgba(40,30,90,.3)}
+.box>p,.box>ul{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:0}
+.box>ul{padding-left:34px}
+.doc{background:var(--bg)}
+.tl{grid-auto-flow:column;grid-auto-columns:1fr;gap:14px;border-top:2px solid var(--line);padding-top:26px;margin-top:34px}
+.tl li{border:1px solid var(--line);margin:0;padding:18px;border-radius:16px;background:var(--bg);font-size:15.5px}
+.tl li:last-child{border-color:var(--line)}
+.tl li::before{left:20px;top:-39px;background:var(--surface);border-color:var(--accent-strong)}
+.tl li.now::before{background:var(--gold);border-color:var(--gold)}
+.tl b{font-size:17px;margin-bottom:6px;color:var(--accent-strong)}
+@media (max-width:760px){.tl{grid-auto-flow:row;border-top:0;padding-top:0;margin-top:18px}.tl li{margin-left:14px;border-left:3px solid var(--line);border-radius:0 16px 16px 0}.tl li::before{left:-12px;top:18px}}
+.faq summary::after{color:var(--gold)}
+.qz{margin:0 auto;background:var(--bg);border:1px solid var(--line);border-radius:22px;padding:28px;box-shadow:0 20px 40px rgba(40,30,90,.1)}
+.qz h3{font-size:23px}
+.qz .opt{border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:var(--surface)}
+.bar i{background:var(--gold)}
+.ans-h{background:#3A2F66;color:#fff}.ans.none .ans-h{background:var(--ok)}
+.btn.p{background:#4F4378;border-color:#4F4378;color:#fff}
+@media (prefers-color-scheme:dark){.btn.p,.opt[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#1E1932}.qz .opt.ok{background:#1F3A30;border-color:#5BC08E}.qz .opt.bad{background:#40242A;border-color:#D9786B}.top,.foot{background:#19152B}}
+@media (max-width:640px){.cards{grid-template-columns:1fr}.catgrid{grid-template-columns:1fr 1fr;gap:10px}.cat-t{padding:14px}.cat-t .ci{width:44px;height:44px;font-size:22px}.cat-t b{font-size:15px}.box{margin-left:22px;padding-left:34px}}
 </style>
 </head>
 <body>
@@ -209,7 +260,6 @@ h2.sec{font-size:22px;margin:30px 0 4px}
 <section class="panel" id="odigos" role="tabpanel">
   <div class="find">
     <label class="search"><span aria-hidden="true">🔎</span><input id="q" type="search" placeholder="Αναζήτηση, π.χ. «συνεργείο», «courier», «επιστροφή», «λαϊκή»" autocomplete="off" aria-label="Αναζήτηση περίπτωσης"></label>
-    <div class="chips" id="chips" aria-label="Κλάδοι"></div>
   </div>
   <div id="list"></div>
   <p class="empty" id="empty" hidden>Δεν βρέθηκε αποτέλεσμα. Δοκιμάστε άλλη λέξη ή <a href="./#epikoinonia">ρωτήστε μας</a>.</p>
@@ -315,12 +365,12 @@ const CATS=[
  ['metaf','🚚','Μεταφορείς & courier'],
  ['dianomi','🚐','Διανομή με επαγγελματικό όχημα'],
  ['cars','🔧','Συνεργεία & αυτοκίνητα'],
- ['service','🧺','Service & αντιπροσωπείες συσκευών'],
+ ['service','🔌','Service & αντιπροσωπείες συσκευών'],
  ['tech','🧰','Τεχνίτες, εργολάβοι, εργαστήρια'],
  ['agro','🌾','Αγρότες & λαϊκές αγορές'],
  ['entos','🏢','Μέσα στην επιχείρησή μου'],
  ['ekso','🌍','Εξωτερικό'],
- ['eidikes','🎁','Ειδικές περιπτώσεις'],
+ ['eidikes','🧩','Ειδικές περιπτώσεις'],
  ['strava','⚠️','Λάθη και αποκλίσεις']
 ];
 
@@ -647,22 +697,26 @@ const catName={};CATS.forEach(c=>catName[c[0]]=c);
 C.forEach((x,i)=>x.id='p'+(i+1));
 const norm=s=>s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/ς/g,'σ');
 let curCat='all';
-const chips=$('#chips');
-[['all','','Όλα']].concat(CATS).forEach(c=>{const b=document.createElement('button');b.className='chip';b.type='button';b.textContent=(c[1]?c[1]+' ':'')+c[2];b.setAttribute('aria-pressed',c[0]==='all');b.dataset.c=c[0];chips.appendChild(b)});
-chips.addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;curCat=b.dataset.c;chips.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',x===b));renderList()});
-$('#q').addEventListener('input',renderList);
+$('#q').addEventListener('input',()=>{if($('#q').value.trim())curCat='all';renderList()});
 function renderList(){
   const q=norm($('#q').value.trim()),words=q.split(/\s+/).filter(Boolean);
-  let html='',n=0;
+  const L=$('#list');
+  if(!words.length&&curCat==='all'){
+    L.innerHTML='<div class="catgrid">'+CATS.map(c=>'<button class="cat-t" type="button" data-c="'+c[0]+'"><span class="ci" aria-hidden="true">'+c[1]+'</span><b>'+esc(c[2])+'</b><small>'+C.filter(x=>x.c===c[0]).length+' περιπτώσεις</small><span class="go" aria-hidden="true">→</span></button>').join('')+'</div>';
+    $('#empty').hidden=true;return}
+  let html=curCat!=='all'?'<div class="crumb"><button type="button" data-back>← Όλες οι κατηγορίες</button><b>'+catName[curCat][1]+' '+esc(catName[curCat][2])+'</b></div>':'',n=0;
   CATS.forEach(cat=>{
     if(curCat!=='all'&&curCat!==cat[0])return;
     const items=C.filter(x=>x.c===cat[0]&&words.every(w=>norm(x.t+' '+x.k+' '+cat[2]).includes(w)));
     if(!items.length)return;n+=items.length;
     html+='<div class="grp"><h2><i>'+cat[1]+'</i>'+esc(cat[2])+'</h2><div class="cards">'+items.map(x=>'<button class="card" type="button" data-id="'+x.id+'"><span class="n">'+x.id.slice(1)+'</span><span>'+esc(x.t)+'</span></button>').join('')+'</div></div>';
   });
-  $('#list').innerHTML=html;$('#empty').hidden=n>0;
+  L.innerHTML=html;L.classList.toggle('one',curCat!=='all');$('#empty').hidden=n>0;
 }
-$('#list').addEventListener('click',e=>{const b=e.target.closest('.card');if(b)openCase(b.dataset.id)});
+$('#list').addEventListener('click',e=>{
+  const t=e.target.closest('.cat-t');if(t){curCat=t.dataset.c;renderList();$('#list').scrollIntoView({behavior:'smooth',block:'nearest'});return}
+  if(e.target.closest('[data-back]')){curCat='all';renderList();return}
+  const b=e.target.closest('.card');if(b)openCase(b.dataset.id)});
 
 const dlg=$('#dlg');
 function ansHTML(r){
